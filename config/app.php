@@ -153,6 +153,7 @@ return [
         Barryvdh\LaravelIdeHelper\IdeHelperServiceProvider::class, // IDE Helper for development
         Maatwebsite\Excel\ExcelServiceProvider::class, // Generate MS Excel file for download
         Zizaco\Entrust\EntrustServiceProvider::class, // User role & permission management
+        Intervention\Image\ImageServiceProvider::class, // Image processing library
 
         /*
          * Application Service Providers...
@@ -217,7 +218,7 @@ return [
          */
         'Excel' => Maatwebsite\Excel\Facades\Excel::class,
         'Entrust'   => Zizaco\Entrust\EntrustFacade::class,
-
+        'Image' => Intervention\Image\Facades\Image::class,
     ],
 
 ];
