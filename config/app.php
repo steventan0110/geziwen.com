@@ -150,8 +150,9 @@ return [
         /*
          * Package Service Providers...
          */
-
-        Barryvdh\LaravelIdeHelper\IdeHelperServiceProvider::class,
+        Barryvdh\LaravelIdeHelper\IdeHelperServiceProvider::class, // IDE Helper for development
+        Maatwebsite\Excel\ExcelServiceProvider::class, // Generate MS Excel file for download
+        Zizaco\Entrust\EntrustServiceProvider::class, // User role & permission management
 
         /*
          * Application Service Providers...
@@ -210,6 +211,12 @@ return [
         'URL' => Illuminate\Support\Facades\URL::class,
         'Validator' => Illuminate\Support\Facades\Validator::class,
         'View' => Illuminate\Support\Facades\View::class,
+
+        /**
+         * Package Aliases...
+         */
+        'Excel' => Maatwebsite\Excel\Facades\Excel::class,
+        'Entrust'   => Zizaco\Entrust\EntrustFacade::class,
 
     ],
 
