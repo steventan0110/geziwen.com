@@ -20,6 +20,7 @@
         "vue": "^2.5.7"
     },
     "dependencies": {
+        "vue-avatar-editor": "^1.0.4",
         "vue-crop": "^1.0.1"
     }
 }
