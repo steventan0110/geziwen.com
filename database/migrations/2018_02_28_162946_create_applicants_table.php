@@ -15,8 +15,8 @@ class CreateApplicantsTable extends Migration
     {
         Schema::create('applicants', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('name');
-            $table->string('introduction');
+            $table->text('name');
+            $table->mediumText('introduction');
             $table->unsignedInteger('graduation_year');
             $table->string('picture');
             $table->timestamps();

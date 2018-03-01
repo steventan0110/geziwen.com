@@ -12,7 +12,7 @@ class CreateTestsTable extends Migration
      * @return void
      */
     public function up() {
-        Schema::create('toefl', function (Blueprint $table) {
+        Schema::create('toefls', function (Blueprint $table) {
             $table->increments('id');
             $table->unsignedInteger('student');
             $table->date('taken_on');
@@ -23,7 +23,7 @@ class CreateTestsTable extends Migration
             $table->timestamps();
         });
 
-        Schema::create('ielts', function (Blueprint $table) {
+        Schema::create('ieltss', function (Blueprint $table) {
             $table->increments('id');
             $table->unsignedInteger('student');
             $table->date('taken_on');
@@ -34,7 +34,7 @@ class CreateTestsTable extends Migration
             $table->timestamps();
         });
 
-        Schema::create('sat', function (Blueprint $table) {
+        Schema::create('sats', function (Blueprint $table) {
             $table->increments('id');
             $table->unsignedInteger('student');
             $table->date('taken_on');
@@ -44,7 +44,7 @@ class CreateTestsTable extends Migration
             $table->timestamps();
         });
 
-        Schema::create('sat_subject', function (Blueprint $table) {
+        Schema::create('sat_subjects', function (Blueprint $table) {
             $table->increments('id');
             $table->unsignedInteger('student');
             $table->date('taken_on');
@@ -53,7 +53,7 @@ class CreateTestsTable extends Migration
             $table->timestamps();
         });
 
-        Schema::create('ap', function (Blueprint $table) {
+        Schema::create('aps', function (Blueprint $table) {
             $table->increments('id');
             $table->unsignedInteger('student');
             $table->date('taken_on');
