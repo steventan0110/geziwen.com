@@ -20,6 +20,7 @@
         "vue": "^2.5.7"
     },
     "dependencies": {
+        "jquery-jcrop": "^0.9.13",
         "vue-crop": "^1.0.1"
     }
 }
