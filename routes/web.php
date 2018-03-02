@@ -20,5 +20,12 @@ Auth::routes();
 Route::get('/home', 'HomeController@index')->name('home');
 
 Route::prefix('applicant') -> group(function() {
-    Route::get('profile', 'ApplicantController@profile');
+
+    Route::get('edit/{id}', 'ApplicantController@edit');
+
+    Route::get('create/{id}', 'ApplicantController@create');
+
+    Route::get('view/{id}', 'ApplicantController@view');
+
+    Route::get('delete/{id}', 'ApplicantController@delete');
 });
