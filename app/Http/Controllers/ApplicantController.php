@@ -8,9 +8,9 @@ use App\Applicant;
 class ApplicantController extends Controller
 {
     public function view(Request $request, $id) {
-        $applicant = Applicant::find($id);
+        $applicant = Applicant::findOrFail($id);
         return view('applicant.view', [
-            'profile' => $applicant->get(),
+            'profile' => $applicant,
             'tests' => [
                 'toefl' => $applicant->toefl()->get(),
                 'sat' => $applicant->sat()->get(),
