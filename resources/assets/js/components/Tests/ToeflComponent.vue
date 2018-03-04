@@ -8,7 +8,6 @@
                 </div>
                 <div class="card card-default" style="margin-bottom: 1rem!important;">
                     <div class="card-header">Example Component</div>
-
                     <div class="card-body">
                         I'm an example component.
                     </div>

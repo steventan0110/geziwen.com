@@ -1,3 +1,4 @@
+"use strict";
 
 /**
  * First we will load all of this project's JavaScript dependencies which
@@ -15,8 +16,9 @@ window.Vue = require('vue');
  * or customize the JavaScript scaffolding to fit your unique needs.
  */
 
-Vue.component('example-component', require('./components/ExampleComponent.vue'));
-Vue.component('test-toefl', require('./components/Tests/ToeflComponent'));
+import Avatar from 'vue-avatar'
+
+Vue.component('Avatar', Avatar);
 
 const app = new Vue({
     el: '#app'
