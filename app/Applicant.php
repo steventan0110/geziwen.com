@@ -42,4 +42,7 @@ class Applicant extends Model
         return $this->hasMany(Award::class, 'student', 'id');
     }
 
+    public function agency() {
+        return $this->belongsTo(Agency::class, 'agency', 'id');
+    }
 }
