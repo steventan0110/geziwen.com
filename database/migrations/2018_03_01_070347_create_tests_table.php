@@ -70,10 +70,10 @@ class CreateTestsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('toefl');
-        Schema::dropIfExists('ielts');
-        Schema::dropIfExists('sat_subject');
-        Schema::dropIfExists('sat');
-        Schema::dropIfExists('ap');
+        Schema::dropIfExists('toefls');
+        Schema::dropIfExists('ieltss');
+        Schema::dropIfExists('sat_subjects');
+        Schema::dropIfExists('sats');
+        Schema::dropIfExists('aps');
     }
 }
