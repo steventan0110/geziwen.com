@@ -19,6 +19,7 @@ class CreateApplicantsTable extends Migration
             $table->mediumText('introduction');
             $table->unsignedInteger('graduation_year');
             $table->string('picture');
+            $table->unsignedInteger('agency');
             $table->timestamps();
         });
     }
