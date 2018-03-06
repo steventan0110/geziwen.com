@@ -8,6 +8,9 @@ use App\Test\Sat;
 use App\Test\SatSubject;
 use App\Test\Toefl;
 use Illuminate\Database\Eloquent\Model;
+use App\Profile\Award;
+use App\Profile\Activity;
+use App\Agency;
 
 class Applicant extends Model
 {
@@ -15,34 +18,34 @@ class Applicant extends Model
     protected $table = "applicants";
 
     public function toefl() {
-        return $this->hasMany(Toefl::class, 'student', 'id');
+        return $this->hasMany(Toefl::class);
     }
 
     public function sat() {
-        return $this->hasMany(Sat::class, 'student', 'id');
+        return $this->hasMany(Sat::class);
     }
 
     public function ielts() {
-        return $this->hasMany(Ielts::class, 'student', 'id');
+        return $this->hasMany(Ielts::class);
     }
 
     public function satSubject() {
-        return $this->hasMany(SatSubject::class, 'student', 'id');
+        return $this->hasMany(SatSubject::class);
     }
 
     public function ap() {
-        return $this->hasMany(Ap::class, 'student', 'id');
+        return $this->hasMany(Ap::class);
     }
 
     public function activity() {
-        return $this->hasMany(Activity::class, 'student', 'id');
+        return $this->hasMany(Activity::class);
     }
 
     public function award() {
-        return $this->hasMany(Award::class, 'student', 'id');
+        return $this->hasMany(Award::class);
     }
 
     public function agency() {
-        return $this->belongsTo(Agency::class, 'agency', 'id');
+        return $this->belongsTo(Agency::class);
     }
 }
