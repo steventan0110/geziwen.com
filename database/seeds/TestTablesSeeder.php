@@ -11,6 +11,7 @@ class TestTablesSeeder extends Seeder
      */
     public function run()
     {
+        $faker = Faker\Factory::create();
         // TOEFL
         foreach (range(1, 1000) as $i) {
             DB::table('toefls')->insert([
