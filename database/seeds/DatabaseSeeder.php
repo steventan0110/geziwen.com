@@ -15,5 +15,6 @@ class DatabaseSeeder extends Seeder
          $this->call(\AgencyTableSeeder::class);
          $this->call(\TestTablesSeeder::class);
          $this->call(\ActivitiesTableSeeder::class);
+         $this->call(\AwardTableSeeder::class);
     }
 }
