@@ -12,7 +12,7 @@ class AgencyTableSeeder extends Seeder
     public function run()
     {
         $faker = Faker\Factory::create();
-        foreach (range(1, 100) as $i) {
+        foreach (range(1, 10) as $i) {
             DB::table('agencies')->insert([
                 'name' => $faker->name,
                 'introduction' => $faker->text,

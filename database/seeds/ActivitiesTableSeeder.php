@@ -49,7 +49,7 @@ class ActivitiesTableSeeder extends Seeder
             ]);
         }
         // Activities
-        foreach (range(1, 1000) as $i) {
+        foreach (range(1, 500) as $i) {
             DB::table('activities')->insert([
                 'applicant_id' => random_int(1, 100),
                 'type_id' => random_int(1, count($ACTIVITY_TYPES)),

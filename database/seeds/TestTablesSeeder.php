@@ -13,7 +13,7 @@ class TestTablesSeeder extends Seeder
     {
         $faker = Faker\Factory::create();
         // TOEFL
-        foreach (range(1, 1000) as $i) {
+        foreach (range(1, 500) as $i) {
             DB::table('toefls')->insert([
                 'applicant_id' => random_int(1, 100),
                 'taken_on' => $faker->date(),
@@ -24,7 +24,7 @@ class TestTablesSeeder extends Seeder
             ]);
         }
         // IELTS
-        foreach (range(1, 1000) as $i) {
+        foreach (range(1, 500) as $i) {
             DB::table('ieltss')->insert([
                 'applicant_id' => random_int(1, 100),
                 'taken_on' => $faker->date(),
@@ -35,7 +35,7 @@ class TestTablesSeeder extends Seeder
             ]);
         }
         // SAT
-        foreach (range(1, 1000) as $i) {
+        foreach (range(1, 500) as $i) {
             DB::table('sats')->insert([
                 'applicant_id' => random_int(1, 100),
                 'taken_on' => $faker->date(),
@@ -46,7 +46,7 @@ class TestTablesSeeder extends Seeder
             ]);
         }
         // SAT Subject
-        foreach (range(1, 1000) as $i) {
+        foreach (range(1, 500) as $i) {
             DB::table('sat_subjects')->insert([
                 'applicant_id' => random_int(1, 100),
                 'taken_on' => $faker->date(),
@@ -55,7 +55,7 @@ class TestTablesSeeder extends Seeder
             ]);
         }
         // AP
-        foreach (range(1, 1000) as $i) {
+        foreach (range(1, 500) as $i) {
             DB::table('aps')->insert([
                 'applicant_id' => random_int(1, 100),
                 'taken_on' => $faker->date(),
