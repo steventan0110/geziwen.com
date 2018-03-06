@@ -1,8 +1,9 @@
 <?php
 
-namespace App;
+namespace App\Profile;
 
 use Illuminate\Database\Eloquent\Model;
+use App\Applicant;
 
 class Award extends Model
 {

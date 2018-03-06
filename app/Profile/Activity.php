@@ -1,14 +1,19 @@
 <?php
 
-namespace App;
+namespace App\Profile;
 
+use App\Applicant;
 use Illuminate\Database\Eloquent\Model;
 
 class Activity extends Model
 {
     protected $table = "activities";
 
-    public function student() {
-         return $this->belongsTo(Applicant::class, 'student', 'id');
+    public function applicant() {
+         return $this->belongsTo(Applicant::class);
+    }
+
+    public function type() {
+        return $this->belongsTo(ActivityType::class, 'type_id', 'id');
     }
 }
