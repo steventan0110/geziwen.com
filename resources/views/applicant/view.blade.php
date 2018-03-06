@@ -24,7 +24,7 @@
                     </div>
                 </div>
             </div>
-            <div class="col-lg">
+            <div class="col-lg-8">
                 <div class="card" style="margin-bottom: 1rem!important;">
                     <div class="card-header">基本信息</div>
                     <div class="card-body row">
@@ -264,13 +264,63 @@
                 <div class="card" style="margin-bottom: 1rem!important;">
                     <div class="card-header">活动</div>
                     <div class="card-body">
-                        {{--TODO: Implement this--}}
+                        <dl class="row">
+                            @foreach($activity as $event)
+                                <!--Basic Activity Overview-->
+                                <dt class="col-sm-3">
+                                    <p>{{ $event['name'] }}</p>
+                                </dt>
+                                <dd class="col-sm-6">{{ $event['description'] }}</dd>
+                                <div class="col-sm-3">
+                                    <button class="btn btn-primary btn-sm float-right" type="button" data-toggle="modal" data-target="#activity-{{ $event['id'] }}">查看详细</button>
+                                </div>
+                                <!--Detailed Activity View through Modals-->
+                                <div class="modal fade" id="activity-{{ $event['id'] }}" tabindex="-1" role="dialog" aria-labelledby="activity-{{ $event['id'] }}-label" aria-hidden="true">
+                                    <div class="modal-dialog modal-dialog-centered" role="document">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <h5 class="modal-title" id="activity-{{ $event['id'] }}-label">活动详情</h5>
+                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                    <span aria-hidden="true">&times;</span>
+                                                </button>
+                                            </div>
+                                            <div class="modal-body">
+                                                <div class="card" style="margin-bottom: 1rem!important;">
+                                                    <div class="card-header">{{ $event['name'] }}</div>
+                                                    <div class="card-body">
+                                                        <p class="card-text">{{ $event['description'] }}</p>
+                                                    </div>
+                                                    <ul class="list-group list-group-flush">
+                                                        <li class="list-group-item">活动类别：{{ $event['type']['name'] }}</li>
+                                                        <li class="list-group-item">开始日期：{{ $event['start'] }}</li>
+                                                        <li class="list-group-item">结束日期：{{ $event['end'] }}</li>
+                                                        <li class="list-group-item">每周投入时间：{{ $event['hours_per_week'] }}小时</li>
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                            <div class="modal-footer">
+                                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            @endforeach
+                        </dl>
                     </div>
                 </div>
                 <div class="card" style="margin-bottom: 1rem!important;">
                     <div class="card-header">奖项</div>
-                    <div class="card-body"></div>
-                    {{--TODO: Implement this--}}
+                    <div class="card-body">
+                        <dl class="row">
+                            @foreach($award as $honor)
+                                <!--Basic Activity Overview-->
+                                <dt class="col-sm-3">
+                                    {{ $honor['name'] }} {{ $honor['received_on'] }}
+                                </dt>
+                                <dd class="col-sm-9">{{ $honor['description'] }}</dd>
+                            @endforeach
+                        </dl>
+                    </div>
                 </div>
             </div>
         </div>
