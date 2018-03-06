@@ -21,6 +21,7 @@ class CreateAgenciesTable extends Migration
             $table->string('telephone');
             $table->string('website');
             $table->date('started_on');
+            $table->string('email');
             $table->timestamps();
         });
     }

@@ -15,7 +15,7 @@ class CreateAwardsTable extends Migration
     {
         Schema::create('awards', function (Blueprint $table) {
             $table->increments('id');
-            $table->unsignedInteger('student');
+            $table->unsignedInteger('applicant_id');
             $table->unsignedInteger('type');
             $table->string('name');
             $table->string('description');
