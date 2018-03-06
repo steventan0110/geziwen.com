@@ -14,7 +14,7 @@ class CreateTestsTable extends Migration
     public function up() {
         Schema::create('toefls', function (Blueprint $table) {
             $table->increments('id');
-            $table->unsignedInteger('student');
+            $table->unsignedInteger('applicant_id');
             $table->date('taken_on');
             $table->unsignedInteger('reading');
             $table->unsignedInteger('listening');
@@ -25,7 +25,7 @@ class CreateTestsTable extends Migration
 
         Schema::create('ieltss', function (Blueprint $table) {
             $table->increments('id');
-            $table->unsignedInteger('student');
+            $table->unsignedInteger('applicant_id');
             $table->date('taken_on');
             $table->unsignedInteger('reading');
             $table->unsignedInteger('listening');
@@ -36,17 +36,18 @@ class CreateTestsTable extends Migration
 
         Schema::create('sats', function (Blueprint $table) {
             $table->increments('id');
-            $table->unsignedInteger('student');
+            $table->unsignedInteger('applicant_id');
             $table->date('taken_on');
             $table->unsignedInteger('reading');
             $table->unsignedInteger('math');
+            $table->unsignedInteger('writing');
             $table->unsignedInteger('essay');
             $table->timestamps();
         });
 
         Schema::create('sat_subjects', function (Blueprint $table) {
             $table->increments('id');
-            $table->unsignedInteger('student');
+            $table->unsignedInteger('applicant_id');
             $table->date('taken_on');
             $table->string('subject');
             $table->unsignedInteger('score');
@@ -55,7 +56,7 @@ class CreateTestsTable extends Migration
 
         Schema::create('aps', function (Blueprint $table) {
             $table->increments('id');
-            $table->unsignedInteger('student');
+            $table->unsignedInteger('applicant_id');
             $table->date('taken_on');
             $table->string('subject');
             $table->unsignedInteger('score');
