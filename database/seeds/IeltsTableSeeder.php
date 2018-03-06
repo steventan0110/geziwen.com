@@ -2,7 +2,7 @@
 
 use Illuminate\Database\Seeder;
 
-class ToeflTableSeeder extends Seeder
+class IeltsTableSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -13,13 +13,13 @@ class ToeflTableSeeder extends Seeder
     {
         $faker = Faker\Factory::create();
         foreach (range(1, 1000) as $i) {
-            DB::table('toefls')->insert([
+            DB::table('ieltss')->insert([
                 'applicant_id' => random_int(1, 100),
                 'taken_on' => $faker->date(),
-                'reading' => random_int(10, 30),
-                'listening' => random_int(10, 30),
-                'speaking' => random_int(10, 30),
-                'writing' => random_int(10, 30),
+                'reading' => random_int(0, 18),
+                'writing' => random_int(0, 18),
+                'listening' => random_int(0, 18),
+                'speaking' => random_int(0, 18)
             ]);
         }
     }
