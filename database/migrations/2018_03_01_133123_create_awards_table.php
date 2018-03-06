@@ -22,11 +22,6 @@ class CreateAwardsTable extends Migration
             $table->date('received_on');
             $table->timestamps();
         });
-
-        Schema::create('award_types', function (Blueprint $table) {
-            $table->increments('id');
-            $table->string('name');
-        });
     }
 
     /**
@@ -37,6 +32,5 @@ class CreateAwardsTable extends Migration
     public function down()
     {
         Schema::dropIfExists('awards');
-        Schema::dropIfExists('award_types');
     }
 }
