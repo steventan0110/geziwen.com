@@ -29,3 +29,15 @@ Route::prefix('applicant') -> group(function() {
 
     Route::get('delete/{id}', 'ApplicantController@delete');
 });
+
+Route::prefix('agency') -> group(function() {
+
+    Route::get('view/{id}', 'AgencyController@view');
+
+    Route::get('create/{id}', 'AgencyController@create');
+
+    Route::get('edit/{id}', 'AgencyController@edit');
+
+    Route::get('delete/{id}', 'AgencyController@delete');
+
+});
