@@ -10,6 +10,6 @@ class Ap extends Model
     protected $table = "aps";
 
     public function student() {
-        $this->belongsTo(Applicant::class, 'student', 'id');
+        $this->belongsTo(Applicant::class);
     }
 }

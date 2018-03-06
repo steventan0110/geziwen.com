@@ -10,6 +10,6 @@ class Toefl extends Model
     protected $table = "toefls";
 
     public function student() {
-        $this->belongsTo(Applicant::class, 'student', 'id');
+        $this->belongsTo(Applicant::class);
     }
 }

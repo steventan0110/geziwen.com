@@ -10,6 +10,6 @@ class SatSubject extends Model
     protected $table = "sat_subjects";
 
     public function student() {
-        $this->belongsTo(Applicant::class, 'student', 'id');
+        $this->belongsTo(Applicant::class);
     }
 }

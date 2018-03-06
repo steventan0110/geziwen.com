@@ -10,6 +10,6 @@ class Ielts extends Model
     protected $table = "ieltss";
 
     public function student() {
-        $this->belongsTo(Applicant::class, 'student', 'id');
+        $this->belongsTo(Applicant::class);
     }
 }
