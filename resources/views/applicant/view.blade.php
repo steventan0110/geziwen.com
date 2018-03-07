@@ -26,6 +26,18 @@
             </div>
             <div class="col-lg-8">
                 <div class="card" style="margin-bottom: 1rem!important;">
+                    <div class="card-header">申请情况</div>
+                    <ul class="list-group list-group-flush">
+                        @foreach($applications as $application)
+                            <li class="list-group-item">
+                                学校：<a href="{{ $application->university['website'] }}">{{ $application->university['name'] }}</a>
+                                Plan: {{ $application->plan['shorthand'] }} ({{ $application->plan['name'] }})
+                                结果：{{ $application->decision['name'] }}
+                            </li>
+                        @endforeach
+                    </ul>
+                </div>
+                <div class="card" style="margin-bottom: 1rem!important;">
                     <div class="card-header">基本信息</div>
                     <div class="card-body row">
                         <div class="col-sm-8">
@@ -49,27 +61,27 @@
                             <li class="nav-item">
                                 <a class="nav-link active" href="#test-summary" data-toggle="tab">概况</a>
                             </li>
-                            @if(count($tests['toefl']))
+                            @if(count($tests['toefls']))
                                 <li class="nav-item">
                                     <a class="nav-link" href="#toefl" data-toggle="tab">TOEFL</a>
                                 </li>
                             @endif
-                            @if(count($tests['ielts']))
+                            @if(count($tests['ieltss']))
                                 <li class="nav-item">
                                     <a class="nav-link" href="#ielts" data-toggle="tab">IELTS</a>
                                 </li>
                             @endif
-                            @if(count($tests['sat']))
+                            @if(count($tests['sats']))
                                 <li class="nav-item">
                                     <a class="nav-link" href="#sat" data-toggle="tab">SAT</a>
                                 </li>
                             @endif
-                            @if(count($tests['satSubject']))
+                            @if(count($tests['satSubjects']))
                                 <li class="nav-item">
                                     <a class="nav-link" href="#satii" data-toggle="tab">SAT II</a>
                                 </li>
                             @endif
-                            @if(count($tests['ap']))
+                            @if(count($tests['aps']))
                                 <li class="nav-item">
                                     <a class="nav-link" href="#ap" data-toggle="tab">AP</a>
                                 </li>
@@ -79,7 +91,7 @@
                     <div class="card-body tab-content">
                         <div class="tab-pane fade active show" id="test-summary">
                             <dl class="row">
-                                @if(count($tests['toefl']))
+                                @if(count($tests['toefls']))
                                     <dt class="col-sm-3">TOEFL</dt>
                                     <dd class="col-sm-9">
                                         <dl class="row">
@@ -89,11 +101,11 @@
                                             <dt class="col-sm-4">最高拼分</dt>
                                             <dd class="col-sm-8">TODO</dd>
                                             <dt class="col-sm-4">考试次数</dt>
-                                            <dd class="col-sm-8">{{ count($tests['toefl']) }}</dd>
+                                            <dd class="col-sm-8">{{ count($tests['toefls']) }}</dd>
                                         </dl>
                                     </dd>
                                 @endif
-                                @if(count($tests['ielts']))
+                                @if(count($tests['ieltss']))
                                     <dt class="col-sm-3">IELTS</dt>
                                     <dd class="col-sm-9">
                                         <dl class="row">
@@ -103,11 +115,11 @@
                                             <dt class="col-sm-4">最高拼分</dt>
                                             <dd class="col-sm-8">TODO</dd>
                                             <dt class="col-sm-4">考试次数</dt>
-                                            <dd class="col-sm-8">{{ count($tests['ielts']) }}</dd>
+                                            <dd class="col-sm-8">{{ count($tests['ieltss']) }}</dd>
                                         </dl>
                                     </dd>
                                 @endif
-                                @if(count($tests['sat']))
+                                @if(count($tests['sats']))
                                     <dt class="col-sm-3">SAT</dt>
                                     <dd class="col-sm-9">
                                         <dl class="row">
@@ -117,25 +129,25 @@
                                             <dt class="col-sm-4">最高拼分</dt>
                                             <dd class="col-sm-8">TODO</dd>
                                             <dt class="col-sm-4">考试次数</dt>
-                                            <dd class="col-sm-8">{{ count($tests['sat']) }}</dd>
+                                            <dd class="col-sm-8">{{ count($tests['sats']) }}</dd>
                                         </dl>
                                     </dd>
                                 @endif
-                                @if(count($tests['satSubject']))
+                                @if(count($tests['satSubjects']))
                                     <dt class="col-sm-3">SAT II</dt>
                                     <dd class="col-sm-9">
                                         <dl class="row">
                                             <dt class="col-sm-4">科目数量</dt>
-                                            <dd class="col-sm-8">{{ count($tests['satSubject']) }}</dd>
+                                            <dd class="col-sm-8">{{ count($tests['satSubjects']) }}</dd>
                                         </dl>
                                     </dd>
                                 @endif
-                                @if(count($tests['ap']))
+                                @if(count($tests['aps']))
                                     <dt class="col-sm-3">AP</dt>
                                     <dd class="col-sm-9">
                                         <dl class="row">
                                             <dt class="col-sm-4">科目数量</dt>
-                                            <dd class="col-sm-8">{{ count($tests['ap']) }}</dd>
+                                            <dd class="col-sm-8">{{ count($tests['aps']) }}</dd>
                                         </dl>
                                     </dd>
                                 @endif
@@ -154,7 +166,7 @@
                                 </tr>
                                 </thead>
                                 <tbody>
-                                @foreach($tests['toefl'] as $test)
+                                @foreach($tests['toefls'] as $test)
                                     <tr>
                                         <th scope="row">{{ $test['taken_on'] }}</th>
                                         <td>{{ $test['reading'] }}</td>
@@ -180,7 +192,7 @@
                                 </tr>
                                 </thead>
                                 <tbody>
-                                @foreach($tests['ielts'] as $test)
+                                @foreach($tests['ieltss'] as $test)
                                     <tr>
                                         <th scope="row">{{ $test['taken_on'] }}</th>
                                         <td>{{ $test['reading'] / 2.0 }}</td>
@@ -206,7 +218,7 @@
                                 </tr>
                                 </thead>
                                 <tbody>
-                                @foreach($tests['sat'] as $test)
+                                @foreach($tests['sats'] as $test)
                                     <tr>
                                         <th scope="row">{{ $test['taken_on'] }}</th>
                                         <td>{{ $test['reading'] }}</td>
@@ -229,7 +241,7 @@
                                 </tr>
                                 </thead>
                                 <tbody>
-                                @foreach($tests['satSubject'] as $test)
+                                @foreach($tests['satSubjects'] as $test)
                                     <tr>
                                         <th scope="row">{{ $test['taken_on'] }}</th>
                                         <td>{{ $test['subject'] }}</td>
@@ -249,7 +261,7 @@
                                 </tr>
                                 </thead>
                                 <tbody>
-                                @foreach($tests['ap'] as $test)
+                                @foreach($tests['aps'] as $test)
                                     <tr>
                                         <th scope="row">{{ $test['taken_on'] }}</th>
                                         <td>{{ $test['subject'] }}</td>
@@ -265,36 +277,36 @@
                     <div class="card-header">活动</div>
                     <div class="card-body">
                         <dl class="row">
-                            @foreach($activity as $event)
+                            @foreach($activities as $activity)
                                 <!--Basic Activity Overview-->
                                 <dt class="col-sm-3">
-                                    <p>{{ $event['name'] }}</p>
+                                    <p>{{ $activity['name'] }}</p>
                                 </dt>
-                                <dd class="col-sm-6">{{ $event['description'] }}</dd>
+                                <dd class="col-sm-6">{{ $activity['description'] }}</dd>
                                 <div class="col-sm-3">
-                                    <button class="btn btn-primary btn-sm float-right" type="button" data-toggle="modal" data-target="#activity-{{ $event['id'] }}">查看详细</button>
+                                    <button class="btn btn-primary btn-sm float-right" type="button" data-toggle="modal" data-target="#activity-{{ $activity['id'] }}">查看详细</button>
                                 </div>
                                 <!--Detailed Activity View through Modals-->
-                                <div class="modal fade" id="activity-{{ $event['id'] }}" tabindex="-1" role="dialog" aria-labelledby="activity-{{ $event['id'] }}-label" aria-hidden="true">
+                                <div class="modal fade" id="activity-{{ $activity['id'] }}" tabindex="-1" role="dialog" aria-labelledby="activity-{{ $activity['id'] }}-label" aria-hidden="true">
                                     <div class="modal-dialog modal-dialog-centered" role="document">
                                         <div class="modal-content">
                                             <div class="modal-header">
-                                                <h5 class="modal-title" id="activity-{{ $event['id'] }}-label">活动详情</h5>
+                                                <h5 class="modal-title" id="activity-{{ $activity['id'] }}-label">活动详情</h5>
                                                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                                     <span aria-hidden="true">&times;</span>
                                                 </button>
                                             </div>
                                             <div class="modal-body">
                                                 <div class="card" style="margin-bottom: 1rem!important;">
-                                                    <div class="card-header">{{ $event['name'] }}</div>
+                                                    <div class="card-header">{{ $activity['name'] }}</div>
                                                     <div class="card-body">
-                                                        <p class="card-text">{{ $event['description'] }}</p>
+                                                        <p class="card-text">{{ $activity['description'] }}</p>
                                                     </div>
                                                     <ul class="list-group list-group-flush">
-                                                        <li class="list-group-item">活动类别：{{ $event['type']['name'] }}</li>
-                                                        <li class="list-group-item">开始日期：{{ $event['start'] }}</li>
-                                                        <li class="list-group-item">结束日期：{{ $event['end'] }}</li>
-                                                        <li class="list-group-item">每周投入时间：{{ $event['hours_per_week'] }}小时</li>
+                                                        <li class="list-group-item">活动类别：{{ $activity['type']['name'] }}</li>
+                                                        <li class="list-group-item">开始日期：{{ $activity['start'] }}</li>
+                                                        <li class="list-group-item">结束日期：{{ $activity['end'] }}</li>
+                                                        <li class="list-group-item">每周投入时间：{{ $activity['hours_per_week'] }}小时</li>
                                                     </ul>
                                                 </div>
                                             </div>
@@ -312,12 +324,12 @@
                     <div class="card-header">奖项</div>
                     <div class="card-body">
                         <dl class="row">
-                            @foreach($award as $honor)
+                            @foreach($awards as $award)
                                 <!--Basic Activity Overview-->
                                 <dt class="col-sm-3">
-                                    {{ $honor['name'] }} {{ $honor['received_on'] }}
+                                    {{ $award['name'] }} {{ $award['received_on'] }}
                                 </dt>
-                                <dd class="col-sm-9">{{ $honor['description'] }}</dd>
+                                <dd class="col-sm-9">{{ $award['description'] }}</dd>
                             @endforeach
                         </dl>
                     </div>

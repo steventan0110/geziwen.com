@@ -2,6 +2,7 @@
 
 namespace App;
 
+use App\Admission\Application;
 use App\Test\Ap;
 use App\Test\Ielts;
 use App\Test\Sat;
@@ -47,5 +48,9 @@ class Applicant extends Model
 
     public function agency() {
         return $this->belongsTo(Agency::class);
+    }
+
+    public function application() {
+        return $this->hasMany(Application::class);
     }
 }
