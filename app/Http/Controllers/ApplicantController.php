@@ -13,14 +13,14 @@ class ApplicantController extends Controller
             'profile' => $applicant,
             'agency' => $applicant->agency,
             'tests' => [
-                'toefl' => $applicant->toefl()->get(),
-                'sat' => $applicant->sat()->get(),
-                'satSubject' => $applicant->satSubject()->get(),
-                'ielts' => $applicant->ielts()->get(),
-                'ap' => $applicant->ap()->get()
+                'toefls' => $applicant->toefl()->get(),
+                'sats' => $applicant->sat()->get(),
+                'satSubjects' => $applicant->satSubject()->get(),
+                'ieltss' => $applicant->ielts()->get(),
+                'aps' => $applicant->ap()->get()
             ],
-            'activity' => $applicant->activity()->get(),
-            'award' => $applicant->award()->get()
+            'activities' => $applicant->activity()->get(),
+            'awards' => $applicant->award()->get()
         ]);
     }
 
