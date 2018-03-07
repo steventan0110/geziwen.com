@@ -25,7 +25,8 @@
                 </div>
             </div>
             <div class="col-lg-8">
-                TODO
+                {{--{{ $applicants }}--}}
+                {{--TODO: Implement this view.--}}
             </div>
         </div>
     </div>
