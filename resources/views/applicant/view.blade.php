@@ -26,6 +26,18 @@
             </div>
             <div class="col-lg-8">
                 <div class="card" style="margin-bottom: 1rem!important;">
+                    <div class="card-header">申请情况</div>
+                    <ul class="list-group list-group-flush">
+                        @foreach($applications as $application)
+                            <li class="list-group-item">
+                                学校：<a href="{{ $application->university['website'] }}">{{ $application->university['name'] }}</a>
+                                Plan: {{ $application->plan['shorthand'] }} ({{ $application->plan['name'] }})
+                                结果：{{ $application->decision['name'] }}
+                            </li>
+                        @endforeach
+                    </ul>
+                </div>
+                <div class="card" style="margin-bottom: 1rem!important;">
                     <div class="card-header">基本信息</div>
                     <div class="card-body row">
                         <div class="col-sm-8">
