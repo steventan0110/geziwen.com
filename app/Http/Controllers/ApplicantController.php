@@ -20,7 +20,8 @@ class ApplicantController extends Controller
                 'aps' => $applicant->ap()->get()
             ],
             'activities' => $applicant->activity()->get(),
-            'awards' => $applicant->award()->get()
+            'awards' => $applicant->award()->get(),
+            'applications' => $applicant->application()->get()
         ]);
     }
 
