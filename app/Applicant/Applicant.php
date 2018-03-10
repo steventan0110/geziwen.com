@@ -3,15 +3,13 @@
 namespace App\Applicant;
 
 use App\Application\Application;
-use App\Exam\Ap;
-use App\Exam\Ielts;
-use App\Exam\Sat;
-use App\Exam\SatSubject;
-use App\Exam\Toefl;
+use App\Applicant\Exam\Ap;
+use App\Applicant\Exam\Ielts;
+use App\Applicant\Exam\Sat;
+use App\Applicant\Exam\SatSubject;
+use App\Applicant\Exam\Toefl;
 use Illuminate\Database\Eloquent\Model;
-use App\Profile\Award;
-use App\Profile\Activity;
-use App\Agency;
+use App\Agency\Agency;
 
 class Applicant extends Model
 {
