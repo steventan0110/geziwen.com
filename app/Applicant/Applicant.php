@@ -2,12 +2,12 @@
 
 namespace App;
 
-use App\Admission\Application;
-use App\Test\Ap;
-use App\Test\Ielts;
-use App\Test\Sat;
-use App\Test\SatSubject;
-use App\Test\Toefl;
+use App\Application\Application;
+use App\Exam\Ap;
+use App\Exam\Ielts;
+use App\Exam\Sat;
+use App\Exam\SatSubject;
+use App\Exam\Toefl;
 use Illuminate\Database\Eloquent\Model;
 use App\Profile\Award;
 use App\Profile\Activity;

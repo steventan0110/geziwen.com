@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Admission;
+namespace App\Application;
 
 use App\Applicant;
 use Illuminate\Database\Eloquent\Model;

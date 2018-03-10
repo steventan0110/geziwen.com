@@ -1,13 +1,13 @@
 <?php
 
-namespace App\Test;
+namespace App\Exam;
 
 use App\Applicant;
 use Illuminate\Database\Eloquent\Model;
 
-class Ap extends Model
+class Toefl extends Model
 {
-    protected $table = "aps";
+    protected $table = "toefls";
 
     public function student() {
         $this->belongsTo(Applicant::class);

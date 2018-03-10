@@ -1,13 +1,13 @@
 <?php
 
-namespace App\Test;
+namespace App\Exam;
 
 use App\Applicant;
 use Illuminate\Database\Eloquent\Model;
 
-class SatSubject extends Model
+class Sat extends Model
 {
-    protected $table = "sat_subjects";
+    protected $table = "sats";
 
     public function student() {
         $this->belongsTo(Applicant::class);

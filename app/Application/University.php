@@ -1,14 +1,15 @@
 <?php
 
-namespace App\Admission;
+namespace App\Application;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Decision extends Model
+class University extends Model
 {
-    protected $table = "decisions";
+    protected $table = "universities";
 
     public function applications() {
         return $this->hasMany(Application::class);
     }
+
 }
