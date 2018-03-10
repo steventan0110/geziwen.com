@@ -1,6 +1,6 @@
 <?php
 
-namespace App;
+namespace App\Applicant;
 
 use App\Application\Application;
 use App\Exam\Ap;

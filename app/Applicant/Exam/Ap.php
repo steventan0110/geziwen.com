@@ -1,9 +1,9 @@
 <?php
 
-namespace App\Exam;
+namespace App\Applicant\Exam;
 
-use App\Applicant;
 use Illuminate\Database\Eloquent\Model;
+use App\Applicant\Applicant;
 
 class Ap extends Model
 {

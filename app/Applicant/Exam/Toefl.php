@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Exam;
+namespace App\Applicant\Exam;
 
-use App\Applicant;
+use App\Applicant\Applicant;
 use Illuminate\Database\Eloquent\Model;
 
 class Toefl extends Model

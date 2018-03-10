@@ -1,8 +1,7 @@
 <?php
 
-namespace App\Profile;
+namespace App\Applicant;
 
-use App\Applicant;
 use Illuminate\Database\Eloquent\Model;
 
 class Activity extends Model

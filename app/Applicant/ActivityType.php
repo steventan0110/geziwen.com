@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Profile;
+namespace App\Applicant;
 
 use App\Activity;
 use Illuminate\Database\Eloquent\Model;

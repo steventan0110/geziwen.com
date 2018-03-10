@@ -1,8 +1,9 @@
 <?php
 
-namespace App;
+namespace App\Agency;
 
 use Illuminate\Database\Eloquent\Model;
+use App\Applicant\Applicant;
 
 class Agency extends Model
 {
