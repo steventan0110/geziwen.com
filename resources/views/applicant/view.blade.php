@@ -44,10 +44,6 @@
                             <h5 class="card-title">{{ $profile['name'] }}</h5>
                             <p class="card-text">{{ $profile['introduction'] }}</p>
                         </div>
-                        <div class="col-sm">
-                            <img src="https://i1.wp.com/zehaohuang.cn/wp-content/uploads/2018/02/img_5a7c987ce8a56.jpeg?w=1680"
-                                 class="rounded img-fluid"/>
-                        </div>
                     </div>
                     <ul class="list-group list-group-flush">
                         <li class="list-group-item">Cras justo odio</li>
