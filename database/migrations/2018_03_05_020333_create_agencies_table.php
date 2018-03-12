@@ -24,6 +24,22 @@ class CreateAgenciesTable extends Migration
             $table->string('email');
             $table->timestamps();
         });
+
+        Schema::create('agency_service_plans', function (Blueprint $table) {
+            $table->increments('id');
+            $table->unsignedInteger('agency_id');
+            $table->string('name');
+            $table->string('introduction');
+            $table->timestamps();
+        });
+
+        Schema::create('agency_service_steps', function (Blueprint $table) {
+            $table->increments('id');
+            $table->unsignedInteger('plan_id');
+            $table->string('name');
+            $table->string('introduction');
+            $table->timestamps();
+        });
     }
 
     /**
@@ -34,5 +50,7 @@ class CreateAgenciesTable extends Migration
     public function down()
     {
         Schema::dropIfExists('agencies');
+        Schema::dropIfExists('agency_service_plans');
+        Schema::dropIfExists('agency_service_steps');
     }
 }
