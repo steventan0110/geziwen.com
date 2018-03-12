@@ -11,7 +11,7 @@ class ApplicantController extends Controller
         $applicant = Applicant::findOrFail($id);
         return view('applicant.view', [
             'profile' => $applicant,
-            'agency' => $applicant->agency,
+            'agency' => $applicant->plan->agency,
             'tests' => [
                 'toefls' => $applicant->toefl()->get(),
                 'sats' => $applicant->sat()->get(),
