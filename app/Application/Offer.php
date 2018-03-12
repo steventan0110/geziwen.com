@@ -2,7 +2,7 @@
 
 namespace App\Application;
 
-use App\Applicant;
+use App\Applicant\Applicant;
 use Illuminate\Database\Eloquent\Model;
 
 class Application extends Model
