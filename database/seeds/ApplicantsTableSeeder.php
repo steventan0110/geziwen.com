@@ -18,7 +18,6 @@ class ApplicantsTableSeeder extends Seeder
                 'name' => $faker->name,
                 'introduction' => $faker->text,
                 'graduation_year' => $faker->year,
-                'picture' => $faker->url,
                 'plan_id' => random_int(1, 30)
             ]);
         }
