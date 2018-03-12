@@ -27,7 +27,7 @@
             <div class="col-lg-8">
                 @foreach($applicants as $applicant)
                     {{ $applicant }}
-                @endforeach 
+                @endforeach
                 {{--TODO: Implement this view.--}}
             </div>
         </div>

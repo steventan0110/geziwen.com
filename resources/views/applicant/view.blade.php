@@ -9,7 +9,7 @@
                     <div class="card-header">中介信息</div>
                     <img class="card-img-top"
                          alt="Card image cap"
-                         src="https://i2.wp.com/zehaohuang.cn/wp-content/uploads/2017/12/stanford.jpeg?w=1680"/>
+                         src="https://ss1.bdstatic.com/70cFuXSh_Q1YnxGkpoWK1HF6hhy/it/u=2702838711,917269472&fm=27&gp=0.jpg"/>
                     <div class="card-body">
                         <h5 class="card-title">{{ $agency['name'] }}</h5>
                         <p class="card-text">{{ $agency['introduction'] }}</p>
