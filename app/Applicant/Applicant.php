@@ -3,12 +3,12 @@
 namespace App\Applicant;
 
 use App\Agency\Service\Plan;
-use App\Application\Application;
 use App\Applicant\Exam\Ap;
 use App\Applicant\Exam\Ielts;
 use App\Applicant\Exam\Sat;
 use App\Applicant\Exam\SatSubject;
 use App\Applicant\Exam\Toefl;
+use App\Application\Offer;
 use Illuminate\Database\Eloquent\Model;
 use App\Agency\Agency;
 
@@ -49,8 +49,8 @@ class Applicant extends Model
         return $this->belongsTo(Agency::class);
     }
 
-    public function application() {
-        return $this->hasMany(Application::class);
+    public function offers() {
+        return $this->hasMany(Offer::class);
     }
 
     public function plan() {

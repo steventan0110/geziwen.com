@@ -5,7 +5,7 @@ namespace App\Application;
 use App\Applicant\Applicant;
 use Illuminate\Database\Eloquent\Model;
 
-class Application extends Model
+class Offer extends Model
 {
     protected $table = "applications";
 
@@ -19,9 +19,5 @@ class Application extends Model
 
     public function plan() {
         return $this->belongsTo(Plan::class);
-    }
-
-    public function decision() {
-        return $this->belongsTo(Decision::class);
     }
 }

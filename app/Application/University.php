@@ -9,7 +9,7 @@ class University extends Model
     protected $table = "universities";
 
     public function applications() {
-        return $this->hasMany(Application::class);
+        return $this->hasMany(Offer::class);
     }
 
 }
