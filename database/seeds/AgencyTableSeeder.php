@@ -22,6 +22,22 @@ class AgencyTableSeeder extends Seeder
                 'email' => $faker->email,
                 'started_on' => $faker->date()
             ]);
+
+            foreach (range(1, 3) as $j) {
+                DB::table('agency_service_plans')->insert([
+                    'agency_id' => $i,
+                    'name' => $faker->word,
+                    'introduction' => $faker->text
+                ]);
+
+                foreach (range(1, 5) as $k) {
+                    DB::table('agency_service_steps')->insert([
+                        'plan_id' => $j,
+                        'name' => $faker->word,
+                        'introduction' => $faker->text
+                    ]);
+                }
+            }
         }
     }
 }
