@@ -2,6 +2,7 @@
 
 namespace App\Applicant;
 
+use App\Agency\Service\Plan;
 use App\Application\Application;
 use App\Applicant\Exam\Ap;
 use App\Applicant\Exam\Ielts;
@@ -50,5 +51,9 @@ class Applicant extends Model
 
     public function application() {
         return $this->hasMany(Application::class);
+    }
+
+    public function plan() {
+        return $this->belongsTo(Plan::class);
     }
 }
