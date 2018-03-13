@@ -58,7 +58,7 @@ class Applicant extends Model
         return $this->belongsTo(Plan::class);
     }
 
-    public function teacher() {
-        return $this->belongsTo(Teacher::class);
+    public function teachers() {
+        return $this->belongsToMany(Teacher::class);
     }
 }
