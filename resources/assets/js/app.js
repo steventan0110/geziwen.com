@@ -17,7 +17,10 @@ window.Vue = require('vue');
  */
 
 import Avatar from 'vue-avatar'
+import VueMaterial from 'vue-material'
+import 'vue-material/dist/vue-material.min.css'
 
+Vue.use(VueMaterial);
 Vue.component('Avatar', Avatar);
 
 const app = new Vue({
