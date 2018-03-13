@@ -11,7 +11,8 @@ class AgencyController extends Controller
         $agency = Agency::findOrFail($id);
         return view('agency.view', [
             'agency' => $agency,
-            'applicants' => $agency->applicants()->get()
+            'applicants' => $agency->applicants()->get(),
+            'teachers' => $agency->teachers()->get()
         ]);
     }
 
