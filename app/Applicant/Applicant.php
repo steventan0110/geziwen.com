@@ -11,6 +11,7 @@ use App\Applicant\Exam\SatSubject;
 use App\Applicant\Exam\Toefl;
 use Illuminate\Database\Eloquent\Model;
 use App\Agency\Agency;
+use App\Teacher\Teacher;
 
 class Applicant extends Model
 {
@@ -55,5 +56,9 @@ class Applicant extends Model
 
     public function plan() {
         return $this->belongsTo(Plan::class);
+    }
+
+    public function teacher() {
+        return $this->belongsTo(Teacher::class);
     }
 }
