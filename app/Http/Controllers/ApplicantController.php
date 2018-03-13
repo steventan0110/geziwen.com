@@ -12,6 +12,7 @@ class ApplicantController extends Controller
         return view('applicant.view', [
             'profile' => $applicant,
             'agency' => $applicant->agency,
+            'teachers' => $applicant->teachers()->get(),
             'tests' => [
                 'toefls' => $applicant->toefl()->get(),
                 'sats' => $applicant->sat()->get(),
