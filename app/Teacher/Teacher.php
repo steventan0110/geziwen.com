@@ -20,7 +20,7 @@ class Teacher extends Model
     }
 
     public function student() {
-        return $this->belongsTo(Applicant::class);
+        return $this->belongsToMany(Applicant::class);
     }
 
 }
