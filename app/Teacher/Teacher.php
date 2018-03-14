@@ -10,6 +10,8 @@ namespace App\Teacher;
 use Illuminate\Database\Eloquent\Model;
 use App\Agency\Agency;
 use App\Applicant\Applicant;
+use App\Comments;
+use PhpParser\Comment;
 
 class Teacher extends Model
 {
@@ -23,4 +25,7 @@ class Teacher extends Model
         return $this->belongsToMany(Applicant::class);
     }
 
+    public function comments() {
+        return $this->hasMany(Comment::class);
+    }
 }
