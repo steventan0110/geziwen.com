@@ -9,6 +9,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Teacher\Teacher;
+use App\Comment\TeacherComment;
 
 class TeacherController extends Controller {
 
@@ -18,6 +19,7 @@ class TeacherController extends Controller {
             'teacher' => $teacher,
             'agency' => $teacher->agency()->get(),
             'student' => $teacher->student()->get(),
+            'comments' => $teacher->comments()->get()
         ]);
     }
 

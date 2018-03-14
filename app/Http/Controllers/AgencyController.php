@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Agency\Agency;
 use Illuminate\Http\Request;
+use App\Comment\AgencyComment;
 
 class AgencyController extends Controller
 {
@@ -12,7 +13,8 @@ class AgencyController extends Controller
         return view('agency.view', [
             'agency' => $agency,
             'applicants' => $agency->applicants()->get(),
-            'teachers' => $agency->teachers()->get()
+            'teachers' => $agency->teachers()->get(),
+            'comments' => $agency->comments()->get()
         ]);
     }
 
