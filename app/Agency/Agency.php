@@ -3,10 +3,11 @@
 namespace App\Agency;
 
 use App\Agency\Service\Plan;
+use App\Rating\AgencyRating;
 use Illuminate\Database\Eloquent\Model;
 use App\Applicant\Applicant;
 use App\Teacher\Teacher;
-use App\Comments;
+use App\Comment\AgencyComment;
 
 class Agency extends Model
 {
@@ -25,7 +26,11 @@ class Agency extends Model
     }
 
     public function comments() {
-        return $this->hasMany(Comments::class);
+        return $this->hasMany(AgencyComment::class);
+    }
+
+    public function ratings() {
+        return $this->hasMany(AgencyRating::class);
     }
 
     public function addComment($body) {
