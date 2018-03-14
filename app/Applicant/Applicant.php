@@ -3,6 +3,7 @@
 namespace App\Applicant;
 
 use App\Agency\Service\Plan;
+use App\Applicant\Exam\Act;
 use App\Applicant\Exam\Ap;
 use App\Applicant\Exam\Ielts;
 use App\Applicant\Exam\Sat;
@@ -17,24 +18,67 @@ class Applicant extends Model
 
     protected $table = "applicants";
 
-    public function toefl() {
+    /**
+     * Each applicant may have one or more TOEFL test records.
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function toefls() {
         return $this->hasMany(Toefl::class);
     }
 
-    public function sat() {
+    /**
+     * Each applicant may have one or more SAT test records.
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function sats() {
         return $this->hasMany(Sat::class);
     }
 
-    public function ielts() {
+    /**
+     * Each applicant may have one or more IELTS test records.
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function ieltss() {
         return $this->hasMany(Ielts::class);
     }
 
-    public function satSubject() {
+    /**
+     * Each applicant may have one or more SAT Subject test records.
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function satSubjects() {
         return $this->hasMany(SatSubject::class);
     }
 
-    public function ap() {
+    /**
+     * Each applicant may have one or more AP test records.
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function aps() {
         return $this->hasMany(Ap::class);
+    }
+
+    /**
+     * Each applicant may have one or more ACT test records.
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function acts() {
+        return $this->hasMany(Act::class);
+    }
+
+    /**
+     * Compact the applicant's all exam records into an array.
+     * @return array
+     */
+    public function exams() {
+        return [
+            'toefls' => $this->toefls()->get(),
+            'sats' => $this->sats()->get(),
+            'satSubjects' => $this->satSubjects()->get(),
+            'ieltss' => $this->ieltss()->get(),
+            'aps' => $this->aps()->get(),
+            'acts' => $this->acts()->get()
+        ];
     }
 
     public function activity() {

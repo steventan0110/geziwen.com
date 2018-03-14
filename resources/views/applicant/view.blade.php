@@ -28,11 +28,9 @@
                 <div class="card" style="margin-bottom: 1rem!important;">
                     <div class="card-header">申请情况</div>
                     <ul class="list-group list-group-flush">
-                        @foreach($applications as $application)
+                        @foreach($offers as $offer)
                             <li class="list-group-item">
-                                学校：<a href="{{ $application->university['website'] }}">{{ $application->university['name'] }}</a>
-                                Plan: {{ $application->plan['shorthand'] }} ({{ $application->plan['name'] }})
-                                结果：{{ $application->decision['name'] }}
+                                {{ $offer->plan['shorthand'] }} ({{ $offer->plan['name'] }}) <a href="{{ $offer->university['website'] }}">{{ $offer->university['name'] }}</a> 录取
                             </li>
                         @endforeach
                     </ul>
