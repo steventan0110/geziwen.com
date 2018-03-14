@@ -27,4 +27,8 @@ class Agency extends Model
     public function comments() {
         return $this->hasMany(Comments::class);
     }
+
+    public function addComment($body) {
+        $this->comments()->create(compact('body'));
+    }
 }
