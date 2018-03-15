@@ -18,12 +18,6 @@ class CreateAgencyRatingsTable extends Migration
             $table->unsignedInteger("rating");
             $table->unsignedInteger('agency_id');
             $table->timestamps();
-
-            // Create foreign key
-            $table->foreign('agency_id')
-                ->references('id')
-                ->on('agencies')
-                ->onDelete('cascade');
         });
     }
 

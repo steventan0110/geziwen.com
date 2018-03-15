@@ -18,12 +18,6 @@ class CreateTeacherCommentsTable extends Migration
             $table->unsignedInteger('teacher_id');
             $table->string('body');
             $table->timestamps();
-
-            // Create foreign key
-            $table->foreign('teacher_id')
-                ->references('id')
-                ->on('teachers')
-                ->onDelete('cascade');
         });
     }
 

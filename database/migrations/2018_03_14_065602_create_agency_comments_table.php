@@ -18,12 +18,6 @@ class CreateAgencyCommentsTable extends Migration
             $table->unsignedInteger('agency_id');
             $table->string('body');
             $table->timestamps();
-
-            // Create foreign key
-            $table->foreign('agency_id')
-                ->references('id')
-                ->on('agencies')
-                ->onDelete('cascade');
         });
     }
 

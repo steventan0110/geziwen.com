@@ -18,12 +18,6 @@ class CreateTeacherRatingsTable extends Migration
             $table->unsignedInteger("rating");
             $table->unsignedInteger('teacher_id');
             $table->timestamps();
-
-            // Create foreign key
-            $table->foreign('teacher_id')
-                ->references('id')
-                ->on('teachers')
-                ->onDelete('cascade');
         });
     }
 
