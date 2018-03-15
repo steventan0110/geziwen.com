@@ -59,6 +59,6 @@ class Applicant extends Model
     }
 
     public function teachers() {
-        return $this->belongsToMany(Teacher::class);
+        return $this->belongsToMany(Teacher::class,'teachers_applicants','teacher_id','applicant_id');
     }
 }

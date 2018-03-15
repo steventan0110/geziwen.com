@@ -13,10 +13,10 @@ class AgencyRatingsTableSeeder extends Seeder {
 
         $faker = Faker\Factory::create();
 
-        foreach (range(1, 25) as $i) {
+        foreach (range(1, 10) as $i) {
             DB::table('agency_ratings')->insert([
                 'rating' => random_int(1, 10),
-                'agency_id' => random_int(1, 25)
+                'agency_id' => random_int(1, 10)
             ]);
         }
     }
