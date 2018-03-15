@@ -16,6 +16,7 @@ class TeacherTableSeeder extends Seeder {
         foreach (range(1,100) as $i) {
             DB::table('teachers')->insert([
                 'name' => $faker->name,
+                'agency_id' => random_int(1, 10),
                 'subject' => $faker->text,
                 'introduction' => $faker->text,
                 'years_of_teaching' => $faker->year,
