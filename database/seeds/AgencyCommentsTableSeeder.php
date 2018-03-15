@@ -13,11 +13,11 @@ class AgencyCommentsTableSeeder extends Seeder {
 
         $faker = Faker\Factory::create();
 
-        foreach (range(1, 100) as $i) {
+        foreach (range(1, 25) as $i) {
             DB::table('agency_comments')->insert([
-                'agency_name' => $faker->name,
-                'comments' => $faker->text,
-                'agency_id' => random_int(1, 50)
+                //private change
+                'body' => $faker->sentence,
+                'agency_id' => random_int(1, 25)
             ]);
         }
     }

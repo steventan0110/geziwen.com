@@ -15,8 +15,8 @@ class TeacherCommentsTableSeeder extends Seeder {
 
         foreach (range(1, 100) as $i) {
             DB::table('teacher_comments')->insert([
-                'teacher_name' => $faker->name,
-                'comments' => $faker->text,
+                //private change
+                'body' => $faker->sentence,
                 'teacher_id' => random_int(1, 50)
             ]);
         }
