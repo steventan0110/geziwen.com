@@ -39,8 +39,7 @@
                     <div class="card-header">基本信息</div>
                     <div class="card-body row">
                         <div class="col-sm-8">
-                            <h5 class="card-title">{{ $profile['name'] }}</h5>
-                            <p class="card-text">{{ $profile['introduction'] }}</p>
+                            <h5 class="card-title">{{ $profile['surname'] }}</h5>
                         </div>
                     </div>
                     <ul class="list-group list-group-flush">
@@ -55,27 +54,27 @@
                             <li class="nav-item">
                                 <a class="nav-link active" href="#test-summary" data-toggle="tab">概况</a>
                             </li>
-                            @if(count($tests['toefls']))
+                            @if(count($exams['toefls']))
                                 <li class="nav-item">
                                     <a class="nav-link" href="#toefl" data-toggle="tab">TOEFL</a>
                                 </li>
                             @endif
-                            @if(count($tests['ieltss']))
+                            @if(count($exams['ieltss']))
                                 <li class="nav-item">
                                     <a class="nav-link" href="#ielts" data-toggle="tab">IELTS</a>
                                 </li>
                             @endif
-                            @if(count($tests['sats']))
+                            @if(count($exams['sats']))
                                 <li class="nav-item">
                                     <a class="nav-link" href="#sat" data-toggle="tab">SAT</a>
                                 </li>
                             @endif
-                            @if(count($tests['satSubjects']))
+                            @if(count($exams['satSubjects']))
                                 <li class="nav-item">
                                     <a class="nav-link" href="#satii" data-toggle="tab">SAT II</a>
                                 </li>
                             @endif
-                            @if(count($tests['aps']))
+                            @if(count($exams['aps']))
                                 <li class="nav-item">
                                     <a class="nav-link" href="#ap" data-toggle="tab">AP</a>
                                 </li>
@@ -85,7 +84,7 @@
                     <div class="card-body tab-content">
                         <div class="tab-pane fade active show" id="test-summary">
                             <dl class="row">
-                                @if(count($tests['toefls']))
+                                @if(count($exams['toefls']))
                                     <dt class="col-sm-3">TOEFL</dt>
                                     <dd class="col-sm-9">
                                         <dl class="row">
@@ -95,11 +94,11 @@
                                             <dt class="col-sm-4">最高拼分</dt>
                                             <dd class="col-sm-8">TODO</dd>
                                             <dt class="col-sm-4">考试次数</dt>
-                                            <dd class="col-sm-8">{{ count($tests['toefls']) }}</dd>
+                                            <dd class="col-sm-8">{{ count($exams['toefls']) }}</dd>
                                         </dl>
                                     </dd>
                                 @endif
-                                @if(count($tests['ieltss']))
+                                @if(count($exams['ieltss']))
                                     <dt class="col-sm-3">IELTS</dt>
                                     <dd class="col-sm-9">
                                         <dl class="row">
@@ -109,11 +108,11 @@
                                             <dt class="col-sm-4">最高拼分</dt>
                                             <dd class="col-sm-8">TODO</dd>
                                             <dt class="col-sm-4">考试次数</dt>
-                                            <dd class="col-sm-8">{{ count($tests['ieltss']) }}</dd>
+                                            <dd class="col-sm-8">{{ count($exams['ieltss']) }}</dd>
                                         </dl>
                                     </dd>
                                 @endif
-                                @if(count($tests['sats']))
+                                @if(count($exams['sats']))
                                     <dt class="col-sm-3">SAT</dt>
                                     <dd class="col-sm-9">
                                         <dl class="row">
@@ -123,25 +122,25 @@
                                             <dt class="col-sm-4">最高拼分</dt>
                                             <dd class="col-sm-8">TODO</dd>
                                             <dt class="col-sm-4">考试次数</dt>
-                                            <dd class="col-sm-8">{{ count($tests['sats']) }}</dd>
+                                            <dd class="col-sm-8">{{ count($exams['sats']) }}</dd>
                                         </dl>
                                     </dd>
                                 @endif
-                                @if(count($tests['satSubjects']))
+                                @if(count($exams['satSubjects']))
                                     <dt class="col-sm-3">SAT II</dt>
                                     <dd class="col-sm-9">
                                         <dl class="row">
                                             <dt class="col-sm-4">科目数量</dt>
-                                            <dd class="col-sm-8">{{ count($tests['satSubjects']) }}</dd>
+                                            <dd class="col-sm-8">{{ count($exams['satSubjects']) }}</dd>
                                         </dl>
                                     </dd>
                                 @endif
-                                @if(count($tests['aps']))
+                                @if(count($exams['aps']))
                                     <dt class="col-sm-3">AP</dt>
                                     <dd class="col-sm-9">
                                         <dl class="row">
                                             <dt class="col-sm-4">科目数量</dt>
-                                            <dd class="col-sm-8">{{ count($tests['aps']) }}</dd>
+                                            <dd class="col-sm-8">{{ count($exams['aps']) }}</dd>
                                         </dl>
                                     </dd>
                                 @endif
@@ -160,7 +159,7 @@
                                 </tr>
                                 </thead>
                                 <tbody>
-                                @foreach($tests['toefls'] as $test)
+                                @foreach($exams['toefls'] as $test)
                                     <tr>
                                         <th scope="row">{{ $test['taken_on'] }}</th>
                                         <td>{{ $test['reading'] }}</td>
@@ -186,7 +185,7 @@
                                 </tr>
                                 </thead>
                                 <tbody>
-                                @foreach($tests['ieltss'] as $test)
+                                @foreach($exams['ieltss'] as $test)
                                     <tr>
                                         <th scope="row">{{ $test['taken_on'] }}</th>
                                         <td>{{ $test['reading'] / 2.0 }}</td>
@@ -212,7 +211,7 @@
                                 </tr>
                                 </thead>
                                 <tbody>
-                                @foreach($tests['sats'] as $test)
+                                @foreach($exams['sats'] as $test)
                                     <tr>
                                         <th scope="row">{{ $test['taken_on'] }}</th>
                                         <td>{{ $test['reading'] }}</td>
@@ -235,7 +234,7 @@
                                 </tr>
                                 </thead>
                                 <tbody>
-                                @foreach($tests['satSubjects'] as $test)
+                                @foreach($exams['satSubjects'] as $test)
                                     <tr>
                                         <th scope="row">{{ $test['taken_on'] }}</th>
                                         <td>{{ $test['subject'] }}</td>
@@ -255,7 +254,7 @@
                                 </tr>
                                 </thead>
                                 <tbody>
-                                @foreach($tests['aps'] as $test)
+                                @foreach($exams['aps'] as $test)
                                     <tr>
                                         <th scope="row">{{ $test['taken_on'] }}</th>
                                         <td>{{ $test['subject'] }}</td>
