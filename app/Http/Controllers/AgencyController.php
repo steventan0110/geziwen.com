@@ -15,7 +15,7 @@ class AgencyController extends Controller
             'applicants' => $agency->applicants()->get(),
             'teachers' => $agency->teachers()->get(),
             'comments' => $agency->comments()->get(),
-            'ratings' => $agency->ratings()->getTotalRating()
+            'ratings' => $agency->ratings()->get()
         ]);
     }
 
