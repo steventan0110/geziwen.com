@@ -62,6 +62,17 @@ class CreateTestsTable extends Migration
             $table->unsignedInteger('score');
             $table->timestamps();
         });
+
+        Schema::create('acts', function (Blueprint $table) {
+            $table->increments('id');
+            $table->unsignedInteger('applicant_id');
+            $table->unsignedInteger('reading');
+            $table->unsignedInteger('english');
+            $table->unsignedInteger('math');
+            $table->unsignedInteger('science');
+            $table->date('taken_on');
+            $table->timestamps();
+        });
     }
 
     /**
@@ -76,5 +87,6 @@ class CreateTestsTable extends Migration
         Schema::dropIfExists('sat_subjects');
         Schema::dropIfExists('sats');
         Schema::dropIfExists('aps');
+        Schema::dropIfExists('acts');
     }
 }
