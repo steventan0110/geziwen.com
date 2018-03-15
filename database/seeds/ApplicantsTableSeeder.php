@@ -15,9 +15,7 @@ class ApplicantsTableSeeder extends Seeder
         $faker = Faker\Factory::create();
         foreach (range(1, 100) as $i) {
             DB::table('applicants')->insert([
-                'name' => $faker->name,
-                'introduction' => $faker->text,
-                'graduation_year' => $faker->year,
+                'surname' => $faker->name,
                 'plan_id' => random_int(1, 30)
             ]);
         }
