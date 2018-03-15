@@ -19,7 +19,8 @@ class TeacherController extends Controller {
             'teacher' => $teacher,
             'agency' => $teacher->agency()->get(),
             'student' => $teacher->student()->get(),
-            'comments' => $teacher->comments()->get()
+            'comments' => $teacher->comments()->get(),
+            'ratings' => $teacher->ratings()->getTotalRating()
         ]);
     }
 
