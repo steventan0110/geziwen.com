@@ -22,7 +22,7 @@ class Teacher extends Model
     }
 
     public function student() {
-        return $this->belongsToMany(Applicant::class);
+        return $this->belongsToMany(Applicant::class,'teachers_applicants','applicant_id','teacher_id');
     }
 
     public function comments() {

@@ -15,7 +15,9 @@ class AgencyTableSeeder extends Seeder
         foreach (range(1, 10) as $i) {
             DB::table('agencies')->insert([
                 'name' => $faker->name,
-                'introduction' => $faker->text,
+
+                //private change
+                'introduction' => $faker->sentence,
                 'address' => $faker->address,
                 'telephone' => $faker->phoneNumber,
                 'website' => $faker->url,
@@ -27,14 +29,17 @@ class AgencyTableSeeder extends Seeder
                 DB::table('agency_service_plans')->insert([
                     'agency_id' => $i,
                     'name' => $faker->word,
-                    'introduction' => $faker->text
+
+                    //private change
+                    'introduction' => $faker->sentence
                 ]);
 
                 foreach (range(1, 5) as $k) {
                     DB::table('agency_service_steps')->insert([
                         'plan_id' => $j,
                         'name' => $faker->word,
-                        'introduction' => $faker->text
+                        //private change
+                        'introduction' => $faker->sentence
                     ]);
                 }
             }
