@@ -12,10 +12,10 @@ class AgencyController extends Controller
         $agency = Agency::findOrFail($id);
         return view('agency.view', [
             'agency' => $agency,
-            'applicants' => $agency->applicants()->get(),
-            'teachers' => $agency->teachers()->get(),
-            'comments' => $agency->comments()->get(),
-            'ratings' => $agency->ratings()->get()
+            'applicants' => $agency->applicants,
+            'teachers' => $agency->teachers,
+            'comments' => $agency->comments,
+            'ratings' => $agency->ratings
         ]);
     }
 
