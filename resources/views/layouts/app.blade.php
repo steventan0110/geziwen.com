@@ -56,6 +56,11 @@
                             </li>
                         @endguest
                     </ul>
+                    <form class="form-inline mt-2 mt-md-0 ml-2" action="{{ url('search') }}" method="post">
+                        @csrf
+                        <input class="form-control mr-sm-2" type="text" placeholder="中介/案例" aria-label="Search">
+                        <button class="btn btn-outline-success my-2 my-sm-0" type="submit">搜索</button>
+                    </form>
                 </div>
             </div>
         </nav>
