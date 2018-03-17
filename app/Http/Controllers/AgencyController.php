@@ -10,13 +10,7 @@ class AgencyController extends Controller
 {
     public function view(Request $request, $id) {
         $agency = Agency::findOrFail($id);
-        return view('agency.view', [
-            'agency' => $agency,
-            'applicants' => $agency->applicants,
-            'teachers' => $agency->teachers,
-            'comments' => $agency->comments,
-            'ratings' => $agency->ratings
-        ]);
+        return view('agency.view', compact('agency', $agency));
     }
 
     public function edit(Request $request, $id) {
