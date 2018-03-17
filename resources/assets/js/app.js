@@ -16,9 +16,23 @@ window.Vue = require('vue');
  * or customize the JavaScript scaffolding to fit your unique needs.
  */
 
-import Avatar from 'vue-avatar'
+/**
+ * Font Awesome 5
+ */
+import fontawesome from '@fortawesome/fontawesome';
+import solid from '@fortawesome/fontawesome-free-solid';
+import regular from '@fortawesome/fontawesome-free-regular';
+import brands from '@fortawesome/fontawesome-free-brands';
+fontawesome.library.add(solid);
+fontawesome.library.add(regular);
+fontawesome.library.add(brands);
 
-Vue.component('Avatar', Avatar);
+/**
+ * Vue Avatar
+ */
+
+import Avatar from 'vue-avatar';
+Vue.component('avatar', Avatar);
 
 const app = new Vue({
     el: '#app'
