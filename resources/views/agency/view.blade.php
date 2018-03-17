@@ -42,6 +42,8 @@
                         <ul class="list-unstyled mt-3 mb-4">
                             @foreach($plan->steps as $step)
                                 <li>{{ $step->name }} Feature</li>
+                                {{-- TODO: Implement Plan Featture Backend --}}
+                                {{-- TODO: Implement Plan Profile Page --}}
                             @endforeach
                         </ul>
                         <button type="button" class="btn btn-lg btn-block btn-primary">了解更多</button>
@@ -58,11 +60,13 @@
                     <div class="media-body pb-3 mb-0 small lh-125 border-bottom border-gray">
                         <strong class="d-block text-gray-dark"><a href="#" class="btn btn-link btn-sm pl-0">{{ $applicant->surname }}</a></strong>
                         {{ $applicant->offers[0]->university->name }}
+                        {{-- TODO: Implement detailed applicant information --}}
                     </div>
                 </div>
             @endforeach
             <small class="d-block text-right mt-3">
                 <a href="">查看所有案例</a>
+                {{-- TODO: Implement Applicant Pagination --}}
             </small>
         </div>
     </div>
@@ -71,14 +75,18 @@
             <h5 class="border-bottom border-gray pb-2 mb-2"><a href="#teachers"><i class="mr-2 fas fa-link"></i></a>师资</h5>
             <div class="row">
                 @foreach($agency->teachers as $teacher)
-                    <div class="col-sm-4 text-center mt-2 mb-2 pl-2 pr-2">
-                        <img class="rounded-circle" src="data:image/gif;base64,R0lGODlhAQABAIAAAHd3dwAAACH5BAAAAAAALAAAAAABAAEAAAICRAEAOw==" alt="Generic placeholder image" width="140" height="140">
+                    <div class="col-sm-4 text-center mt-4  pl-2 pr-2">
+                        <img class="rounded-circle mb-2" src="data:image/gif;base64,R0lGODlhAQABAIAAAHd3dwAAACH5BAAAAAAALAAAAAABAAEAAAICRAEAOw==" alt="Generic placeholder image" width="140" height="140">
                         <h5>{{ $teacher->name }}</h5>
                         <p class="small">{{ $teacher->introduction }}</p>
-                        <p class="small"><a class="btn btn-primary btn-sm" href="#" role="button">View details »</a></p>
+                        <p class="small"><a class="btn btn-primary btn-sm " href="#" role="button">查看详细</a></p>
                     </div>
                 @endforeach
             </div>
+            <small class="d-block text-right mt-3">
+                <a href="">查看所有老师</a>
+                {{-- TODO: Implement Teacher Pagination --}}
+            </small>
         </div>
     </div>
 @endsection
