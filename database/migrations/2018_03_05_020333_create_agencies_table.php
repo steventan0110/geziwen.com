@@ -28,6 +28,7 @@ class CreateAgenciesTable extends Migration
         Schema::create('agency_service_plans', function (Blueprint $table) {
             $table->increments('id');
             $table->unsignedInteger('agency_id');
+            $table->unsignedInteger('price');
             $table->string('name');
             $table->string('introduction');
             $table->timestamps();
