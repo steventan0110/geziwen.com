@@ -14,7 +14,10 @@ class Agency extends Model
     protected $table = "agencies";
 
     public function applicants() {
-        return $this->hasManyThrough(Applicant::class, Plan::class);
+        return $this->hasManyThrough(Applicant::class, Plan::class)
+            ->orderBy('id')
+            ->offset(0)
+            ->limit(5); // TODO: Find a better way of ordering
     }
 
     public function plans() {
@@ -22,7 +25,10 @@ class Agency extends Model
     }
 
     public function teachers() {
-        return $this->hasMany(Teacher::class);
+        return $this->hasMany(Teacher::class)
+            ->orderBy('id')
+            ->offset(0)
+            ->limit(5); // TODO: Find a better way of ordering
     }
 
     public function comments() {
