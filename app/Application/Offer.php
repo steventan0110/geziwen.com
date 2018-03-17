@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Offer extends Model
 {
-    protected $table = "applications";
+    protected $table = "admission_applications";
 
     public function applicant() {
         return $this->belongsTo(Applicant::class);

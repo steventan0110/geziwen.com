@@ -13,7 +13,7 @@ class CreateAdmissionTables extends Migration
      */
     public function up()
     {
-        Schema::create('universities', function (Blueprint $table) {
+        Schema::create('admission_universities', function (Blueprint $table) {
             $table->increments('id');
             $table->string('name');
             $table->string('country');
@@ -21,21 +21,14 @@ class CreateAdmissionTables extends Migration
             $table->timestamps();
         });
 
-        Schema::create('plans', function (Blueprint $table) {
+        Schema::create('admission_plans', function (Blueprint $table) {
             $table->increments('id');
             $table->string('name');
             $table->string('shorthand');
             $table->timestamps();
         });
 
-        Schema::create('decisions', function (Blueprint $table) {
-            $table->increments('id');
-            $table->string('name');
-            $table->string('shorthand');
-            $table->timestamps();
-        });
-
-        Schema::create('applications', function (Blueprint $table) {
+        Schema::create('admission_applications', function (Blueprint $table) {
             $table->increments('id');
             $table->unsignedInteger('applicant_id');
             $table->unsignedInteger('university_id');
@@ -52,6 +45,10 @@ class CreateAdmissionTables extends Migration
      */
     public function down()
     {
+        Schema::dropIfExists('admission_universities');
+        Schema::dropIfExists('admission_plans');
+        Schema::dropIfExists('admission_decisions');
+        Schema::dropIfExists('admission_applications');
         Schema::dropIfExists('universities');
         Schema::dropIfExists('plans');
         Schema::dropIfExists('decisions');

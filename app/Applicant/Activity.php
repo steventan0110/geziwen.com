@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Activity extends Model
 {
-    protected $table = "activities";
+    protected $table = "applicant_activities";
 
     public function applicant() {
          return $this->belongsTo(Applicant::class);

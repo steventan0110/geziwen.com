@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Ielts extends Model
 {
-    protected $table = "ieltss";
+    protected $table = "applicant_exam_ieltss";
 
     public function student() {
         $this->belongsTo(Applicant::class);

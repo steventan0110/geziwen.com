@@ -44,13 +44,13 @@ class ActivitiesTableSeeder extends Seeder
             "Other Club/Activity"];
         // Activity Types
         foreach ($ACTIVITY_TYPES as $type) {
-            DB::table('activity_types')->insert([
+            DB::table('applicant_activity_types')->insert([
                 'name' => $type
             ]);
         }
         // Activities
         foreach (range(1, 500) as $i) {
-            DB::table('activities')->insert([
+            DB::table('applicant_activities')->insert([
                 'applicant_id' => random_int(1, 100),
                 'type_id' => random_int(1, count($ACTIVITY_TYPES)),
                 'name' => $faker->name,

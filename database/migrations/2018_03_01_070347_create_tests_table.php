@@ -12,7 +12,7 @@ class CreateTestsTable extends Migration
      * @return void
      */
     public function up() {
-        Schema::create('toefls', function (Blueprint $table) {
+        Schema::create('applicant_exam_toefls', function (Blueprint $table) {
             $table->increments('id');
             $table->unsignedInteger('applicant_id');
             $table->date('taken_on');
@@ -23,7 +23,7 @@ class CreateTestsTable extends Migration
             $table->timestamps();
         });
 
-        Schema::create('ieltss', function (Blueprint $table) {
+        Schema::create('applicant_exam_ieltss', function (Blueprint $table) {
             $table->increments('id');
             $table->unsignedInteger('applicant_id');
             $table->date('taken_on');
@@ -34,7 +34,7 @@ class CreateTestsTable extends Migration
             $table->timestamps();
         });
 
-        Schema::create('sats', function (Blueprint $table) {
+        Schema::create('applicant_exam_sats', function (Blueprint $table) {
             $table->increments('id');
             $table->unsignedInteger('applicant_id');
             $table->date('taken_on');
@@ -45,7 +45,7 @@ class CreateTestsTable extends Migration
             $table->timestamps();
         });
 
-        Schema::create('sat_subjects', function (Blueprint $table) {
+        Schema::create('applicant_exam_sat_subjects', function (Blueprint $table) {
             $table->increments('id');
             $table->unsignedInteger('applicant_id');
             $table->date('taken_on');
@@ -54,7 +54,7 @@ class CreateTestsTable extends Migration
             $table->timestamps();
         });
 
-        Schema::create('aps', function (Blueprint $table) {
+        Schema::create('applicant_exam_aps', function (Blueprint $table) {
             $table->increments('id');
             $table->unsignedInteger('applicant_id');
             $table->date('taken_on');
@@ -63,7 +63,7 @@ class CreateTestsTable extends Migration
             $table->timestamps();
         });
 
-        Schema::create('acts', function (Blueprint $table) {
+        Schema::create('applicant_exam_acts', function (Blueprint $table) {
             $table->increments('id');
             $table->unsignedInteger('applicant_id');
             $table->unsignedInteger('reading');
@@ -88,5 +88,11 @@ class CreateTestsTable extends Migration
         Schema::dropIfExists('sats');
         Schema::dropIfExists('aps');
         Schema::dropIfExists('acts');
+        Schema::dropIfExists('applicant_exam_toefls');
+        Schema::dropIfExists('applicant_exam_ieltss');
+        Schema::dropIfExists('applicant_exam_sat_subjects');
+        Schema::dropIfExists('applicant_exam_sats');
+        Schema::dropIfExists('applicant_exam_aps');
+        Schema::dropIfExists('applicant_exam_acts');
     }
 }
