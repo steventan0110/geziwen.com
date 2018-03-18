@@ -5,7 +5,7 @@
  * Date: 2018/3/13
  * Time: 10:39
  */
-namespace App\Teacher;
+namespace App\Agency;
 
 use App\Rating\TeacherRating;
 use Illuminate\Database\Eloquent\Model;

@@ -12,7 +12,7 @@ use App\Applicant\Exam\Toefl;
 use App\Application\Offer;
 use Illuminate\Database\Eloquent\Model;
 use App\Agency\Agency;
-use App\Teacher\Teacher;
+use App\Agency\Teacher;
 
 class Applicant extends Model
 {

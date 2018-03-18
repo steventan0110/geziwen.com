@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Agency;
 
+use App\Http\Controllers\Controller;
 use App\Agency\Agency;
 use Illuminate\Http\Request;
-use App\Comment\AgencyComment;
 
 class AgencyController extends Controller
 {
