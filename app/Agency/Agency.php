@@ -13,7 +13,7 @@ class Agency extends Model
 {
     protected $table = "agencies";
 
-    public function applicants() {
+    public function applicants($all = false) {
         return $this->hasManyThrough(Applicant::class, Plan::class)
             ->orderBy('id')
             ->offset(0)

@@ -67,21 +67,6 @@ class Applicant extends Model
         return $this->hasMany(Act::class);
     }
 
-    /**
-     * Compact the applicant's all exam records into an array.
-     * @return array
-     */
-    public function exams() {
-        return [
-            'toefls' => $this->toefls()->get(),
-            'sats' => $this->sats()->get(),
-            'satSubjects' => $this->satSubjects()->get(),
-            'ieltss' => $this->ieltss()->get(),
-            'aps' => $this->aps()->get(),
-            'acts' => $this->acts()->get()
-        ];
-    }
-
     public function activity() {
         return $this->hasMany(Activity::class);
     }
