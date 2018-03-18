@@ -6,7 +6,6 @@ use App\Agency\Service\Plan;
 use App\Rating\AgencyRating;
 use Illuminate\Database\Eloquent\Model;
 use App\Applicant\Applicant;
-use App\Teacher\Teacher;
 use App\Comment\AgencyComment;
 
 class Agency extends Model
