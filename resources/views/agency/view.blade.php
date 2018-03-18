@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-    <div class="container" id="profile">
+    <div class="container pt-4" id="profile">
         <div class="jumbotron bg-white box-shadow">
             <div class="media">
                 <img class="ml-2 mr-3 img-thumbnail border border-info" src="https://ss0.bdstatic.com/-0U0bnSm1A5BphGlnYG/tam-ogel/a03f306fc98a8e119dae9d7c5510b656_121_121.jpg" alt="Generic placeholder image" width="100px">
@@ -46,7 +46,8 @@
                                 {{-- TODO: Implement Plan Profile Page --}}
                             @endforeach
                         </ul>
-                        <button type="button" class="btn btn-lg btn-block btn-primary">了解更多</button>
+                        <a href="{{ route('agency.plan.show', ['id' => $plan->id]) }}"
+                           class="btn btn-lg btn-block btn-primary">了解更多</a>
                     </div>
                 </div>
             @endforeach
