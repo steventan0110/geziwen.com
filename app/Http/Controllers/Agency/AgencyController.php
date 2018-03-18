@@ -1,22 +1,16 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Agency;
 
+use App\Http\Controllers\Controller;
 use App\Agency\Agency;
 use Illuminate\Http\Request;
-use App\Comment\AgencyComment;
 
 class AgencyController extends Controller
 {
     public function view(Request $request, $id) {
         $agency = Agency::findOrFail($id);
-        return view('agency.view', [
-            'agency' => $agency,
-            'applicants' => $agency->applicants,
-            'teachers' => $agency->teachers,
-            'comments' => $agency->comments,
-            'ratings' => $agency->ratings
-        ]);
+        return view('agency.view', compact('agency', $agency));
     }
 
     public function edit(Request $request, $id) {

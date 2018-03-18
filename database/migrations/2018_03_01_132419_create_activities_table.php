@@ -13,7 +13,7 @@ class CreateActivitiesTable extends Migration
      */
     public function up()
     {
-        Schema::create('activities', function (Blueprint $table) {
+        Schema::create('applicant_activities', function (Blueprint $table) {
             $table->increments('id');
             $table->unsignedInteger('applicant_id');
             $table->unsignedInteger('type_id');
@@ -25,7 +25,7 @@ class CreateActivitiesTable extends Migration
             $table->timestamps();
         });
 
-        Schema::create('activity_types', function (Blueprint $table) {
+        Schema::create('applicant_activity_types', function (Blueprint $table) {
             $table->increments('id');
             $table->string('name');
         });
@@ -38,6 +38,8 @@ class CreateActivitiesTable extends Migration
      */
     public function down()
     {
+        Schema::dropIfExists('applicant_activities');
+        Schema::dropIfExists('applicant_activity_types');
         Schema::dropIfExists('activities');
         Schema::dropIfExists('activity_types');
     }

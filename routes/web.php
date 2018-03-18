@@ -19,25 +19,16 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 
-Route::prefix('applicant') -> group(function() {
-
-    Route::get('edit/{id}', 'ApplicantController@edit');
-
-    Route::get('create/{id}', 'ApplicantController@create');
-
-    Route::get('view/{id}', 'ApplicantController@view');
-
-    Route::get('delete/{id}', 'ApplicantController@delete');
-});
-
 Route::prefix('agency') -> group(function() {
 
-    Route::get('view/{id}', 'AgencyController@view');
+    Route::prefix('teacher')->group(function() {
+        Route::get('{id}', 'Agency\TeacherController@view');
+    });
 
-    Route::get('create/{id}', 'AgencyController@create');
+    Route::prefix('plan')->group(function () {
+        Route::get('{id}', 'Agency\PlanController@view');
+    });
 
-    Route::get('edit/{id}', 'AgencyController@edit');
-
-    Route::get('delete/{id}', 'AgencyController@delete');
+    Route::get('{id}', 'Agency\AgencyController@view');
 
 });

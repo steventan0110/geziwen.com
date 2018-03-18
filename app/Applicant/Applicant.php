@@ -12,7 +12,7 @@ use App\Applicant\Exam\Toefl;
 use App\Application\Offer;
 use Illuminate\Database\Eloquent\Model;
 use App\Agency\Agency;
-use App\Teacher\Teacher;
+use App\Agency\Teacher;
 
 class Applicant extends Model
 {
@@ -65,21 +65,6 @@ class Applicant extends Model
      */
     public function acts() {
         return $this->hasMany(Act::class);
-    }
-
-    /**
-     * Compact the applicant's all exam records into an array.
-     * @return array
-     */
-    public function exams() {
-        return [
-            'toefls' => $this->toefls()->get(),
-            'sats' => $this->sats()->get(),
-            'satSubjects' => $this->satSubjects()->get(),
-            'ieltss' => $this->ieltss()->get(),
-            'aps' => $this->aps()->get(),
-            'acts' => $this->acts()->get()
-        ];
     }
 
     public function activity() {

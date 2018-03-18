@@ -13,7 +13,7 @@ class AwardTableSeeder extends Seeder
     {
         $faker = \Faker\Factory::create();
         foreach (range(1, 500) as $i) {
-            DB::table('awards')->insert([
+            DB::table('applicant_awards')->insert([
                 'applicant_id' => random_int(1, 100),
                 'name' => $faker->name,
                 'description' => $faker->text,

@@ -13,7 +13,7 @@ class CreateAwardsTable extends Migration
      */
     public function up()
     {
-        Schema::create('awards', function (Blueprint $table) {
+        Schema::create('applicant_awards', function (Blueprint $table) {
             $table->increments('id');
             $table->unsignedInteger('applicant_id');
             $table->string('name');
@@ -31,5 +31,6 @@ class CreateAwardsTable extends Migration
     public function down()
     {
         Schema::dropIfExists('awards');
+        Schema::dropIfExists('applicant_awards');
     }
 }

@@ -7,7 +7,7 @@ use App\Applicant\Applicant;
 
 class Ap extends Model
 {
-    protected $table = "aps";
+    protected $table = "applicant_exam_aps";
 
     public function student() {
         $this->belongsTo(Applicant::class);

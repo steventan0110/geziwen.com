@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Award extends Model
 {
-    protected $table = "awards";
+    protected $table = "applicant_awards";
 
     public function student() {
         $this->belongsTo(Applicant::class);

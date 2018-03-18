@@ -14,7 +14,7 @@ class TestTablesSeeder extends Seeder
         $faker = Faker\Factory::create();
         // TOEFL
         foreach (range(1, 500) as $i) {
-            DB::table('toefls')->insert([
+            DB::table('applicant_exam_toefls')->insert([
                 'applicant_id' => random_int(1, 100),
                 'taken_on' => $faker->date(),
                 'reading' => random_int(10, 30),
@@ -25,7 +25,7 @@ class TestTablesSeeder extends Seeder
         }
         // IELTS
         foreach (range(1, 500) as $i) {
-            DB::table('ieltss')->insert([
+            DB::table('applicant_exam_ieltss')->insert([
                 'applicant_id' => random_int(1, 100),
                 'taken_on' => $faker->date(),
                 'reading' => random_int(0, 18),
@@ -36,7 +36,7 @@ class TestTablesSeeder extends Seeder
         }
         // SAT
         foreach (range(1, 500) as $i) {
-            DB::table('sats')->insert([
+            DB::table('applicant_exam_sats')->insert([
                 'applicant_id' => random_int(1, 100),
                 'taken_on' => $faker->date(),
                 'reading' => random_int(10, 40) * 10,
@@ -47,7 +47,7 @@ class TestTablesSeeder extends Seeder
         }
         // SAT Subject
         foreach (range(1, 500) as $i) {
-            DB::table('sat_subjects')->insert([
+            DB::table('applicant_exam_sat_subjects')->insert([
                 'applicant_id' => random_int(1, 100),
                 'taken_on' => $faker->date(),
                 'subject' => $faker->name,
@@ -56,11 +56,22 @@ class TestTablesSeeder extends Seeder
         }
         // AP
         foreach (range(1, 500) as $i) {
-            DB::table('aps')->insert([
+            DB::table('applicant_exam_aps')->insert([
                 'applicant_id' => random_int(1, 100),
                 'taken_on' => $faker->date(),
                 'subject' => $faker->name,
                 'score' => random_int(1, 5)
+            ]);
+        }
+        // ACT
+        foreach (range(1, 500) as $i) {
+            DB::table('applicant_exam_acts')->insert([
+                'applicant_id' => random_int(1, 100),
+                'taken_on' => $faker->date(),
+                'reading' => random_int(0, 36),
+                'english' => random_int(0, 36),
+                'math' => random_int(0, 36),
+                'science' => random_int(0, 36)
             ]);
         }
     }

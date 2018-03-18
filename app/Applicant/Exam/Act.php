@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Act extends Model
 {
-    protected $table = "acts";
+    protected $table = "applicant_exam_acts";
 
     public function applicant() {
         return $this->belongsTo(Applicant::class);
