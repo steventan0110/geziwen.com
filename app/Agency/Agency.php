@@ -6,7 +6,7 @@ use App\Agency\Service\Plan;
 use App\Rating\AgencyRating;
 use Illuminate\Database\Eloquent\Model;
 use App\Applicant\Applicant;
-use App\Comment\AgencyComment;
+use App\Comment\Comment;
 
 class Agency extends Model
 {
@@ -31,11 +31,11 @@ class Agency extends Model
     }
 
     public function comments() {
-        return $this->hasMany(AgencyComment::class);
+        return $this->morphMany('App\Comment\Comment', 'commentable');
     }
 
     public function ratings() {
-        return $this->hasMany(AgencyRating::class);
+        return $this->morphMany('App\Rating\Rating','rateable');
     }
 
     public function addComment($body) {
