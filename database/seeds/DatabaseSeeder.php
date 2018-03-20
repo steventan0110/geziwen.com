@@ -22,5 +22,7 @@ class DatabaseSeeder extends Seeder
          $this->call(\TeacherRatingsTableSeeder::class);
          $this->call(\TeachersApplicantsTableSeeder::class);
          $this->call(\TeacherTableSeeder::class);
+         $this->call(\CommentsTableSeeder::class);
+         $this->call(\RatingsTableSeeder::class);
     }
 }

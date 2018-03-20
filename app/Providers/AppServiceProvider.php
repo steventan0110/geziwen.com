@@ -2,7 +2,11 @@
 
 namespace App\Providers;
 
+use App\Agency\Agency;
+use App\Agency\Teacher;
+use Illuminate\Database\Eloquent\Relations\Relation;
 use Illuminate\Support\ServiceProvider;
+use Illuminate\Support\Facades\Schema;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -13,8 +17,13 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        //
+        Schema::defaultStringLength(191);
+        Relation::morphMap([
+            'agencies' => Agency::class,
+            'teachers' => Teacher::class
+        ]);
     }
+
 
     /**
      * Register any application services.
