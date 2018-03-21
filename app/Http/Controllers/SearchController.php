@@ -10,6 +10,6 @@ use Illuminate\Http\Request;
 class SearchController extends Controller
 {
     public function result(Request $request) {
-//        TODO: Look into
+        return view('search', ['q' => $request->get('q')]);
     }
 }
