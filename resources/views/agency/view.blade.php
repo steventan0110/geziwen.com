@@ -39,9 +39,20 @@
         </div>
     </div>
 
-    @component('components.applicants', ['applicants' => $agency->applicants])
+    <div id="applicants" class="container">
+        <div class="my-3 p-3 bg-white rounded box-shadow">
+            <h5 class="border-bottom border-gray pb-2 mb-0"><a href="#applicants"><i class="mr-2 fas fa-link"></i></a>案例</h5>
+            @foreach ($agency->applicants as $applicant)
+                @component('components.applicant', ['applicant' => $applicant])
 
-    @endcomponent
+                @endcomponent
+            @endforeach
+            <small class="d-block text-right mt-3">
+                <a href="" class="btn btn-link btn-disabled">查看所有案例</a>
+                {{-- TODO: Implement Applicant Pagination --}}
+            </small>
+        </div>
+    </div>
 
     <div class="container" id="teachers">
         <div class="my-3 p-3 bg-white rounded box-shadow">
