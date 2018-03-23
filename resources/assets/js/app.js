@@ -41,6 +41,11 @@ Vue.component('avatar', Avatar);
 import InstantSearch from 'vue-instantsearch';
 Vue.use(InstantSearch);
 
+/**
+ * Search Component
+ */
+Vue.component('search', require('./components/SearchComponent'));
+
 const app = new Vue({
     el: '#app'
 });
