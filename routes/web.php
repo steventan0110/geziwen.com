@@ -35,6 +35,6 @@ Route::prefix('agency')->group(function () {
         Route::get('{id}', 'Agency\PlanController@view');
     });
 
-    Route::get('{id}', 'Agency\AgencyController@view');
+    Route::get('{id}', 'Agency\AgencyController@view')->name('agency.show');
 
 });
