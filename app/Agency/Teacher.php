@@ -7,11 +7,11 @@
  */
 namespace App\Agency;
 
-use App\Rating\TeacherRating;
+use App\Rating\Rating;
 use Illuminate\Database\Eloquent\Model;
 use App\Agency\Agency;
 use App\Applicant\Applicant;
-use App\Comment\TeacherComment;
+use App\Comment\Comment;
 
 class Teacher extends Model
 {
@@ -26,11 +26,11 @@ class Teacher extends Model
     }
 
     public function comments() {
-        return $this->hasMany(TeacherComment::class);
+        return $this->morphMany('App\Comment\Comment','commentable');
     }
 
     public function ratings() {
-        return $this->hasMany(TeacherRating::class);
+        return $this->morphMany('App\Rating\Rating','rateable');
     }
 
     public function addComment($body) {

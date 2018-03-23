@@ -7,17 +7,18 @@
  */
 use Illuminate\Database\Seeder;
 
-class TeacherCommentsTableSeeder extends Seeder {
+class RatingsTableSeeder extends Seeder {
 
     public function run() {
 
         $faker = Faker\Factory::create();
 
         foreach (range(1, 100) as $i) {
-            DB::table('teacher_comments')->insert([
+            DB::table('ratings')->insert([
                 //private change
-                'body' => $faker->sentence,
-                'teacher_id' => random_int(1, 50)
+                'rate' => random_int(1, 10),
+                'rateable_id' => random_int(1, 50),
+                'rateable_type' => 'agencies'
             ]);
         }
     }
