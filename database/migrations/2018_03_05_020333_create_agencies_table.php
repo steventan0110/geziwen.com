@@ -30,7 +30,7 @@ class CreateAgenciesTable extends Migration
             $table->unsignedInteger('agency_id');
             $table->unsignedInteger('price');
             $table->string('name');
-            $table->string('introduction');
+            $table->text('introduction');
             $table->timestamps();
         });
 
@@ -38,7 +38,16 @@ class CreateAgenciesTable extends Migration
             $table->increments('id');
             $table->unsignedInteger('plan_id');
             $table->string('name');
-            $table->string('introduction');
+            $table->text('introduction');
+            $table->string('period');
+            $table->timestamps();
+        });
+
+        Schema::create('agency_service_features', function (Blueprint $table) {
+            $table->increments('id');
+            $table->unsignedInteger('plan_id');
+            $table->string('name');
+            $table->text('introduction');
             $table->timestamps();
         });
     }
@@ -53,5 +62,6 @@ class CreateAgenciesTable extends Migration
         Schema::dropIfExists('agencies');
         Schema::dropIfExists('agency_service_plans');
         Schema::dropIfExists('agency_service_steps');
+        Schema::dropIfExists('agency_service_features');
     }
 }

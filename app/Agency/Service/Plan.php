@@ -14,6 +14,10 @@ class Plan extends Model
         return $this->hasMany(Step::class);
     }
 
+    public function features() {
+        return $this->hasMany(Feature::class);
+    }
+
     public function agency() {
         return $this->belongsTo(Agency::class);
     }

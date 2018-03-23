@@ -2,9 +2,11 @@
 
 namespace App\Providers;
 
+use App\Agency\Agency;
+use App\Agency\Teacher;
+use Illuminate\Database\Eloquent\Relations\Relation;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Facades\Schema;
-use Illuminate\Database\Eloquent\Relations\Relation;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -17,8 +19,8 @@ class AppServiceProvider extends ServiceProvider
     {
         Schema::defaultStringLength(191);
         Relation::morphMap([
-            'agencies' => 'App\Agency\Agency',
-            'comments' => 'App\Comment\Comment',
+            'agencies' => Agency::class,
+            'teachers' => Teacher::class
         ]);
     }
 

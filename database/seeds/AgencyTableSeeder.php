@@ -31,7 +31,7 @@ class AgencyTableSeeder extends Seeder
                     'name' => $faker->word,
                     'price' => random_int(30, 100) * 1000,
                     //private change
-                    'introduction' => $faker->sentence
+                    'introduction' => $faker->paragraph
                 ]);
 
                 foreach (range(1, 5) as $k) {
@@ -39,7 +39,16 @@ class AgencyTableSeeder extends Seeder
                         'plan_id' => ($i - 1) * 3 + $j,
                         'name' => $faker->word,
                         //private change
-                        'introduction' => $faker->sentence
+                        'introduction' => $faker->paragraph,
+                        'period' => $faker->sentence
+                    ]);
+                }
+
+                foreach (range(1, 3) as $k) {
+                    DB::table('agency_service_features')->insert([
+                        'plan_id' => ($i - 1) * 3 + $j,
+                        'name' => $faker->word,
+                        'introduction' => $faker->paragraph
                     ]);
                 }
             }

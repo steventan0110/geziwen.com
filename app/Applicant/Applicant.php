@@ -20,27 +20,27 @@ class Applicant extends Model
     protected $table = "applicants";
 
     /**
-     * Each applicant may have one or more TOEFL test records.
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     * Each applicant may have one TOEFL record.
+     * @return \Illuminate\Database\Eloquent\Relations\HasOne
      */
-    public function toefls() {
-        return $this->hasMany(Toefl::class);
+    public function toefl() {
+        return $this->hasOne(Toefl::class);
     }
 
     /**
-     * Each applicant may have one or more SAT test records.
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     * Each applicant may have one SAT record.
+     * @return \Illuminate\Database\Eloquent\Relations\HasOne
      */
-    public function sats() {
-        return $this->hasMany(Sat::class);
+    public function sat() {
+        return $this->hasOne(Sat::class);
     }
 
     /**
-     * Each applicant may have one or more IELTS test records.
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     * Each applicant may have one IELTS record.
+     * @return \Illuminate\Database\Eloquent\Relations\HasOne
      */
-    public function ieltss() {
-        return $this->hasMany(Ielts::class);
+    public function ielts() {
+        return $this->hasOne(Ielts::class);
     }
 
     /**
@@ -60,18 +60,18 @@ class Applicant extends Model
     }
 
     /**
-     * Each applicant may have one or more ACT test records.
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     * Each applicant may have one ACT test record.
+     * @return \Illuminate\Database\Eloquent\Relations\HasOne
      */
-    public function acts() {
-        return $this->hasMany(Act::class);
+    public function act() {
+        return $this->hasOne(Act::class);
     }
 
-    public function activity() {
+    public function activities() {
         return $this->hasMany(Activity::class);
     }
 
-    public function award() {
+    public function awards() {
         return $this->hasMany(Award::class);
     }
 

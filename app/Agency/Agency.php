@@ -34,8 +34,9 @@ class Agency extends Model
         return $this->morphMany('App\Comment\Comment','commentable');
     }
 
-    public function ratings() {
-        return $this->morphMany('App\Rating\Rating','commentable');
+    public function ratings()
+    {
+        return $this->morphMany('App\Rating\Rating', 'commentable');
     }
 
     public function addComment($body) {
