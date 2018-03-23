@@ -19,7 +19,13 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 
-Route::prefix('agency') -> group(function() {
+Route::prefix('search')->group(function () {
+
+    Route::get('/', 'SearchController@result')->name('search');
+
+});
+
+Route::prefix('agency')->group(function () {
 
     Route::get('{id}', 'Agency\AgencyController@view')->name('agency.show');
 

@@ -34,6 +34,18 @@ fontawesome.library.add(brands);
 import Avatar from 'vue-avatar';
 Vue.component('avatar', Avatar);
 
+/**
+ * Algolia Instant Search
+ */
+
+import InstantSearch from 'vue-instantsearch';
+Vue.use(InstantSearch);
+
+/**
+ * Search Component
+ */
+Vue.component('search', require('./components/SearchComponent'));
+
 const app = new Vue({
     el: '#app'
 });
