@@ -21,6 +21,8 @@ class TeacherTableSeeder extends Seeder {
                 'introduction' => $faker->text,
                 'years_of_teaching' => $faker->year,
                 'picture' => $faker->url,
+                'type' => 'teacher',
+                'type_id' => 1
             ]);
         }
 
