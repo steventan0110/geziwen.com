@@ -21,6 +21,8 @@ class CreateTeachersTable extends Migration
             $table->mediumText('introduction');
             $table->unsignedInteger('years_of_teaching');
             $table->string('picture');
+            $table->string('type');
+            $table->integer('type_id');
             $table->timestamps();
         });
     }
