@@ -214,5 +214,5 @@
             </small>
         </div>
     </div>
-    <comment-text :comment-data="'{!! json_encode($agency->id) !!}'" :comment-type="'{!! json_encode($agency->type_id) !!}'"></comment-text>
+    <comment-text :comment-data="'{{ $agency->id }}'" :comment-type="'{{ $agency->comments[0]->commentable_type }}'"></comment-text>
 @endsection

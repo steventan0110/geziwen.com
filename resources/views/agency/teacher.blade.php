@@ -88,5 +88,5 @@
             </small>
         </div>
     </div>
-    <comment-text :comment-data="'{!! json_encode($teacher->id) !!}'" :comment-type="'{!! json_encode($teacher->type_id) !!}'"></comment-text>
+    <comment-text :comment-data="'{{ $teacher->id }}'" :comment-type="'{{ $teacher->comments[1]->commentable_type }}'"></comment-text>
 @endsection
