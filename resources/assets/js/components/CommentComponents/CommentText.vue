@@ -32,7 +32,7 @@
         },
         methods: {
             addComment: function (){
-                if (this.commentType==1) {
+                if (this.commentType=='teachers') {
                     this.$http.post("/api/teacher/comment", {
                             'body': this.commentText,
                             'commentable_id': this.commentID
@@ -54,7 +54,7 @@
                         }
                     )
                 }
-                else if (this.commentType==0) {
+                else if (this.commentType=='agencies') {
                     this.$http.post("/api/agency/comment", {
                             'body': this.commentText,
                             'commentable_id': this.commentID
