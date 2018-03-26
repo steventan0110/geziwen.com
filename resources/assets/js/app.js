@@ -34,6 +34,17 @@ fontawesome.library.add(brands);
 import Avatar from 'vue-avatar';
 Vue.component('avatar', Avatar);
 
+import StarRating from 'vue-star-rating';
+Vue.component('star-rating',StarRating);
+
+import VueResource from 'vue-resource';
+Vue.use(VueResource);
+
+Vue.component('comment-area',require('./components/CommentComponents/CommentArea'));
+Vue.component('comment-text',require('./components/CommentComponents/CommentText'));
+
+Vue.http.headers.common['X-CSRF-TOKEN'] = document.querySelector('meta[name=csrf-token]').getAttribute('content');
+
 const app = new Vue({
     el: '#app'
 });
