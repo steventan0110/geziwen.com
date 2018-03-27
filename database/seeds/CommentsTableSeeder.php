@@ -18,8 +18,17 @@ class CommentsTableSeeder extends Seeder {
                 //private change
                 'body' => $faker->sentence,
                 'commentable_id' => random_int(1, 50),
-                'commentable_type' => 'agencies'
             ]);
+            if ($i%2==0) {
+                DB::table('comments')->insert([
+                    'commentable_type' => 'agencies'
+                ]);
+            }
+            elseif ($i%2!=0) {
+                DB::table('comments')->insert([
+                    'commentable_type' => 'teachers'
+                ]);
+            }
         }
     }
 }
