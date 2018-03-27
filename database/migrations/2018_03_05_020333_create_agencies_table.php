@@ -22,8 +22,6 @@ class CreateAgenciesTable extends Migration
             $table->string('website');
             $table->date('started_on');
             $table->string('email');
-            $table->string('type');
-            $table->integer('type_id');
             $table->timestamps();
         });
 
