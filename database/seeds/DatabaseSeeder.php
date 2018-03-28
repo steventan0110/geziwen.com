@@ -14,13 +14,11 @@ class DatabaseSeeder extends Seeder
          $this->call(\ActivitiesTableSeeder::class);
          $this->call(\AdmissionTablesSeeder::class);
          $this->call(\CommentsTableSeeder::class);
-         $this->call(\RatingsTableSeeder::class);
          $this->call(\AgencyTableSeeder::class);
          $this->call(\ApplicantsTableSeeder::class);
          $this->call(\AwardTableSeeder::class);
          $this->call(\TeachersApplicantsTableSeeder::class);
          $this->call(\TeacherTableSeeder::class);
-         $this->call(\CommentsTableSeeder::class);
-         $this->call(\RatingsTableSeeder::class);
+         $this->call(\UserTableSeeder::class);
     }
 }
