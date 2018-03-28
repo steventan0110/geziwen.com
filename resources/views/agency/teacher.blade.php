@@ -18,16 +18,6 @@
             <p class="small"><i class="mr-2 fas fa-envelope"></i>{{ $teacher->agency->email }}</p>
         </div>
     </div>
-    <div class="container" id="profile">
-        <div class="jumbotron bg-white box-shadow">
-            <div class="media">
-                <h2 class="ml-2 mr-3 mt-3 text-primary">您的评分：</h2>
-                <div class="ml-lg-5" id="rating">
-                    {{--<rate-t :rate-data="'{!! json_encode($teacher->id) !!}'"></rate-t>--}}
-                </div>
-            </div>
-        </div>
-    </div>
     <div class="container" id="applicants">
         <div class="my-3 p-3 bg-white rounded box-shadow">
             <h5 class="border-bottom border-gray pb-2 mb-0"><a href="#applicants"><i class="mr-2 fas fa-link"></i></a>案例</h5>
@@ -81,12 +71,11 @@
                 @endforeach
                 </tbody>
             </table>
-
             <small class="d-block text-right mt-3">
                 <a href="">查看所有案例</a>
                 {{-- TODO: Implement Applicant Pagination --}}
             </small>
         </div>
     </div>
-    <comment-text :comment-data="'{{ $teacher->id }}'" :comment-type="'{{ $teacher->comments[1]->commentable_type }}'"></comment-text>
+    <comment-text :comment-data="'{{ $teacher->id }}'" :comment-type="'{{ $teacher->comments[0]->commentable_type }}'"></comment-text>
 @endsection

@@ -16,8 +16,9 @@ use Illuminate\Http\Request;
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
-
-Route::post('teacher/rating','RatingController@storeTeacherRating');
-Route::post('agency/rating','RatingController@storeAgencyRating');
 Route::post('teacher/comment','CommentController@storeTeacherComment');
+Route::post('teacher/comment/delete','CommentController@deleteTeacherComment');
+Route::post('teacher/comment/get','CommentController@getTeacherComment');
 Route::post('agency/comment','CommentController@storeAgencyComment');
+Route::post('agency/comment/delete','CommentController@deleteAgencyComment');
+Route::post('agency/comment/get','CommentController@getAgencyComment');
