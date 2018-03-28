@@ -7,7 +7,6 @@
  */
 namespace App\Agency;
 
-use App\Rating\Rating;
 use Illuminate\Database\Eloquent\Model;
 use App\Agency\Agency;
 use App\Applicant\Applicant;
@@ -27,10 +26,6 @@ class Teacher extends Model
 
     public function comments() {
         return $this->morphMany('App\Comment\Comment','commentable');
-    }
-
-    public function ratings() {
-        return $this->morphMany('App\Rating\Rating','rateable');
     }
 
     public function addComment($body) {

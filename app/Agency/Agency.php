@@ -3,7 +3,7 @@
 namespace App\Agency;
 
 use App\Agency\Service\Plan;
-use App\Rating\Rating;
+
 use Illuminate\Database\Eloquent\Model;
 use App\Applicant\Applicant;
 use App\Comment\Comment;
@@ -32,11 +32,6 @@ class Agency extends Model
 
     public function comments() {
         return $this->morphMany('App\Comment\Comment','commentable');
-    }
-
-    public function ratings()
-    {
-        return $this->morphMany('App\Rating\Rating', 'commentable');
     }
 
     public function addComment($body) {
