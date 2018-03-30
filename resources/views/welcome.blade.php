@@ -4,9 +4,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="">
     <meta name="author" content="">
+
+    <!-- CSRF Token -->
+    <meta name="csrf-token" content="{{ csrf_token() }}">
+
     <link rel="icon" href="{{ asset('favicon.ico') }}">
 
-    <title>Carousel Template for Bootstrap</title>
+    <title>哥子稳成都留学信息平台</title>
 
     <link rel="stylesheet" href="{{ asset('css/landing.css') }}">
 
