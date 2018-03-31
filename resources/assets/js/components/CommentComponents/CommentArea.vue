@@ -11,7 +11,7 @@
                     {{ comment.text }}
                 </div>
                 <star-rating @rating-selected="setRating" v-bind:rating=comment.rate v-bind:star-size="20" v-bind:read-only="true"></star-rating>
-                <button class="btn btn-warning btn-sm" @click="deleteItem(index, comment.id)">删除评论</button>
+                <button v-show="userName==comment.name" class="btn btn-warning btn-sm" @click="deleteItem(index, comment.id)">删除评论</button>
             </li>
         </ul>
     </div>
@@ -20,52 +20,37 @@
 <script>
     export default {
         name: 'comment-area',
-        props: ['myMessage','myRating','myCommentType'],
+        props: ['myMessage','myRating','myCommentType','userName'],
         data () {
             return {
                 msg: 'hi',
                 // CAN NOT BE RENAMED --This "list" property MUST BE NAME "list", else it will definitely fail
-                list: []
-                //
+                list: [],
+
             }
         },
         mounted () {
-            this.getItem()
+            this.getItem();
         },
         methods: {
             addItem () {
-                //TODO: name: user's own name
-                this.list.push({name: 'USER', text: this.myMessage, rate: this.myRating})
+                this.list.push({name: this.userName, text: this.myMessage, rate: this.myRating});
             },
             initialize (username, text, rating, id) {
                 this.list.push({name: username, text: text, rate: rating, id: id})
 
             },
             getItem () {
-                if(this.myCommentType=="teachers") {
-                    this.$http.post("/api/teacher/comment/get").then(function(response){
-                            for (var i=0; i<response.body[0].length; i++) {
-                                this.initialize(response.body[0][i],response.body[1][i],response.body[2][i],response.body[3][i])
-                            }
-                        },function(response){
-                            console.log(response.status)
+                this.$http.post("/api/comment/get", {
+                    'commentable_type': this.myCommentType
+                }).then(function(response){
+                        for (var i=0; i<response.body[0].length; i++) {
+                            this.initialize(response.body[0][i],response.body[1][i],response.body[2][i],response.body[3][i])
                         }
-                    );
-                }
-                else if(this.myCommentType=="agencies") {
-                    this.$http.post("/api/agency/comment/get").then(function(response){
-                            for (var i=0; i<response.body[0].length; i++) {
-                                this.initialize(response.body[0][i],response.body[1][i],response.body[2][i],response.body[3][i])
-                            }
-                        },function(response){
-                            console.log(response.status)
-                        }
-                    );
-                }
-                else {
-                    console.log('Fail to get comments');
-                }
-
+                    },function(response){
+                        console.log(response.status)
+                    }
+                )
             },
             deleteItem (index, id) {
                 this.list.splice(index,1);

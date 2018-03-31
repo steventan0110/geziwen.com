@@ -7,8 +7,9 @@
                               v-bind:my-message="commentText"
                               v-bind:my-rating="this.rating"
                               v-bind:my-comment-type="Type"
+                              v-bind:user-name="this.userName"
                               />
-                <div class="media">
+                <div class="media" v-show="this.userName">
                     <h4 class="col-sm-2">发表评论</h4>
                     <textarea rows="5" cols="120" class="mt-3" placeholder="请填写评论内容" v-model="commentText"></textarea>
                     <star-rating @rating-selected="setRating" v-bind:star-size="30" v-bind:inline="true"></star-rating>
@@ -26,72 +27,43 @@
     import CommentArea from './CommentArea'
     export default {
         name: "comment-text",
-        props: ['commentData','commentType'],
+        props: ['commentData','commentType','userName'],
         data() {
             return{
                 rating: this.rating,
                 Type: this.commentType,
                 commentText: this.commentText,
-                commentID: this.commentData
+                commentID: this.commentData,
             }
         },
         methods: {
             addComment: function (){
-                if (this.commentType=='teachers') {
-                    this.$http.post("/api/teacher/comment", {
-                            'body': this.commentText,
-                            'rate': this.rating,
-                            'commentable_id': this.commentID
-                        }
-                    ).then(function(response){
-                            console.log(response.status)
-                        },function(response){
-                            console.log(response.status)
-                        }
-                    );
-                }
-                else if (this.commentType=='agencies') {
-                    this.$http.post("/api/agency/comment", {
-                            'body': this.commentText,
-                            'rate': this.rating,
-                            'commentable_id': this.commentID
-                        }
-                    ).then(function(response){
-                            console.log(response.status)
-                        },function(response){
-                            console.log(response.status)
-                        }
-                    );
-                }
-                else {
-                    alert("FAILED")
-                }
+                this.$http.post("/api/comment", {
+                        'body': this.commentText,
+                        'rate': this.rating,
+                        'commentable_id': this.commentID,
+                        'commentable_type': this.commentType,
+                        'username': this.userName
+                    }
+                ).then(function(response){
+                        console.log(response.status)
+                    },function(response){
+                        console.log(response.status)
+                    }
+                );
                 this.$refs.ca.addItem();
                 this.commentText = ""
             },
             onDeleteComment (id) {
-                if (this.commentType=='teachers') {
-                    this.$http.post("/api/teacher/comment/delete", {
-                            'id': id
-                        }
-                    ).then(function(response){
-                            console.log(response.status)
-                        },function(response){
-                            console.log(response.status)
-                        }
-                    );
-                }
-                else if (this.commentType=='agencies') {
-                    this.$http.post("/api/agency/comment/delete", {
-                            'id': id
-                        }
-                    ).then(function(response){
-                            console.log(response.status)
-                        },function(response){
-                            console.log(response.status)
-                        }
-                    );
-                }
+                this.$http.post("/api/comment/delete", {
+                        'id': id
+                    }
+                ).then(function(response){
+                        console.log(response.status)
+                    },function(response){
+                        console.log(response.status)
+                    }
+                );
             },
             cancelComment: function () {
                 this.commentText = ""

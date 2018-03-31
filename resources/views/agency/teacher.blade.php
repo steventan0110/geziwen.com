@@ -76,6 +76,18 @@
                 {{-- TODO: Implement Applicant Pagination --}}
             </small>
         </div>
+        @if ($user!=null)
+            <comment-text :comment-data="'{{ $teacher->id }}'"
+                      :user-name="'{{ $user->name }}'"
+                      :comment-type="'{{ $teacher->comments[0]->commentable_type }}'"></comment-text>
+        @else
+            <comment-text :comment-data="'{{ $teacher->id }}'"
+                          :user-name="''"
+                          :comment-type="'{{ $teacher->comments[0]->commentable_type }}'"></comment-text>
+        @endif
+
+
+
+
     </div>
-    <comment-text :comment-data="'{{ $teacher->id }}'" :comment-type="'{{ $teacher->comments[0]->commentable_type }}'"></comment-text>
 @endsection
