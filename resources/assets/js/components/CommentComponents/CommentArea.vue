@@ -32,9 +32,9 @@
             this.initialize();
         },
         methods: {
-            addItem () {
+            addItem (id) {
                 if(this.myMessage!="") {
-                    this.list.push({name: this.userName, text: this.myMessage, rate: this.myRating});
+                    this.list.push({name: this.userName, text: this.myMessage, rate: this.myRating, id: id});
                 }
             },
             getItem (username, text, rating, id) {

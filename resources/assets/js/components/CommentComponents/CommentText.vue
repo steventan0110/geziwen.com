@@ -36,11 +36,12 @@
                 Type: this.commentType,
                 commentText: this.commentText,
                 commentID: this.commentData,
-                newCommentIndex: 0
+                newCommentIndex: 25,
             }
         },
         methods: {
             addComment: function (){
+                let _this=this;
                 this.$http.post("/api/comment", {
                         'body': this.commentText,
                         'rate': this.rating,
@@ -49,15 +50,17 @@
                         'username': this.userName
                     }
                 ).then(function(response){
-                        // response.body returns the new comment index
-                        // update that to 'newCommentIndex'
                         console.log(response.status);
+                        this.newCommentIndex=response.body;
+                        this.onAddComment(this.newCommentIndex)
                     },function(response){
                         alert(response.body);
                         console.log(response.status);
                     }
                 );
-                this.$refs.ca.addItem();
+            },
+            onAddComment(id){
+                this.$refs.ca.addItem(id);
                 this.commentText = ""
             },
             onDeleteComment (id) {
