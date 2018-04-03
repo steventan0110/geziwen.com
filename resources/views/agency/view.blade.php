@@ -213,15 +213,16 @@
                 {{-- TODO: Implement Teacher Pagination --}}
             </small>
         </div>
-        @if ($user!=null)
-            <comment-text :comment-data="'{{ $agency->id }}'"
-                          :user-name="'{{ $user->name }}'"
-                          :comment-type="'{{ $agency->comments[0]->commentable_type }}'"></comment-text>
-        @else
-            <comment-text :comment-data="'{{ $agency->id }}'"
-                          :user-name="''"
-                          :comment-type="'{{ $agency->comments[0]->commentable_type }}'"></comment-text>
-        @endif
     </div>
-
+    @if ($user!=null)
+        <comment-text :comment-data="'{{ $agency->id }}'"
+                      :user-name="'{{ $user->name }}'"
+                      :comment-type="'{{ $agency->comments[0]->commentable_type }}'"
+                      :comment-index="'{{ $agency->comments[0]->commentable_id }}'"></comment-text>
+    @else
+        <comment-text :comment-data="'{{ $agency->id }}'"
+                      :user-name="''"
+                      :comment-type="'{{ $agency->comments[0]->commentable_type }}'"
+                      :comment-index="'{{ $agency->comments[0]->commentable_id }}'"></comment-text>
+    @endif
 @endsection

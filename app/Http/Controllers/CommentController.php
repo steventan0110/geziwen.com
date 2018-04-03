@@ -17,13 +17,22 @@ use Illuminate\Support\Facades\DB;
 class CommentController extends Controller
 {
     public function storeComment(Request $request) {
-        $comment = new Comment;
-        $comment->body = $request->body;
-        $comment->commentable_id = $request->commentable_id;
-        $comment->commentable_type = $request->commentable_type;
-        $comment->username = $request->username;
-        $comment->rate = $request->rate;
-        $comment->save();
+        if($request->body==null){
+            return response("评论不能为空",500);
+        }
+        else if($request->rate==null) {
+            return response("您必须要进行评分",500);
+        }
+        else {
+            $comment = new Comment;
+            $comment->body = $request->body;
+            $comment->commentable_id = $request->commentable_id;
+            $comment->commentable_type = $request->commentable_type;
+            $comment->username = $request->username;
+            $comment->rate = $request->rate;
+            $comment->save();
+            return response($comment->id,200);
+        }
     }
 
     public function deleteComment(Request $request) {
@@ -33,11 +42,12 @@ class CommentController extends Controller
 
     public function getComment(Request $request) {
         $type = $request->commentable_type;
+        $id = $request->commentable_id;
         $comment_user = array();
         $comment_body = array();
         $rate_arr = array();
         $comment_id = array();
-        $comments = DB::select('select * from comments where commentable_type = ?', [$type]);
+        $comments = DB::select('select * from comments where commentable_type = ? AND commentable_id =?', [$type,$id]);
         foreach ($comments as $comment) {
             array_push($comment_body,$comment->body);
             array_push($comment_user,$comment->username);
