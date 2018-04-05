@@ -29,19 +29,18 @@
     import CommentArea from './CommentArea'
     export default {
         name: "comment-text",
-        props: ['commentData','commentType','userName','commentIndex'],
+        props: ['commentData', 'commentType', 'userName', 'commentIndex'],
         data() {
             return{
                 rating: this.rating,
                 Type: this.commentType,
                 commentText: this.commentText,
                 commentID: this.commentData,
-                newCommentIndex: 25,
+                newCommentIndex: 0
             }
         },
         methods: {
             addComment: function (){
-                let _this=this;
                 this.$http.post("/api/comment", {
                         'body': this.commentText,
                         'rate': this.rating,
@@ -51,7 +50,7 @@
                     }
                 ).then(function(response){
                         console.log(response.status);
-                        this.newCommentIndex=response.body;
+                        this.newCommentIndex = response.body;
                         this.onAddComment(this.newCommentIndex)
                     },function(response){
                         alert(response.body);
@@ -61,7 +60,7 @@
             },
             onAddComment(id){
                 this.$refs.ca.addItem(id);
-                this.commentText = ""
+                this.commentText = "";
             },
             onDeleteComment (id) {
                 this.$http.post("/api/comment/delete", {
@@ -75,7 +74,7 @@
                 );
             },
             cancelComment: function () {
-                this.commentText = ""
+                this.commentText = "";
             },
             setRating: function(rating){
                 this.rating = rating;

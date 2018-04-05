@@ -14,7 +14,7 @@ class CommentsTableSeeder extends Seeder {
         $faker = Faker\Factory::create();
 
         foreach (range(1, 100) as $i) {
-            if ($i%2==0) {
+            if ($i % 2 == 0) {
                 DB::table('comments')->insert([
                     'username' => $faker->name,
                     'body' => $faker->sentence,

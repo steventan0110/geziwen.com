@@ -21,14 +21,10 @@ class Teacher extends Model
     }
 
     public function student() {
-        return $this->belongsToMany(Applicant::class,'teachers_applicants','applicant_id','teacher_id');
+        return $this->belongsToMany(Applicant::class, 'teachers_applicants', 'applicant_id', 'teacher_id');
     }
 
     public function comments() {
-        return $this->morphMany('App\Comment\Comment','commentable');
-    }
-
-    public function addComment($body) {
-        $this->comments()->create(compact('body'));
+        return $this->morphMany('App\Comment\Comment', 'commentable');
     }
 }

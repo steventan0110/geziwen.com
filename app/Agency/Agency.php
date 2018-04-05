@@ -31,10 +31,6 @@ class Agency extends Model
     }
 
     public function comments() {
-        return $this->morphMany('App\Comment\Comment','commentable');
-    }
-
-    public function addComment($body) {
-        $this->comments()->create(compact('body'));
+        return $this->morphMany('App\Comment\Comment', 'commentable');
     }
 }
