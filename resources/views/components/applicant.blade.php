@@ -17,18 +17,24 @@
                     <div class="card text-center">
                         <div class="card-header">
                             <ul class="nav nav-tabs card-header-tabs pull-right" role="tablist">
-                                <li class="nav-item">
-                                    <a class="nav-link active" data-toggle="tab" href="#applicant-{{ $applicant->id }}-offers" role="tab" aria-controls="applicant-{{ $applicant->id }}-offers" aria-selected="true">Offer</a>
-                                </li>
+                                @if(count($applicant->offers))
+                                    <li class="nav-item">
+                                        <a class="nav-link active" data-toggle="tab" href="#applicant-{{ $applicant->id }}-offers" role="tab" aria-controls="applicant-{{ $applicant->id }}-offers" aria-selected="true">Offer</a>
+                                    </li>
+                                @endif
                                 <li class="nav-item">
                                     <a class="nav-link" data-toggle="tab" href="#applicant-{{ $applicant->id }}-exams" role="tab" aria-controls="applicant-{{ $applicant->id }}-exams" aria-selected="false">分数</a>
                                 </li>
-                                <li class="nav-item">
-                                    <a class="nav-link" data-toggle="tab" href="#applicant-{{ $applicant->id }}-activities" role="tab" aria-controls="applicant-{{ $applicant->id }}-activities" aria-selected="false">活动</a>
-                                </li>
-                                <li class="nav-item">
-                                    <a class="nav-link" data-toggle="tab" href="#applicant-{{ $applicant->id }}-awards" role="tab" aria-controls="applicant-{{ $applicant->id }}-awards" aria-selected="false">奖项</a>
-                                </li>
+                                @if(count($applicant->activities))
+                                    <li class="nav-item">
+                                        <a class="nav-link" data-toggle="tab" href="#applicant-{{ $applicant->id }}-activities" role="tab" aria-controls="applicant-{{ $applicant->id }}-activities" aria-selected="false">活动</a>
+                                    </li>
+                                @endif
+                                @if(count($applicant->awards))
+                                    <li class="nav-item">
+                                        <a class="nav-link" data-toggle="tab" href="#applicant-{{ $applicant->id }}-awards" role="tab" aria-controls="applicant-{{ $applicant->id }}-awards" aria-selected="false">奖项</a>
+                                    </li>
+                                @endif
                             </ul>
                         </div>
                         <div class="card-body">

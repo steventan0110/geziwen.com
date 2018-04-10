@@ -1,5 +1,9 @@
 @extends('layouts.app')
 
+@section('title')
+    {{ $agency->name }}
+@endsection
+
 @section('content')
 
     @component('components.agency', ['agency' => $agency])
@@ -28,7 +32,6 @@
                             @foreach($plan->steps as $step)
                                 <li>{{ $step->name }} Feature</li>
                                 {{-- TODO: Implement Plan Featture Backend --}}
-                                {{-- TODO: Implement Plan Profile Page --}}
                             @endforeach
                         </ul>
                         <a href="{{ route('agency.plan.show', ['id' => $plan->id]) }}"
@@ -41,22 +44,21 @@
 
     <div id="applicants" class="container mb-4">
         <div class="my-3 p-3 bg-white rounded box-shadow">
-            <h5 class="border-bottom border-gray pb-2 mb-0">案例</h5>
+            <h5 class="border-bottom border-gray pb-2 mb-0">部分案例</h5>
             @foreach ($agency->applicants as $applicant)
                 @component('components.applicant', ['applicant' => $applicant])
 
                 @endcomponent
             @endforeach
             <small class="d-block text-right mt-3">
-                <a href="" class="btn btn-link btn-disabled">查看所有案例</a>
-                {{-- TODO: Implement Applicant Pagination --}}
+                <a href="{{ route('agency.applicants.index', ['id' => $agency->id]) }}">查看所有案例</a>
             </small>
         </div>
     </div>
 
     <div class="container" id="teachers">
         <div class="my-3 p-3 bg-white rounded box-shadow">
-            <h5 class="border-bottom border-gray pb-2 mb-2">师资</h5>
+            <h5 class="border-bottom border-gray pb-2 mb-2">部分师资</h5>
             <div class="row">
                 @foreach($agency->teachers as $teacher)
                     <div class="col-sm-4 text-center mt-4  pl-2 pr-2">

@@ -13,11 +13,37 @@ class ApplicantsTableSeeder extends Seeder
     public function run()
     {
         $faker = Faker\Factory::create();
+        $plans = [['Early Action', 'EA'],['Early Decision', 'ED'],['Regular Decision', 'RD']];
+
         foreach (range(1, 100) as $i) {
+            DB::table('admission_universities')->insert([
+                'name' => $faker->name,
+                'country' => $faker->countryCode,
+                'website' => $faker->url
+            ]);
+        }
+
+        foreach ($plans as $plan) {
+            DB::table('admission_plans')->insert([
+                'name' => $plan[0],
+                'shorthand' => $plan[1]
+            ]);
+        }
+
+        foreach (range(1, 1000) as $i) {
             DB::table('applicants')->insert([
                 'surname' => $faker->name,
                 'plan_id' => random_int(1, 30)
             ]);
+
+            foreach (range(1, 5) as $j) {
+                DB::table('admission_applications')->insert([
+                    'applicant_id' => $i,
+                    'university_id' => random_int(1, 100),
+                    'plan_id' => random_int(1, 3),
+                    'decision_id' => random_int(1, 4)
+                ]);
+            }
 
             if (random_int(0, 1)) {
                 // TOEFL
