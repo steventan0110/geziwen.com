@@ -14,7 +14,7 @@
                     @if(isset($plan))
                         <h5><a href="{{ route('agency.plan.show', ['id' => $plan->id]) }}">{{ $plan->name }}</a> | 所有案例</h5>
                     @elseif(isset($agency))
-                        <h5><a href="{{ route('agency.show', ['id' => $agency->id]) }}">{{ $agency->name }}</a> | 所有案例</h5>
+                        <h5><a href="{{ route('agencies.show', ['id' => $agency->id]) }}">{{ $agency->name }}</a> | 所有案例</h5>
                     @endif
                     @if(isset($plan))
                         <p class="small">{{ $plan->introduction }}</p>
