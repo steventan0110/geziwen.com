@@ -28,7 +28,6 @@
                             @foreach($plan->steps as $step)
                                 <li>{{ $step->name }} Feature</li>
                                 {{-- TODO: Implement Plan Featture Backend --}}
-                                {{-- TODO: Implement Plan Profile Page --}}
                             @endforeach
                         </ul>
                         <a href="{{ route('agency.plan.show', ['id' => $plan->id]) }}"
@@ -48,8 +47,7 @@
                 @endcomponent
             @endforeach
             <small class="d-block text-right mt-3">
-                <a href="" class="btn btn-link btn-disabled">查看所有案例</a>
-                {{-- TODO: Implement Applicant Pagination --}}
+                <a href="{{ route('agency.applicants.index', ['id' => $agency->id]) }}" class="btn btn-link btn-disabled">查看所有案例</a>
             </small>
         </div>
     </div>

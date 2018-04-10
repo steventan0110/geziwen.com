@@ -10,6 +10,7 @@ class AgencyController extends Controller
 {
     public function view(Request $request, $id) {
         $agency = Agency::findOrFail($id);
+        $agency->applicants = $agency->applicants()->limit(5)->get();
         return view('agency.view', compact('agency', $agency));
     }
 

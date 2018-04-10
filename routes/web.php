@@ -36,3 +36,5 @@ Route::prefix('agency')->group(function () {
     });
 
 });
+
+Route::resource('agency.applicants', 'Agency\ApplicantsController');

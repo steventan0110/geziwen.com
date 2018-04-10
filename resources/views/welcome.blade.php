@@ -20,7 +20,7 @@
     <header>
         <nav class="navbar navbar-expand-md navbar-light fixed-top bg-white box-shadow">
             <a class="navbar-brand" href="{{ url('/') }}">
-                <img src="{{ asset('images/logo.png') }}" width="250px">
+                <img src="{{ asset('images/logo.png') }}" height="64px">
             </a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
