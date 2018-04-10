@@ -20,22 +20,23 @@
     @endcomponent
 
     <div class="container" id="services">
-        <div class="card-deck text-center">
+        <div class="row text-center">
             @foreach($agency->plans as $plan)
-                <div class="card mb-4 box-shadow">
-                    <div class="card-header">
-                        <h4 class="my-0 font-weight-normal">{{ $plan->name }} 项目</h4>
-                    </div>
-                    <div class="card-body">
-                        <h1 class="card-title pricing-card-title">￥{{ $plan->price }}</h1>
-                        <ul class="list-unstyled mt-3 mb-4">
-                            @foreach($plan->steps as $step)
-                                <li>{{ $step->name }} Feature</li>
-                                {{-- TODO: Implement Plan Featture Backend --}}
-                            @endforeach
-                        </ul>
-                        <a href="{{ route('agency.plan.show', ['id' => $plan->id]) }}"
-                           class="btn btn-lg btn-block btn-success">了解更多</a>
+                <div class="col-lg-4 col-md-4">
+                    <div class="card mb-4 box-shadow">
+                        <div class="card-header">
+                            <h4 class="my-0 font-weight-normal">{{ $plan->name }} 项目</h4>
+                        </div>
+                        <div class="card-body">
+                            <h1 class="card-title pricing-card-title">￥{{ $plan->price }}</h1>
+                            <ul class="list-unstyled mt-3 mb-4">
+                                @foreach($plan->features as $feature)
+                                    <li>{{ $feature->name }} Feature</li>
+                                @endforeach
+                            </ul>
+                            <a href="{{ route('agency.plan.show', ['id' => $plan->id]) }}"
+                               class="btn btn-lg btn-block btn-success">了解更多</a>
+                        </div>
                     </div>
                 </div>
             @endforeach
@@ -62,7 +63,7 @@
             <div class="row">
                 @foreach($agency->teachers as $teacher)
                     <div class="col-sm-4 text-center mt-4  pl-2 pr-2">
-                        <img class="rounded-circle mb-2" src="data:image/gif;base64,R0lGODlhAQABAIAAAHd3dwAAACH5BAAAAAAALAAAAAABAAEAAAICRAEAOw==" alt="Generic placeholder image" width="140" height="140">
+                        <img class="rounded-circle mb-2" src="data:image/gif;base64,R0lGODlhAQABAIAAAHd3dwAAACH5BAAAAAAALAAAAAABAAEAAAICRAEAOw==" alt="Generic placeholder image" width="140px" height="140px">
                         <h5>{{ $teacher->name }}</h5>
                         <p class="small">{{ $teacher->introduction }}</p>
                         <p class="small">
