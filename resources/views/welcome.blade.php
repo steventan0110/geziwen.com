@@ -61,7 +61,7 @@
                     <div class="carousel-caption text-left">
                         <h1>留学机构平台</h1>
                         <p>我们已经为成都的学生和家长打造了一套成都留学机构和语言培训机构信息共享平台。我们通过邀请各大机构进驻，用标准形式展示他们的服务、案例、师资，帮助学生和家长精准匹配适合他们的机构。</p>
-                        <p><a class="btn btn-lg btn-primary" target="_blank" href="{{ url('/register') }}" role="button">立即注册</a></p>
+                        <p><a class="btn btn-lg btn-primary" href="{{ route('agencies.index') }}" role="button">所有机构</a></p>
                     </div>
                 </div>
             </div>
@@ -111,7 +111,7 @@
         <div class="row featurette">
             <div class="col-md-7">
                 <h2 class="featurette-heading">信任：<span class="text-muted">信息经过审核</span></h2>
-                <p class="lead">对于每一家入驻我们平台的公司，我们都对其提供的案例信息和师资信息进行审核，以确保我们平台信息的真实性。</p>
+                <p class="lead">对于每一家入驻我们平台的公司，我们都对其提供的案例信息和师资信息进行审核，以确保我们平台信息的真实性。<a href="{{ route('agencies.index') }}">点击查看所有机构</a></p>
             </div>
             <div class="col-md-5">
                 <img class="featurette-image img-fluid mx-auto" src="{{ asset('images/feature-1.jpg') }}" data-holder-rendered="true" width="500px">
@@ -123,7 +123,7 @@
         <div class="row featurette">
             <div class="col-md-7 order-md-2">
                 <h2 class="featurette-heading">全面：<span class="text-muted">师资 案例 服务</span></h2>
-                <p class="lead">每一家入住的机构都对应有一个主页，哥子稳团队作为申请季的过来人，在案例展示、服务流程展示和师资展示环节，保证给学生和家长提供最精简和必要的信息。</p>
+                <p class="lead">每一家入住的机构都对应有一个主页，哥子稳团队作为申请季的过来人，在案例展示、服务流程展示和师资展示环节，保证给学生和家长提供最精简和必要的信息。<a href="{{ route('agencies.index') }}">点击查看所有机构</a></p>
             </div>
             <div class="col-md-5 order-md-1">
                 <img class="featurette-image img-fluid mx-auto" src="{{ asset('images/feature-2.png') }}" data-holder-rendered="true" width="500px">
@@ -135,7 +135,7 @@
         <div class="row featurette">
             <div class="col-md-7">
                 <h2 class="featurette-heading">专注： <span class="text-muted">仅面对成都地区</span></h2>
-                <p class="lead">我们走过一你多的路程，仍不忘我们成立时的初衷，即致力于服务成都地区有留学意向的学生和家长。</p>
+                <p class="lead">我们走过一你多的路程，仍不忘我们成立时的初衷，即致力于服务成都地区有留学意向的学生和家长。<a href="{{ route('agencies.index') }}">点击查看所有机构</a></p>
             </div>
             <div class="col-md-5">
                 <img class="featurette-image img-fluid mx-auto" src="{{ asset('images/feature-3.png') }}" data-holder-rendered="true" width="500px">
@@ -152,7 +152,7 @@
     <!-- FOOTER -->
     <footer class="container">
         <p class="float-right"><a href="#">回到顶部</a></p>
-        <p>© 2017-2018 哥子稳 · <a href="https://getbootstrap.com/docs/4.0/examples/carousel/#">Privacy</a> · <a href="https://getbootstrap.com/docs/4.0/examples/carousel/#">Terms</a></p>
+        <p>© 2017-2018 哥子稳</p>
     </footer>
 </main>
 

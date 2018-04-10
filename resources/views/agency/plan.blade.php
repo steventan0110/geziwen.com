@@ -48,7 +48,7 @@
 
     @component('components.agency', ['agency' => $plan->agency])
         @slot('button')
-            <a href="{{ route('agency.show', ['id' => $plan->agency->id]) }}" class="btn btn-primary float-right">前往主页</a>
+            <a href="{{ route('agencies.show', ['id' => $plan->agency->id]) }}" class="btn btn-primary float-right">前往主页</a>
         @endslot
     @endcomponent
 
