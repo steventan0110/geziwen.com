@@ -16,7 +16,7 @@
     @endcomponent
 
     <div class="container" id="services">
-        <div class="card-deck mb-3 text-center">
+        <div class="card-deck text-center">
             @foreach($agency->plans as $plan)
                 <div class="card mb-4 box-shadow">
                     <div class="card-header">
@@ -39,9 +39,9 @@
         </div>
     </div>
 
-    <div id="applicants" class="container">
+    <div id="applicants" class="container mb-4">
         <div class="my-3 p-3 bg-white rounded box-shadow">
-            <h5 class="border-bottom border-gray pb-2 mb-0"><a href="#applicants"><i class="mr-2 fas fa-link"></i></a>案例</h5>
+            <h5 class="border-bottom border-gray pb-2 mb-0">案例</h5>
             @foreach ($agency->applicants as $applicant)
                 @component('components.applicant', ['applicant' => $applicant])
 
@@ -56,7 +56,7 @@
 
     <div class="container" id="teachers">
         <div class="my-3 p-3 bg-white rounded box-shadow">
-            <h5 class="border-bottom border-gray pb-2 mb-2"><a href="#teachers"><i class="mr-2 fas fa-link"></i></a>师资</h5>
+            <h5 class="border-bottom border-gray pb-2 mb-2">师资</h5>
             <div class="row">
                 @foreach($agency->teachers as $teacher)
                     <div class="col-sm-4 text-center mt-4  pl-2 pr-2">
