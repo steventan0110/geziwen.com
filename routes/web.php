@@ -18,23 +18,21 @@ Auth::routes();
 Route::get('/home', 'HomeController@index')->name('home');
 
 Route::prefix('search')->group(function () {
-
     Route::get('/', 'SearchController@result')->name('search');
-
 });
 
 Route::prefix('agency')->group(function () {
-
     Route::get('{id}', 'Agency\AgencyController@view')->name('agency.show');
+});
 
-    Route::prefix('teacher')->group(function() {
-        Route::get('{id}', 'Agency\TeacherController@view')->name('agency.teacher.show');
-    });
+Route::prefix('plan')->group(function () {
+    Route::get('{id}', 'Agency\PlanController@view')->name('agency.plan.show');
+});
 
-    Route::prefix('plan')->group(function () {
-        Route::get('{id}', 'Agency\PlanController@view')->name('agency.plan.show');
-    });
-
+Route::prefix('teacher')->group(function() {
+    Route::get('{id}', 'Agency\TeacherController@view')->name('agency.teacher.show');
 });
 
 Route::resource('agency.applicants', 'Agency\ApplicantsController');
+
+Route::resource('plan.applicants', 'Agency\PlanApplicantsController');
