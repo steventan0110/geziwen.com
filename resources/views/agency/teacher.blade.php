@@ -5,7 +5,7 @@
     <div class="container" id="profile">
         <div class="jumbotron bg-white box-shadow">
             <div class="media">
-                <img class="ml-2 mr-3 img-thumbnail img-responsive border border-info col-sm-4" src="http://p0.qhimgs4.com/t0182f84c96464af7b1.webp" alt="Generic placeholder image" width="100px">
+                <img class="ml-2 mr-3 img-thumbnail img-responsive border border-info col-sm-2" src="https://ss0.bdstatic.com/-0U0bnSm1A5BphGlnYG/tam-ogel/a03f306fc98a8e119dae9d7c5510b656_121_121.jpg" alt="Generic placeholder image" width="100px">
                 <div class="media-body ml-lg-5">
                     <strong class="d-block text-gray-dark text-primary"><h1>{{ $teacher->name }}</h1></strong>
                     <h5 class="mt-4">教学科目： {{ $teacher->subject }}</h5>
