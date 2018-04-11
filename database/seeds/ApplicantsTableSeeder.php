@@ -15,6 +15,39 @@ class ApplicantsTableSeeder extends Seeder
         $faker = Faker\Factory::create();
         $plans = [['Early Action', 'EA'],['Early Decision', 'ED'],['Regular Decision', 'RD']];
 
+        $activity_types = [
+            "Academic",
+            "Art",
+            "Athletics: Club",
+            "Athletics: JV/Varsity",
+            "Career Oriented",
+            "Community Service (Volunteer)",
+            "Computer/Technology",
+            "Cultural",
+            "Dance",
+            "Debate/Speech",
+            "Environmental",
+            "Family Responsibilities",
+            "Foreign Exchange",
+            "Foreign Language",
+            "Internship",
+            "Journalism/Publication",
+            "Junior R.O.T.C.",
+            "LGBT",
+            "Music: Instrumental",
+            "Music: Vocal",
+            "Religious",
+            "Research",
+            "Robotics",
+            "School Spirit",
+            "Science/Math",
+            "Social Justice",
+            "Student Govt./Politics",
+            "Theater/Drama",
+            "Work (Paid)",
+            "Other Club/Activity"
+        ];
+
         foreach (range(1, 100) as $i) {
             DB::table('admission_universities')->insert([
                 'name' => $faker->name,
@@ -27,6 +60,12 @@ class ApplicantsTableSeeder extends Seeder
             DB::table('admission_plans')->insert([
                 'name' => $plan[0],
                 'shorthand' => $plan[1]
+            ]);
+        }
+
+        foreach ($activity_types as $type) {
+            DB::table('applicant_activity_types')->insert([
+                'name' => $type
             ]);
         }
 
@@ -104,13 +143,33 @@ class ApplicantsTableSeeder extends Seeder
             foreach (range(1, 5) as $j) {
                 // AP
                 DB::table('applicant_exam_aps')->insert([
-                    'applicant_id' => random_int(1, 100),
+                    'applicant_id' => $i,
                     'taken_on' => $faker->date(),
                     'subject' => $faker->name,
                     'score' => random_int(1, 5)
                 ]);
             }
 
+            foreach (range(1, 5) as $j) {
+                DB::table('applicant_awards')->insert([
+                    'applicant_id' => $i,
+                    'name' => $faker->name,
+                    'description' => $faker->text,
+                    'received_on' => $faker->date()
+                ]);
+            }
+
+            foreach (range(1, 10) as $j) {
+                DB::table('applicant_activities')->insert([
+                    'applicant_id' => $i,
+                    'type_id' => random_int(1, count($activity_types)),
+                    'name' => $faker->name,
+                    'description' => $faker->text,
+                    'start' => $faker->date(),
+                    'end' => $faker->date(),
+                    'hours_per_week' => random_int(1, 7 * 24)
+                ]);
+            }
         }
     }
 }
