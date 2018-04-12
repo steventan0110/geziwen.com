@@ -42,6 +42,7 @@ Vue.use(VueResource);
 
 Vue.component('comment-area',require('./components/CommentComponents/CommentArea'));
 Vue.component('comment-text',require('./components/CommentComponents/CommentText'));
+Vue.component('rating',require('./components/RatingComponents/RatingComponent'));
 
 Vue.http.headers.common['X-CSRF-TOKEN'] = document.querySelector('meta[name=csrf-token]').getAttribute('content');
 

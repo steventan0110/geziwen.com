@@ -1,7 +1,7 @@
 <template>
     <div class="row">
-        <div class="col-lg-8"></div>
-        <div class="col-5 col-lg-1 text-center">
+        <div class="col-lg-7"></div>
+        <div class="col-5 col-lg-2 text-center">
             <strong style="color: #FF972F"><h2><b>{{ this.rateList[0] }}</b></h2></strong>
             <span class="text-secondary">综合评分</span>
         </div>
