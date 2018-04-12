@@ -17,7 +17,7 @@ class CreateAwardsTable extends Migration
             $table->increments('id');
             $table->unsignedInteger('applicant_id');
             $table->string('name');
-            $table->string('description');
+            $table->text('description');
             $table->date('received_on');
             $table->timestamps();
         });
