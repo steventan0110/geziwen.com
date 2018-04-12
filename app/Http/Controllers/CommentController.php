@@ -46,9 +46,11 @@ class CommentController extends Controller
         $comment_user = array();
         $comment_body = array();
         $rate_arr = array();
+        $rate_total = array();
         $comment_id = array();
         $comment_date = array();
         $comments = DB::select('select * from comments where commentable_type = ? AND commentable_id = ?', [$type, $id]);
+
         foreach ($comments as $comment) {
             array_push($comment_body, $comment->body);
             array_push($comment_user, $comment->username);
@@ -56,6 +58,13 @@ class CommentController extends Controller
             array_push($comment_id, $comment->id);
             array_push($comment_date, $comment->created_at);
         }
-        return array($comment_user, $comment_body, $rate_arr, $comment_id, $comment_date);
+        $sum = 0;
+        foreach ($rate_arr as $rate) {
+            $sum += $rate;
+        }
+        $sum = round($sum/count($rate_arr),1);
+
+
+        return array($comment_user, $comment_body, $rate_arr, $comment_id, $comment_date, $sum);
     }
 }

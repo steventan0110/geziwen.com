@@ -1,26 +1,26 @@
 <template>
     <div>
+        <h4 class="pb-3"><b>所有评论</b></h4>
         <ul class="list-unstyled">
-            <li v-for="(comment, index) in list" class="media border-bottom border-gray mb-5">
-                <!--TODO: src = user's own image-->
-                <div class="col-1">
-                    <img class="img-fluid img-thumbnail rounded" src="https://ss0.bdstatic.com/-0U0bnSm1A5BphGlnYG/tam-ogel/a03f306fc98a8e119dae9d7c5510b656_121_121.jpg" alt="Generic placeholder image">
-                    <p/>
+            <li v-for="(comment, index) in commentList" class="media mb-2">
+                <div class="col-lg-1 col-2">
+                    <img class="float-left img-thumbnail img-fluid" style="right: 8px"  src="http://2e.zol-img.com.cn/product/64/410/ceneo4LyDg8c.jpg" alt="Generic placeholder image">
                 </div>
-                <!--<div class="col-2">-->
-                    <!--<a href="#"><h4 class="mt-0 mb-1">{{ comment.name }}</h4></a>-->
-                <!--</div>-->
-                <div class="media-body pb-2 mb-1 container">
-                    <h5 class="mt-0 mb-1"><a href="#">{{ comment.name }}</a>
-                        <span class="ml-2 text-muted" style="font-size: 14px">{{ comment.time }}</span>
-                    </h5>
-                    <p style="font-size: 18px">
+                <div class="media-body border-bottom border-gray">
+                    <button v-show="userName == comment.name" class="btn btn-outline-secondary btn-sm float-right m-2" @click="deleteItem(index, comment.id)">删除</button>
+                    <h6 class="mt-1 mb-2"><a href="#">{{ comment.name }}</a>
+                        <star-rating v-bind:inline="true" @rating-selected="setRating" v-bind:rating=comment.rate v-bind:star-size="14" v-bind:show-rating="false" v-bind:read-only="true" class="ml-1"></star-rating>
+                        <!--<span class="mr-2 text-muted float-right" style="font-size: 14px; top:20%">{{ comment.time }}</span>-->
+                    </h6>
+                    <p>
                         {{ comment.text }}
                     </p>
+
                 </div>
-                <star-rating @rating-selected="setRating" v-bind:rating=comment.rate v-bind:star-size="20" v-bind:show-rating="false" v-bind:read-only="true" class="mr-5"></star-rating>
-                <button v-show="userName == comment.name" class="btn btn-outline-secondary btn-sm float-right" @click="deleteItem(index, comment.id)">删除评论</button>
+
+
             </li>
+
         </ul>
     </div>
 </template>
@@ -31,7 +31,8 @@
         props: ['myMessage','myRating','myCommentType','myCommentIndex','userName'],
         data () {
             return {
-                list: [],
+                commentList: [],
+                rateList: [],
             }
         },
         mounted () {
@@ -39,28 +40,37 @@
         },
         methods: {
             addItem (id, time) {
-                if(this.myMessage != "") {
-                    this.list.push({name: this.userName, text: this.myMessage, rate: this.myRating, id: id, time: time});
+                if (this.myMessage != "") {
+                    this.commentList.push({
+                        name: this.userName,
+                        text: this.myMessage,
+                        rate: this.myRating,
+                        id: id,
+                        time: time
+                    });
                 }
-            },
-            getItem (username, text, rating, id, time) {
-                this.list.push({name: username, text: text, rate: rating, id: id, time: time})
             },
             initialize () {
                 this.$http.post("/api/comment/get", {
                     'commentable_type': this.myCommentType,
                     'commentable_id': this.myCommentIndex
                 }).then(function(response){
-                        for (var i=0; i<response.body[0].length; i++) {
-                            this.getItem(response.body[0][i], response.body[1][i], response.body[2][i], response.body[3][i], response.body[4][i])
+                        for (var i = 0; i < response.body[0].length; i++) {
+                            this.commentList.push({
+                                name: response.body[0][i],
+                                text: response.body[1][i],
+                                rate: response.body[2][i],
+                                id: response.body[3][i],
+                                time: response.body[4][i]});
                         }
+                        console.log(response.status)
                     },function(response){
                         console.log(response.status)
                     }
                 )
             },
             deleteItem (index, id) {
-                this.list.splice(index, 1);
+                this.commentList.splice(index, 1);
                 this.$emit('deleteComment', id);
             },
             setRating: function (rating) {
