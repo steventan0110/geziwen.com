@@ -3,10 +3,9 @@
 namespace App\Agency;
 
 use App\Agency\Service\Plan;
-use App\Rating\AgencyRating;
 use Illuminate\Database\Eloquent\Model;
 use App\Applicant\Applicant;
-use App\Comment\AgencyComment;
+use App\Comment\Comment;
 use Laravel\Scout\Searchable;
 
 class Agency extends Model
@@ -38,14 +37,6 @@ class Agency extends Model
     }
 
     public function comments() {
-        return $this->hasMany(AgencyComment::class);
-    }
-
-    public function ratings() {
-        return $this->hasMany(AgencyRating::class);
-    }
-
-    public function addComment($body) {
-        $this->comments()->create(compact('body'));
+        return $this->morphMany(Comment::class, 'commentable');
     }
 }
