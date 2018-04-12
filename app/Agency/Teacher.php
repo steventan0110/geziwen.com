@@ -36,8 +36,8 @@ class Teacher extends Model
         return $this->belongsTo(Agency::class);
     }
 
-    public function student() {
-        return $this->belongsToMany(Applicant::class, 'teachers_applicants', 'applicant_id', 'teacher_id');
+    public function applicants() {
+        return $this->belongsToMany(Applicant::class, 'teachers_applicants');
     }
 
     public function comments() {

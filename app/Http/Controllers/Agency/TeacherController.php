@@ -11,11 +11,7 @@ class TeacherController extends Controller
 {
     public function view(Request $request, $id) {
         $teacher = Teacher::findOrFail($id);
-        if (Auth::check()) {
-            $user = Auth::user();
-            return view('agency.teacher', ['teacher'=>$teacher, 'user'=>$user]);
-        }
-
-        return view('agency.teacher', ['teacher'=>$teacher, 'user'=>null]);
+        $teacher->applicants = $teacher->applicants()->limit(5)->get();
+        return view('agency.teacher', ['teacher' => $teacher]);
     }
 }
