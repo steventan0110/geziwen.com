@@ -3,20 +3,29 @@
 namespace App\Agency;
 
 use App\Agency\Service\Plan;
-
 use Illuminate\Database\Eloquent\Model;
 use App\Applicant\Applicant;
 use App\Comment\Comment;
+use Laravel\Scout\Searchable;
 
 class Agency extends Model
 {
+    use Searchable;
+
     protected $table = "agencies";
 
-    public function applicants($all = false) {
-        return $this->hasManyThrough(Applicant::class, Plan::class)
-            ->orderBy('id')
-            ->offset(0)
-            ->limit(5); // TODO: Find a better way of ordering
+    public function searchableAs() {
+        return $this->table."_index";
+    }
+
+    public function toSearchableArray() {
+        $agency = $this->toArray();
+        unset($agency['created_at'], $agency['updated_at']);
+        return $agency;
+    }
+
+    public function applicants() {
+        return $this->hasManyThrough(Applicant::class, Plan::class);
     }
 
     public function plans() {
@@ -24,13 +33,10 @@ class Agency extends Model
     }
 
     public function teachers() {
-        return $this->hasMany(Teacher::class)
-            ->orderBy('id')
-            ->offset(0)
-            ->limit(5); // TODO: Find a better way of ordering
+        return $this->hasMany(Teacher::class);
     }
 
     public function comments() {
-        return $this->morphMany('App\Comment\Comment', 'commentable');
+        return $this->morphMany(Comment::class, 'commentable');
     }
 }

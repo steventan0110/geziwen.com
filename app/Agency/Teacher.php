@@ -8,13 +8,29 @@
 namespace App\Agency;
 
 use Illuminate\Database\Eloquent\Model;
-use App\Agency\Agency;
 use App\Applicant\Applicant;
 use App\Comment\Comment;
+use Laravel\Scout\Searchable;
 
 class Teacher extends Model
 {
+    use Searchable;
+
     protected $table = "teachers";
+
+    public function searchableAs() {
+        return $this->table."_index";
+    }
+
+    public function toSearchableArray() {
+        $teacher = $this->toArray();
+        $teacher['agency'] = [
+            'name' => $this->agency->name,
+            'introduction' => $this->agency->introduction
+        ];
+        unset($teacher['created_at'], $teacher['updated_at'], $teacher['agency_id'], $teacher['picture']);
+        return $teacher;
+    }
 
     public function agency() {
         return $this->belongsTo(Agency::class);
@@ -25,6 +41,6 @@ class Teacher extends Model
     }
 
     public function comments() {
-        return $this->morphMany('App\Comment\Comment', 'commentable');
+        return $this->morphMany(Comment::class, 'commentable');
     }
 }

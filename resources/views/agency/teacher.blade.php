@@ -1,5 +1,8 @@
 @extends('layouts.app')
 
+@section('title')
+    {{ $teacher->agency->name }} | {{ $teacher->name }}
+@endsection
 @section('content')
     {{-- TODO: Implement this view --}}
     <div class="container" id="profile">
@@ -169,15 +172,21 @@
             </small>
         </div>
     </div>
-    @if ($user!=null)
-        <comment-text :comment-data="'{{ $teacher->id }}'"
-                      :user-name="'{{ $user->name }}'"
-                      :comment-type="'{{ $teacher->comments[0]->commentable_type }}'"
-                      :comment-index="'{{ $teacher->comments[0]->commentable_id }}'"></comment-text>
-    @else
-        <comment-text :comment-data="'{{ $teacher->id }}'"
-                      :user-name="''"
-                      :comment-type="'{{ $teacher->comments[0]->commentable_type }}'"
-                      :comment-index="'{{ $teacher->comments[0]->commentable_id }}'"></comment-text>
-    @endif
+
+    <div class="container" id="comments">
+        <div class="my-3 p-3 bg-white rounded box-shadow">
+            <h5 class="border-bottom border-gray pb-2 mb-2">评论</h5>
+            @auth
+                <comment-text :comment-data="'{{ $teacher->id }}'"
+                              :user-name="'{{ $user->name }}'"
+                              :comment-type="'{{ $teacher->comments[0]->commentable_type }}'"
+                              :comment-index="'{{ $teacher->comments[0]->commentable_id }}'"></comment-text>
+            @else
+                <comment-text :comment-data="'{{ $teacher->id }}'"
+                              :user-name="''"
+                              :comment-type="'{{ $teacher->comments[0]->commentable_type }}'"
+                              :comment-index="'{{ $teacher->comments[0]->commentable_id }}'"></comment-text>
+            @endauth
+        </div>
+    </div>
 @endsection

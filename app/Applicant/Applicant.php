@@ -11,13 +11,48 @@ use App\Applicant\Exam\SatSubject;
 use App\Applicant\Exam\Toefl;
 use App\Application\Offer;
 use Illuminate\Database\Eloquent\Model;
-use App\Agency\Agency;
 use App\Agency\Teacher;
+use App\Agency\Agency;
+use Laravel\Scout\Searchable;
 
 class Applicant extends Model
 {
+    use Searchable;
 
     protected $table = "applicants";
+
+    public function searchableAs() {
+        return $this->table."_index";
+    }
+
+    public function toSearchableArray() {
+        $applicant = $this->toArray();
+        $applicant['agency'] = [
+            'name' => $this->plan->agency->name,
+            'introduction' => $this->plan->agency->introduction
+        ];
+        $applicant['activities'] = $this->activity->map(function ($activity) {
+            return [
+                'name' => $activity->name,
+                'introduction' => $activity->introduction
+            ];
+        });
+        $applicant['awards'] = $this->award->map(function ($award) {
+            return [
+                'name' => $award->name,
+                'introduction' => $award->introduction
+            ];
+        });
+        $applicant['offers'] = $this->offers->map(function ($offer) {
+            return [
+                'university' => $offer->university->name,
+                'plan' => $offer->plan->name,
+                'plan_shorthand' => $offer->plan->shorthand
+            ];
+        });
+        unset($applicant['created_at'], $applicant['updated_at'], $applicant['plan_id']);
+        return $applicant;
+    }
 
     /**
      * Each applicant may have one TOEFL record.

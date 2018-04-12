@@ -1,35 +1,32 @@
 <template>
-    <div class="container" id="applicants">
-        <div class="my-3 p-3 bg-white rounded box-shadow">
-            <div class="row">
-                <div class="container">
-                    <comment-area @deleteComment="onDeleteComment"
-                                  ref="ca"
-                                  v-bind:my-message="commentText"
-                                  v-bind:my-rating="this.rating"
-                                  v-bind:my-comment-type="Type"
-                                  v-bind:user-name="this.userName"
-                                  v-bind:my-comment-index="this.commentIndex"
-                    />
+    <div>
+        <comment-area @deleteComment="onDeleteComment"
+                      ref="ca"
+                      v-bind:my-message="commentText"
+                      v-bind:my-rating="this.rating"
+                      v-bind:my-comment-type="Type"
+                      v-bind:user-name="this.userName"
+                      v-bind:my-comment-index="this.commentIndex"
+        />
 
-                    <div class="container ml-1" id="text-area" v-show="this.userName">
-                        <div >
-                            <h5 class="pb-3"><b>我的评论</b></h5>
-                            <textarea class="form-control align-middle mb-3" placeholder="请填写评论内容" v-model="commentText"></textarea>
-                            <div>
-                                <button class="btn btn-primary btn-default float-right" @click="addComment">发表</button>
-                                <star-rating @rating-selected="setRating"
-                                             v-bind:padding="5"
-                                             v-bind:star-size="25"
-                                             v-bind:inline="true"
-                                             v-bind:show-rating="false"
-                                             class="float-left mr-5"></star-rating>
-                            </div>
+        <div v-show="this.userName" class="media">
+            <img class="mr-3 img-thumbnail" width="50px"  src="http://2e.zol-img.com.cn/product/64/410/ceneo4LyDg8c.jpg" alt="Generic placeholder image">
+            <div class="media-body">
+                <h6 class="mt-1 mb-2">
+                    撰写评论
+                    <star-rating @rating-selected="setRating"
+                                 v-bind:star-size="14"
+                                 v-bind:inline="true"
+                                 v-bind:show-rating="false"
+                                 class="ml-1"></star-rating>
+                </h6>
+                <textarea class="form-control align-middle mb-3" placeholder="请填写评论内容" v-model="commentText"></textarea>
+                <div>
+                    <button class="btn btn-primary btn-sm float-right" @click="addComment">发表</button>
 
-                        </div>
-                    </div>
                 </div>
             </div>
+
         </div>
     </div>
 </template>

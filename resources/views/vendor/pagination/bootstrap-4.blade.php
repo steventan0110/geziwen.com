@@ -1,8 +1,8 @@
 @if ($paginator->hasPages())
-    <ul class="pagination">
+    <ul class="pagination flex-wrap">
         {{-- Previous Page Link --}}
         @if ($paginator->onFirstPage())
-            <li class="page-item disabled"><span class="page-link">&lsaquo;</span></li>
+            <li class="page-item"><span class="page-link">&lsaquo;</span></li>
         @else
             <li class="page-item"><a class="page-link" href="{{ $paginator->previousPageUrl() }}" rel="prev">&lsaquo;</a></li>
         @endif

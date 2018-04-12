@@ -1,28 +1,23 @@
 <template>
-    <div>
-        <h4 class="pb-3"><b>所有评论</b></h4>
-        <ul class="list-unstyled">
-            <li v-for="(comment, index) in commentList" class="media mb-2">
-                <div class="col-lg-1 col-2">
-                    <img class="float-left img-thumbnail img-fluid" style="right: 8px"  src="http://2e.zol-img.com.cn/product/64/410/ceneo4LyDg8c.jpg" alt="Generic placeholder image">
-                </div>
-                <div class="media-body border-bottom border-gray">
-                    <button v-show="userName == comment.name" class="btn btn-outline-secondary btn-sm float-right m-2" @click="deleteItem(index, comment.id)">删除</button>
-                    <h6 class="mt-1 mb-2"><a href="#">{{ comment.name }}</a>
-                        <star-rating v-bind:inline="true" @rating-selected="setRating" v-bind:rating=comment.rate v-bind:star-size="14" v-bind:show-rating="false" v-bind:read-only="true" class="ml-1"></star-rating>
-                        <!--<span class="mr-2 text-muted float-right" style="font-size: 14px; top:20%">{{ comment.time }}</span>-->
-                    </h6>
-                    <p>
-                        {{ comment.text }}
-                    </p>
-
-                </div>
-
-
-            </li>
-
-        </ul>
-    </div>
+    <ul class="list-unstyled">
+        <li v-for="(comment, index) in commentList" class="media mb-2">
+            <img class="mr-3 img-thumbnail" width="50px"  src="http://2e.zol-img.com.cn/product/64/410/ceneo4LyDg8c.jpg" alt="Generic placeholder image">
+            <div class="media-body border-bottom border-gray">
+                <button v-show="userName == comment.name" class="btn btn-outline-secondary btn-sm float-right m-2" @click="deleteItem(index, comment.id)">删除</button>
+                <h6 class="mt-1 mb-2">
+                    {{ comment.name }}
+                    <star-rating v-bind:inline="true"
+                                 @rating-selected="setRating"
+                                 v-bind:rating=comment.rate
+                                 v-bind:star-size="14"
+                                 v-bind:show-rating="false"
+                                 v-bind:read-only="true"
+                                 class="ml-1"></star-rating>
+                </h6>
+                <p>{{ comment.text }}</p>
+            </div>
+        </li>
+    </ul>
 </template>
 
 <script>

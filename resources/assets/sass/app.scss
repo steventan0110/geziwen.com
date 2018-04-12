@@ -14,11 +14,18 @@
 // Carousel
 @import 'carousel';
 
-.navbar-laravel {
-  background-color: #fff;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.04);
+// Search
+@import 'search';
+
+
+body {
+  padding-top: 7rem;
 }
 
 .box-shadow {
   box-shadow: 0 .25rem .75rem rgba(0, 0, 0, .05);
+}
+
+.page-item {
+  //margin-bottom: rem;
 }

@@ -5,17 +5,12 @@ namespace App\Http\Controllers\Agency;
 use App\Http\Controllers\Controller;
 use App\Agency\Agency;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
 
 class AgencyController extends Controller
 {
     public function view(Request $request, $id) {
         $agency = Agency::findOrFail($id);
-        if (Auth::check()) {
-            $user = Auth::user();
-            return view('agency.view', ['agency'=>$agency, 'user'=>$user]);
-        }
-        return view('agency.view', ['agency'=>$agency, 'user'=>null]);
+        return view('agency.view', compact('agency', $agency));
     }
 
     public function edit(Request $request, $id) {
