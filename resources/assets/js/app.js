@@ -52,12 +52,15 @@ Vue.component('star-rating',StarRating);
 import VueResource from 'vue-resource';
 Vue.use(VueResource);
 
-Vue.component('comment-area',require('./components/CommentComponents/CommentArea'));
-Vue.component('comment-text',require('./components/CommentComponents/CommentText'));
-Vue.component('rating',require('./components/RatingComponents/RatingComponent'));
+Vue.component('comment',require('./components/CommentComponents/Comment'));
+Vue.component('rating',require('./components/CommentComponents/RatingComponent'));
 
 Vue.http.headers.common['X-CSRF-TOKEN'] = document.querySelector('meta[name=csrf-token]').getAttribute('content');
 
 const app = new Vue({
-    el: '#app'
+    el: '#app',
+    data: {
+        Middle: new Vue()
+    }
+
 });

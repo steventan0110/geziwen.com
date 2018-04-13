@@ -98,7 +98,7 @@
                         console.log(response.status)
                     }
                 );
-                this.$root.Bus.$emit('deleteRate', rate)
+                this.$root.Middle.$emit('deleteRate', rate)
             },
             setRating: function (rating) {
                 this.rating = rating;
@@ -121,7 +121,7 @@
                         console.log(response.status);
                     }
                 );
-                this.$root.Bus.$emit('addRate', this.rating)
+                this.$root.Middle.$emit('addRate', this.rating)
             },
             onAddComment(id, time){
                 this.addItem(id, time);
