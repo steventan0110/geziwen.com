@@ -84,15 +84,13 @@
         <div class="my-3 p-3 bg-white rounded box-shadow">
             <h5 class="border-bottom border-gray pb-2 mb-2">评论</h5>
             @auth
-                <comment-text :comment-data="'{{ $agency->id }}'"
-                              :user-name="'{{ Auth::user()->name }}'"
-                              :comment-type="'{{ $agency->comments[0]->commentable_type }}'"
-                              :comment-index="'{{ $agency->comments[0]->commentable_id }}'"></comment-text>
+                <comment :user-name="'{{ Auth::user()->name }}'"
+                              :comment-type="'agencies'"
+                              :comment-index="'{{ $agency->id }}'"></comment>
             @else
-                <comment-text :comment-data="'{{ $agency->id }}'"
-                              :user-name="''"
-                              :comment-type="'{{ $agency->comments[0]->commentable_type }}'"
-                              :comment-index="'{{ $agency->comments[0]->commentable_id }}'"></comment-text>
+                <comment :user-name="''"
+                              :comment-type="'agencies'"
+                              :comment-index="'{{ $agency->id }}'"></comment>
             @endauth
         </div>
     </div>
