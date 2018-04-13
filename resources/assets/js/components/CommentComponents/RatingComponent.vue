@@ -35,7 +35,7 @@
             }).then(function (response) {
                     if(response.body[6] > 0){
                         this.num = response.body[6];
-                        this.rateList.push(response.body[5]/this.num);
+                        this.rateList.push(Math.round((response.body[5]/this.num)*10)/10);
                     }
                     else {
                         this.rateList.push(0);
@@ -55,17 +55,22 @@
             addRate(value) {
                 this.sum = this.rateList[this.rateList.length - 1] * this.num;
                 this.num += 1;
-                this.rateList.push((this.sum + value) / this.num);
+                this.rateList.push(Math.round((this.sum + value) / this.num * 10) / 10);
             },
             deleteRate(value) {
                 this.sum = this.rateList[this.rateList.length - 1] * this.num;
                 this.num -= 1;
                 if(this.num > 0) {
-                    this.rateList.push((this.sum - value) / this.num);
+                    this.rateList.push(Math.round((this.sum - value) / this.num * 10) / 10);
                 }
                 else {
                     this.rateList.push(0);
                 }
+            },
+            toFixed(num,d){
+                num *=Math.pow(10,d);
+                num = Math.round(num);
+                return num/(Math.pow(10,d));
             }
         }
     }

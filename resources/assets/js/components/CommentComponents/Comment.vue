@@ -6,7 +6,24 @@
             <li v-for="(comment, index) in commentList" class="media mb-2">
                 <img class="mr-3 img-thumbnail" width="50px"  src="http://2e.zol-img.com.cn/product/64/410/ceneo4LyDg8c.jpg" alt="Generic placeholder image">
                 <div class="media-body border-bottom border-gray">
-                    <button v-show="userName == comment.name" class="btn btn-outline-secondary btn-sm float-right m-2" @click="deleteItem(index, comment.id, comment.rate)">删除</button>
+                    <button v-show="userName == comment.name" class="btn btn-outline-secondary btn-sm float-right m-2" data-toggle="modal" data-target="#deleteComment">删除</button>
+
+                    <div style="margin-top: 250px" class="modal fade" id="deleteComment" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <!--<div class="modal-header">-->
+                                    <!--<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>-->
+                                    <!--<h4 class="modal-title" id="myModalLabel">确认删除吗</h4>-->
+                                <!--</div>-->
+                                <div class="modal-body"><h3 class="text-center">确认删除吗？</h3></div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+                                    <button type="button" class="btn btn-warning" data-dismiss="modal" @click="deleteItem(index, comment.id, comment.rate)">确认</button>
+                                </div>
+                            </div><!-- /.modal-content -->
+                        </div><!-- /.modal -->
+                    </div>
+
                     <h6 class="mt-1 mb-2">
                         {{ comment.name }}
                         <star-rating v-bind:inline="true"
@@ -48,6 +65,7 @@
         data() {
             return{
                 rating: this.rating,
+                initialRating : 0,
                 commentText: this.commentText,
                 newCommentIndex: 0,
                 createdTime: null,
@@ -127,9 +145,6 @@
                 this.addItem(id, time);
                 this.commentText = "";
             },
-            setRating: function(rating){
-                this.rating = rating;
-            }
         }
     }
 </script>
