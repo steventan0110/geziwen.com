@@ -7,7 +7,6 @@
                 <img class="mr-3 img-thumbnail" width="50px"  src="http://2e.zol-img.com.cn/product/64/410/ceneo4LyDg8c.jpg" alt="Generic placeholder image">
                 <div class="media-body border-bottom border-gray">
                     <button v-if="userName == comment.name" class="btn btn-outline-secondary btn-sm float-right m-2" data-toggle="modal" data-target="#deleteComment" @click="storeIndex(index, comment.id, comment.rate)">删除</button>
-
                     <div v-if="userName == comment.name" style="margin-top: 250px" class="modal fade" id="deleteComment" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
                         <div class="modal-dialog">
                             <div class="modal-content">
@@ -56,7 +55,7 @@
 
 <script>
     export default {
-        name: "comment",
+        name: "comment-component",
         props: [ 'commentType', 'userName', 'commentIndex'],
         data() {
             return{

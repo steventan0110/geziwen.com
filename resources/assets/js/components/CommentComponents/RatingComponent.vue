@@ -12,6 +12,7 @@
                          v-bind:star-size="30"
                          v-bind:read-only="true"
                          v-bind:inline="true"
+                         v-bind:fixed-points="1"
                          class="m-2"></star-rating>
         </div>
     </div>
@@ -35,7 +36,7 @@
             }).then(function (response) {
                     if(response.body[6] > 0){
                         this.num = response.body[6];
-                        this.rateList.push(Math.round((response.body[5]/this.num)*10)/10);
+                        this.rateList.push(parseFloat((response.body[5]/this.num).toFixed(1)));
                     }
                     else {
                         this.rateList.push(0);
@@ -55,22 +56,17 @@
             addRate(value) {
                 this.sum = this.rateList[this.rateList.length - 1] * this.num;
                 this.num += 1;
-                this.rateList.push(Math.round((this.sum + value) / this.num * 10) / 10);
+                this.rateList.push(parseFloat(((this.sum + value) / this.num).toFixed(1)));
             },
             deleteRate(value) {
                 this.sum = this.rateList[this.rateList.length - 1] * this.num;
                 this.num -= 1;
                 if(this.num > 0) {
-                    this.rateList.push(Math.round((this.sum - value) / this.num * 10) / 10);
+                    this.rateList.push(parseFloat(((this.sum - value) / this.num).toFixed(1)));
                 }
                 else {
                     this.rateList.push(0);
                 }
-            },
-            toFixed(num,d){
-                num *=Math.pow(10,d);
-                num = Math.round(num);
-                return num/(Math.pow(10,d));
             }
         }
     }

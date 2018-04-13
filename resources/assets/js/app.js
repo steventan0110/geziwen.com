@@ -47,12 +47,12 @@ Vue.use(InstantSearch);
 Vue.component('search', require('./components/SearchComponent'));
 
 import StarRating from 'vue-star-rating';
-Vue.component('star-rating',StarRating);
+Vue.component('star-rating', StarRating);
 
 import VueResource from 'vue-resource';
 Vue.use(VueResource);
 
-Vue.component('comment',require('./components/CommentComponents/Comment'));
+Vue.component('comment',require('./components/CommentComponents/CommentComponent'));
 Vue.component('rating',require('./components/CommentComponents/RatingComponent'));
 
 Vue.http.headers.common['X-CSRF-TOKEN'] = document.querySelector('meta[name=csrf-token]').getAttribute('content');

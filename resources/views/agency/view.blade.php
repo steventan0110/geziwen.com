@@ -82,7 +82,6 @@
 
     <div class="container" id="comments">
         <div class="my-3 p-3 bg-white rounded box-shadow">
-            <h5 class="border-bottom border-gray pb-2 mb-2">评论</h5>
             @auth
                 <comment :user-name="'{{ Auth::user()->name }}'"
                               :comment-type="'agencies'"
