@@ -17,7 +17,7 @@
             </div>
             <rating :my-comment-type="'teachers'"
                     :my-comment-index="'{{ $teacher->id }}'"
-                    class="mt-5 mt-lg-0"
+                    class="mt-1 mt-lg-0"
             >
             </rating>
             <hr class="my-4">
