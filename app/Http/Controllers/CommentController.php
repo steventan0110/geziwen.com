@@ -16,7 +16,7 @@ use Illuminate\Support\Facades\DB;
 
 class CommentController extends Controller
 {
-    public function storeComment(Request $request) {
+    public function store(Request $request) {
         if($request->body == null){
             return response("评论不能为空", 500);
         }
@@ -29,18 +29,19 @@ class CommentController extends Controller
             $comment->commentable_id = $request->commentable_id;
             $comment->commentable_type = $request->commentable_type;
             $comment->username = $request->username;
+            $comment->user_id = $request->user_id;
             $comment->rate = $request->rate;
             $comment->save();
             return array($comment->id, $comment->created_at);
         }
     }
 
-    public function deleteComment(Request $request) {
+    public function delete(Request $request) {
         $id = $request->id;
         Comment::where('id', $id)->delete();
     }
 
-    public function getComment(Request $request) {
+    public function get(Request $request) {
         $type = $request->commentable_type;
         $id = $request->commentable_id;
         $comment_user = array();

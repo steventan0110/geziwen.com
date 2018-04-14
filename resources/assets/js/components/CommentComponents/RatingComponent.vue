@@ -42,7 +42,7 @@
                         this.rateList.push(0);
                     }
                 }, function (response) {
-                    console.log(response.status)
+                    console.log(response.status);
                 }
             );
             this.$root.Middle.$on('addRate', value => {
