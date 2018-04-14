@@ -12,7 +12,7 @@
                             <div class="modal-content">
                                 <div class="modal-body"><h5 class="text-center">确认删除吗？</h5></div>
                                 <div class="modal-footer">
-                                    <button type="button" class="btn btn-primary col-5" data-dismiss="modal">取消</button>
+                                    <button type="button" class="btn btn-secondary col-5" data-dismiss="modal">取消</button>
                                     <button type="button" class="btn btn-danger col-5 mr-4" data-dismiss="modal" @click="deleteItem(currentIndex, currentID, currentRate)">确认</button>
                                 </div>
                             </div>
@@ -27,7 +27,7 @@
                                      v-bind:star-size="14"
                                      v-bind:show-rating="false"
                                      v-bind:read-only="true"
-                                     class="ml-1"></star-rating>
+                                     class="ml-1"/>
                     </h6>
                     <p>{{ comment.text }}</p>
                 </div>
@@ -42,7 +42,7 @@
                                  v-bind:star-size="14"
                                  v-bind:inline="true"
                                  v-bind:show-rating="false"
-                                 class="ml-1"></star-rating>
+                                 class="ml-1"/>
                 </h6>
                 <textarea class="form-control align-middle mb-3" placeholder="请填写评论内容" v-model="commentText"></textarea>
                 <div>
