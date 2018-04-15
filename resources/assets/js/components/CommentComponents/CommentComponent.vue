@@ -56,7 +56,7 @@
 <script>
     export default {
         name: "comment-component",
-        props: [ 'commentType', 'userName', 'commentIndex'],
+        props: [ 'commentType', 'commentIndex', 'userName', 'userIndex'],
         data() {
             return{
                 currentIndex: 0,
@@ -124,24 +124,29 @@
                 this.rating = rating;
             },
             addComment: function (){
-                this.$http.post("/api/comment", {
-                        'body': this.commentText,
-                        'rate': this.rating,
-                        'commentable_id': this.commentIndex,
-                        'commentable_type': this.commentType,
-                        'username': this.userName
-                    }
-                ).then(function(response){
-                        console.log(response.status);
-                        this.newCommentIndex = response.body[0];
-                        this.createdTime = response.body[1].date;
-                        this.onAddComment(this.newCommentIndex, this.createdTime)
-                    },function(response){
-                        alert(response.body);
-                        console.log(response.status);
-                    }
-                );
-                this.$root.Middle.$emit('addRate', this.rating)
+                if(this.userIndex < 0) {
+                    alert('Error! User does not exist.');
+                }
+                else {
+                    this.$http.post("/api/comment", {
+                            'body': this.commentText,
+                            'rate': this.rating,
+                            'commentable_id': this.commentIndex,
+                            'commentable_type': this.commentType,
+                            'user_id': this.userIndex
+                        }
+                    ).then(function(response){
+                            console.log(response.status);
+                            this.newCommentIndex = response.body[0];
+                            this.createdTime = response.body[1].date;
+                            this.onAddComment(this.newCommentIndex, this.createdTime)
+                        },function(response){
+                            alert(response.body);
+                            console.log(response.status);
+                        }
+                    );
+                    this.$root.Middle.$emit('addRate', this.rating)
+                }
             },
             onAddComment(id, time){
                 this.addItem(id, time);

@@ -10,7 +10,7 @@ class CommentsTableSeeder extends Seeder {
         foreach (range(1, 2000) as $i) {
             if ($i % 2 == 0) {
                 DB::table('comments')->insert([
-                    'username' => $faker->name,
+                    'user_id' => random_int(1, 100),
                     'body' => $faker->sentence,
                     'commentable_id' => random_int(1, 10),
                     'commentable_type' => 'agencies',
@@ -19,7 +19,7 @@ class CommentsTableSeeder extends Seeder {
             }
             else {
                 DB::table('comments')->insert([
-                    'username' => $faker->name,
+                    'user_id' => random_int(1, 100),
                     'body' => $faker->sentence,
                     'commentable_id' => random_int(1, 100),
                     'commentable_type' => 'teachers',
