@@ -135,7 +135,7 @@
         <div class="row featurette">
             <div class="col-md-7">
                 <h2 class="featurette-heading">专注： <span class="text-muted">仅面对成都地区</span></h2>
-                <p class="lead">我们走过一你多的路程，仍不忘我们成立时的初衷，即致力于服务成都地区有留学意向的学生和家长。<a href="{{ route('agencies.index') }}">点击查看所有机构</a></p>
+                <p class="lead">我们走过一年多的路程，仍不忘我们成立时的初衷，即致力于服务成都地区有留学意向的学生和家长。<a href="{{ route('agencies.index') }}">点击查看所有机构</a></p>
             </div>
             <div class="col-md-5">
                 <img class="featurette-image img-fluid mx-auto" src="{{ asset('images/feature-3.png') }}" data-holder-rendered="true" width="500px">

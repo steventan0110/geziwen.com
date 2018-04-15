@@ -13,7 +13,7 @@
                          v-bind:read-only="true"
                          v-bind:inline="true"
                          v-bind:fixed-points="1"
-                         class="m-2"></star-rating>
+                         class="m-2"/>
         </div>
     </div>
 </template>
