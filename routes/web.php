@@ -30,7 +30,7 @@ Route::prefix('teacher')->group(function() {
 });
 
 Route::prefix('agencies')->group(function () {
-    Route::get('{id}', 'Agency\AgencyController@view')->name('agency.show');
+    Route::get('{id}', 'Agency\AgenciesController@show')->name('agency.show');
 });
 
 Route::resource('agency.applicants', 'Agency\ApplicantsController');

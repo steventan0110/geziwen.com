@@ -10,6 +10,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Comment\Comment;
+use App\User;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\DB;
 
@@ -28,7 +29,6 @@ class CommentController extends Controller
             $comment->body = $request->body;
             $comment->commentable_id = $request->commentable_id;
             $comment->commentable_type = $request->commentable_type;
-            $comment->username = $request->username;
             $comment->user_id = $request->user_id;
             $comment->rate = $request->rate;
             $comment->save();
@@ -49,11 +49,10 @@ class CommentController extends Controller
         $rate_arr = array();
         $comment_id = array();
         $comment_date = array();
-        $comments = DB::select('select * from comments where commentable_type = ? AND commentable_id = ?', [$type, $id]);
-
+        $comments = Comment::where(['commentable_type'=>$type, 'commentable_id'=>$id])->get();
         foreach ($comments as $comment) {
             array_push($comment_body, $comment->body);
-            array_push($comment_user, $comment->username);
+            array_push($comment_user, $comment->user->name);
             array_push($rate_arr, $comment->rate);
             array_push($comment_id, $comment->id);
             array_push($comment_date, $comment->created_at);
@@ -63,7 +62,6 @@ class CommentController extends Controller
         foreach ($rate_arr as $rate) {
             $sum += $rate;
         }
-
         return array($comment_user, $comment_body, $rate_arr, $comment_id, $comment_date, $sum, $num);
     }
 }

@@ -2,7 +2,8 @@
     <div class="row">
         <div class="col-lg-7"></div>
         <div class="col-5 col-lg-2 text-center">
-            <strong style="color: #FF972F"><h2><b>{{ this.rateList[this.rateList.length-1] }}</b></h2></strong>
+            <strong v-show="this.num>0" style="color: #FF972F"><h2><b>{{ this.rateList[this.rateList.length-1] }}</b></h2></strong>
+            <p v-show="this.num==0" class="text-success">(暂时还没有评价)</p>
             <span class="text-secondary">综合评分</span>
         </div>
         <div class="col-7 col-lg-2 border-left border-primary">
@@ -13,7 +14,7 @@
                          v-bind:read-only="true"
                          v-bind:inline="true"
                          v-bind:fixed-points="1"
-                         class="m-2"></star-rating>
+                         class="m-2"/>
         </div>
     </div>
 </template>

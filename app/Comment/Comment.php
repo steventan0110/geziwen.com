@@ -15,9 +15,15 @@ namespace App\Comment;
 
 use Illuminate\Database\Eloquent\Model;
 
+
 class Comment extends Model
 {
     public function commentable() {
         return $this->morphTo();
+    }
+
+    public function user() {
+        //Strange: The parameter below must be named 'App\User', else laravel can't find app\User if it is named User::class
+        return $this->belongsTo('App\User');
     }
 }
