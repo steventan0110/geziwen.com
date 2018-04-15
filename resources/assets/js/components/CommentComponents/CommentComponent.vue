@@ -133,7 +133,6 @@
                             'rate': this.rating,
                             'commentable_id': this.commentIndex,
                             'commentable_type': this.commentType,
-                            'username': this.userName,
                             'user_id': this.userIndex
                         }
                     ).then(function(response){

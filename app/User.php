@@ -3,11 +3,16 @@
 namespace App;
 
 use Illuminate\Notifications\Notifiable;
+use app\Comment\Comment;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 
 class User extends Authenticatable
 {
     use Notifiable;
+
+    public function comments() {
+        return $this->hasMany(Comment::class);
+    }
 
     /**
      * The attributes that are mass assignable.
