@@ -4,15 +4,18 @@
     哥子稳 | 所有入驻机构
 @endsection
 
+
 @section('content')
     <section class="jumbotron text-center bg-white">
         <div class="container">
             <h1 class="jumbotron-heading">入驻机构一览</h1>
+            @if(Auth::check()==false)
             <p class="lead text-muted">注册成为用户，即可查看过来人对各个机构、服务和老师的评价。我们对每一条评论进行了严格审核，确保各位学生和家长访问到最准确的信息，并理性选择适合自己的机构。</p>
             <p>
                 <a href="{{ route('register') }}" class="btn btn-primary my-2">注册</a>
                 <a href="{{ route('login') }}" class="btn btn-secondary my-2">登录</a>
             </p>
+            @endif
         </div>
     </section>
     <div class="container">

@@ -1,50 +1,8 @@
-<!DOCTYPE html>
-<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+@extends('layouts.app')
 
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta name="description" content="">
-    <meta name="author" content="">
-
-    <!-- CSRF Token -->
-    <meta name="csrf-token" content="{{ csrf_token() }}">
-
-    <link rel="icon" href="{{ asset('favicon.ico') }}">
-
-    <title>哥子稳成都留学信息平台</title>
-
-    <link rel="stylesheet" href="{{ asset('css/landing.css') }}">
-
-</head>
-<body>
-
-    <header>
-        <nav class="navbar navbar-expand-md navbar-light fixed-top bg-white box-shadow">
-            <a class="navbar-brand" href="{{ url('/') }}">
-                <img src="{{ asset('images/logo.png') }}" height="64px">
-            </a>
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarCollapse">
-                <ul class="navbar-nav mr-auto">
-                    <li class="nav-item active">
-                        <a class="nav-link" href="">主页</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="">博客</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="">关于本站</a>
-                    </li>
-                </ul>
-                <form class="form-inline mt-2 mt-md-0 ml-2" action="{{ url('search') }}" method="post">
-                    @csrf
-                    <input class="form-control mr-sm-2" type="text" placeholder="机构/案例" aria-label="Search">
-                    <button class="btn btn-outline-success my-2 my-sm-0" type="submit">搜索</button>
-                </form>
-            </div>
-        </nav>
-    </header>
+@section('title')
+    哥子稳 | 所有入驻机构
+@endsection
 
 <main role="main">
 
@@ -161,6 +119,3 @@
 <!-- Placed at the end of the document so the pages load faster -->
 
     <script src="{{ asset('js/landing.js') }}"></script>
-
-</body>
-</html>
