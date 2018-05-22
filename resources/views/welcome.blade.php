@@ -170,5 +170,5 @@
             <p>© 2017-2018 哥子稳</p>
         </footer>
     </main>
-    <script src="{{ asset('js/app.js') }}"></script>
+    <script src="{{ asset('js/landing.js') }}"></script>
 </body>
