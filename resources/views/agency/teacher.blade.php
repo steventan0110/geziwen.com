@@ -8,7 +8,8 @@
     <div class="container" id="teacher">
         <div class="jumbotron bg-white box-shadow">
             <div class="media">
-                <img class="ml-2 mr-3 img-thumbnail border border-info rounded-circle" src="https://ss0.bdstatic.com/-0U0bnSm1A5BphGlnYG/tam-ogel/a03f306fc98a8e119dae9d7c5510b656_121_121.jpg" alt="Generic placeholder image" width="100px">
+                <img class="ml-2 mr-3 img-thumbnail border border-info rounded-circle"
+                     src="{{ $teacher->picture }}" alt="Generic placeholder image" width="100px">
                 <div class="media-body ml-3">
                     <h3>{{ $teacher->name }}</h3>
                     <p class="small mt-3">所属中介: <a href="{{ route('agency.show', ['id' => $teacher->agency->id]) }}">{{ $teacher->agency->name }}</a></p>

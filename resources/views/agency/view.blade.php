@@ -63,9 +63,10 @@
             <div class="row">
                 @foreach($agency->teachers as $teacher)
                     <div class="col-sm-4 text-center mt-4  pl-2 pr-2">
-                        <img class="rounded-circle mb-2" src="data:image/gif;base64,R0lGODlhAQABAIAAAHd3dwAAACH5BAAAAAAALAAAAAABAAEAAAICRAEAOw==" alt="Generic placeholder image" width="140px" height="140px">
+                        <img class="rounded-circle mb-2" src="{{ $teacher->picture }}"
+                             alt="Generic placeholder image" width="100px" height="100px">
                         <h5>{{ $teacher->name }}</h5>
-                        <p class="small">{{ $teacher->introduction }}</p>
+                        <p class="small m-3">{{ $teacher->introduction }}</p>
                         <p class="small">
                             <a class="btn btn-info btn-sm" role="button"
                                href="{{ route('agency.teacher.show', ['id' => $teacher->id]) }}">查看详细</a>
