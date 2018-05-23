@@ -1,6 +1,6 @@
 <div class="media pt-3">
     <div class="media-body pb-3 mb-0 small lh-125 border-bottom border-gray">
-        <strong class="d-block text-gray-dark"><a href="#" class="btn btn-link btn-sm pl-0">{{ $applicant->surname }}</a></strong>
+        <strong class="d-block text-gray-dark">{{ $applicant->surname }}</strong>
         {{ $applicant->offers[0]->university->name }}
         <button class="btn btn-info btn-sm float-right" data-toggle="modal" data-target="#applicant-{{ $applicant->id }}">查看详细</button>
     </div>
