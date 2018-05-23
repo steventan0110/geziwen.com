@@ -84,15 +84,16 @@
     <div class="container" id="comments">
         <div class="my-3 p-3 bg-white rounded box-shadow">
             @auth
-                <comment :user-name="'{{ Auth::user()->name }}'"
+                <comment      :user-name="'{{ Auth::user()->name }}'"
+                              :user-index="'{{ Auth::user()->id }}'"
                               :comment-type="'agencies'"
                               :comment-index="'{{ $agency->id }}'"></comment>
             @else
-                <comment :user-name="''"
+                <comment      :user-name="''"
+                              :user-index="-1"
                               :comment-type="'agencies'"
                               :comment-index="'{{ $agency->id }}'"></comment>
             @endauth
         </div>
     </div>
-
 @endsection
