@@ -8,13 +8,14 @@
 
     @component('components.agency', ['agency' => $agency])
         @slot('button')
-            <button class="btn btn-primary dropdown-toggle float-right" type="button" id="view-more-dropdown-button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <button class="btn btn-info btn-sm dropdown-toggle float-right" type="button"
+                    id="view-more-dropdown-button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 查看更多
             </button>
             <div class="dropdown-menu" aria-labelledby="view-more-dropdown-button">
-                <a class="dropdown-item" href="#services">服务</a>
-                <a class="dropdown-item" href="#applicants">案例</a>
-                <a class="dropdown-item" href="#teachers">师资</a>
+                <a class="dropdown-item small" href="#services">服务</a>
+                <a class="dropdown-item small" href="#applicants">案例</a>
+                <a class="dropdown-item small" href="#teachers">师资</a>
             </div>
         @endslot
     @endcomponent
@@ -35,7 +36,7 @@
                                 @endforeach
                             </ul>
                             <a href="{{ route('agency.plan.show', ['id' => $plan->id]) }}"
-                               class="btn btn-lg btn-block btn-success">了解更多</a>
+                               class="btn btn-lg btn-block btn-info">了解更多</a>
                         </div>
                     </div>
                 </div>
