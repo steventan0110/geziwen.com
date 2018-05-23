@@ -145,7 +145,10 @@
                             console.log(response.status);
                         }
                     );
-                    this.$root.Middle.$emit('addRate', this.rating)
+                    if(this.rating != null) {
+                        this.$root.Middle.$emit('addRate', this.rating);
+                    }
+
                 }
             },
             onAddComment(id, time){
