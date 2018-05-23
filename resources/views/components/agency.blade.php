@@ -12,9 +12,15 @@
         <hr class="my-4">
         <div class="row">
             <div class="col-sm-8">
-                <p class="small"><i class="mr-2 fas fa-map-marker"></i>{{ $agency->address }}</p>
-                <p class="small"><i class="mr-2 fas fa-phone"></i>{{ $agency->telephone }}</p>
-                <p class="small"><i class="mr-2 fas fa-envelope"></i>{{ $agency->email }}</p>
+                <p class="small">
+                    <i class="mr-2 fas fa-map-marker"></i>
+                    <a target="_blank"
+                       href="http://api.map.baidu.com/place/search?query={{ $agency->address }}&region=成都&output=html">
+                        {{ $agency->address }}
+                    </a>
+                </p>
+                <p class="small"><i class="mr-2 fas fa-phone"></i><a href='tel:{{ $agency->telephone }}'>{{ $agency->telephone }}</a></p>
+                <p class="small"><i class="mr-2 fas fa-envelope"></i><a href='mailto:{{ $agency->email }}'>{{ $agency->email }}</a></p>
             </div>
             <div class="col-sm-4">
                 {{ $button }}

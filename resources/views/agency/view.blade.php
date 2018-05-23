@@ -26,13 +26,13 @@
                 <div class="col-lg-4 col-md-4">
                     <div class="card mb-4 box-shadow">
                         <div class="card-header">
-                            <h4 class="my-0 font-weight-normal">{{ $plan->name }} 项目</h4>
+                            <h4 class="my-0 font-weight-normal">{{ $plan->name }}</h4>
                         </div>
                         <div class="card-body">
                             <h1 class="card-title pricing-card-title">￥{{ $plan->price }}</h1>
                             <ul class="list-unstyled mt-3 mb-4">
                                 @foreach($plan->features as $feature)
-                                    <li>{{ $feature->name }} Feature</li>
+                                    <li>{{ $feature->name }}</li>
                                 @endforeach
                             </ul>
                             <a href="{{ route('agency.plan.show', ['id' => $plan->id]) }}"
