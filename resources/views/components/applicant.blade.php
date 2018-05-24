@@ -166,13 +166,13 @@
                                 <ul class="nav nav-tabs card-header-tabs pull-right" role="tablist">
                                     @if(count($applicant->offers))
                                         <li class="nav-item">
-                                            <a class="nav-link active" data-toggle="tab" href="#applicant-{{ $applicant->id }}-offers" role="tab" aria-controls="applicant-{{ $applicant->id }}-offers" aria-selected="true">Offer</a>
+                                            <a class="nav-link active" data-toggle="tab" href="#applicant-{{ $applicant->id }}-offers" role="tab" aria-controls="applicant-{{ $applicant->id }}-offers" aria-selected="false">Offer</a>
                                         </li>
                                     @endif
 
                                     @if($applicant->exam_type_id == 1)
                                         <li class="nav-item">
-                                            <a class="nav-link" data-toggle="tab" href="#applicant-{{ $applicant->id }}-ielts" role="tab" aria-controls="applicant-{{ $applicant->id }}-ielts" aria-selected="false">IELTS</a>
+                                            <a class="nav-link" data-toggle="tab" href="#applicant-{{ $applicant->id }}-ielts" role="tab" aria-controls="applicant-{{ $applicant->id }}-ielts" aria-selected="true">IELTS</a>
                                         </li>
                                     @endif
 
@@ -196,39 +196,70 @@
                                             </h6>
                                         @endforeach
                                     </div>
-                                    <div class="tab-pane fade" id="applicant-{{ $applicant->id }}-ielts">
-                                        @if(!is_null($applicant->init_exam_id))
-                                            <p>培训前分数</p>
-                                            @if($applicant->ielts !== null)
-                                                @foreach($applicant->ielts as $ielts)
-                                                    @if($ielts->id == $applicant->init_exam_id)
-                                                        <h6>
-                                                            IELTS:
-                                                            <span class="badge badge-pill badge-primary">阅读</span> {{ floatval($ielts->reading) / 2 }}
-                                                            <span class="badge badge-pill badge-secondary">听力</span> {{ floatval($ielts->listening) / 2 }}
-                                                            <span class="badge badge-pill badge-success">口语</span> {{ floatval($ielts->speaking) / 2 }}
-                                                            <span class="badge badge-pill badge-danger">写作</span> {{ floatval($ielts->writing) / 2 }}
-                                                        </h6>
-                                                    @endif
-                                                @endforeach
+
+                                    @if($applicant->exam_type_id == 1)
+                                        <div class="tab-pane fade" id="applicant-{{ $applicant->id }}-ielts">
+                                            @if(!is_null($applicant->init_exam_id))
+                                                <p>培训前分数</p>
+                                                @if($applicant->ielts !== null)
+                                                    @foreach($applicant->ielts as $ielts)
+                                                        @if($ielts->id == $applicant->init_exam_id)
+                                                            <h6>
+                                                                IELTS:
+                                                                <span class="badge badge-pill badge-primary">阅读</span> {{ floatval($ielts->reading) / 2 }}
+                                                                <span class="badge badge-pill badge-secondary">听力</span> {{ floatval($ielts->listening) / 2 }}
+                                                                <span class="badge badge-pill badge-success">口语</span> {{ floatval($ielts->speaking) / 2 }}
+                                                                <span class="badge badge-pill badge-danger">写作</span> {{ floatval($ielts->writing) / 2 }}
+                                                            </h6>
+                                                        @endif
+                                                    @endforeach
+                                                @endif
                                             @endif
-                                        @endif
-                                        <p>培训后分数</p>
-                                        @foreach($applicant->ielts as $ielts)
-                                            @if($ielts->id == $applicant->final_exam_id)
-                                                <h6>
-                                                    IELTS:
-                                                    <span class="badge badge-pill badge-primary">阅读</span> {{ floatval($ielts->reading) / 2 }}
-                                                    <span class="badge badge-pill badge-secondary">听力</span> {{ floatval($ielts->listening) / 2 }}
-                                                    <span class="badge badge-pill badge-success">口语</span> {{ floatval($ielts->speaking) / 2 }}
-                                                    <span class="badge badge-pill badge-danger">写作</span> {{ floatval($ielts->writing) / 2 }}
-                                                </h6>
+                                            <p>培训后分数</p>
+                                            @foreach($applicant->ielts as $ielts)
+                                                @if($ielts->id == $applicant->final_exam_id)
+                                                    <h6>
+                                                        IELTS:
+                                                        <span class="badge badge-pill badge-primary">阅读</span> {{ floatval($ielts->reading) / 2 }}
+                                                        <span class="badge badge-pill badge-secondary">听力</span> {{ floatval($ielts->listening) / 2 }}
+                                                        <span class="badge badge-pill badge-success">口语</span> {{ floatval($ielts->speaking) / 2 }}
+                                                        <span class="badge badge-pill badge-danger">写作</span> {{ floatval($ielts->writing) / 2 }}
+                                                    </h6>
+                                                @endif
+                                            @endforeach
+                                        </div>
+                                    @endif
+
+                                    @if($applicant->exam_type_id == 2)
+                                        <div class="tab-pane fade" id="applicant-{{ $applicant->id }}-toefl">
+                                            @if(!is_null($applicant->init_exam_id))
+                                                <p>培训前分数</p>
+                                                @if($applicant->toefl !== null)
+                                                    @foreach($applicant->toefl as $toefl)
+                                                        @if($toefl->id == $applicant->init_exam_id)
+                                                            <h6>
+                                                                <span class="badge badge-pill badge-primary">阅读</span> {{ $toefl->reading }}
+                                                                <span class="badge badge-pill badge-secondary">听力</span> {{ $toefl->listening }}
+                                                                <span class="badge badge-pill badge-success">口语</span> {{ $toefl->speaking }}
+                                                                <span class="badge badge-pill badge-danger">写作</span> {{ $toefl->writing }}
+                                                            </h6>
+                                                        @endif
+                                                    @endforeach
+                                                @endif
                                             @endif
-                                        @endforeach
-                                    </div>
-                                    <div class="tab-pane fade" id="applicant-{{ $applicant->id }}-toefl">
-                                        <p>TOEFL scores:</p>
-                                    </div>
+                                            <p>培训后分数</p>
+                                            @foreach($applicant->toefl as $toefl)
+                                                @if($toefl->id == $applicant->final_exam_id)
+                                                    <h6>
+                                                        <span class="badge badge-pill badge-primary">阅读</span> {{ $toefl->reading }}
+                                                        <span class="badge badge-pill badge-secondary">听力</span> {{ $toefl->listening }}
+                                                        <span class="badge badge-pill badge-success">口语</span> {{ $toefl->speaking }}
+                                                        <span class="badge badge-pill badge-danger">写作</span> {{ $toefl->writing }}
+                                                    </h6>
+                                                @endif
+                                            @endforeach
+                                        </div>
+                                    @endif
 
                                 </div>
                             </div>
