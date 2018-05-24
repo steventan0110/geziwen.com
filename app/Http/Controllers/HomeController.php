@@ -24,11 +24,11 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('home');
+        return view('home', ['user' => \Auth::user()]);
     }
 
-    public function welcome() {
-        $agencies = Agency::all();
-        return view('welcome', ['agencies' => $agencies]);
+    public function welcome()
+    {
+        return view('welcome');
     }
 }

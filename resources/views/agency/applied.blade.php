@@ -13,7 +13,7 @@
             <hr class="my-4">
             <p>工作之余，您不妨暂时放下手中的忙碌，点击下方的链接访问我们的主页，查看我们团队成立一年多以来的历程。</p>
             <p class="lead">
-                <a class="btn btn-primary btn-lg" href="/" role="button">哥子稳首页</a>
+                <a class="btn btn-link btn-lg" href="/" role="button">geziwen.com</a>
             </p>
         </div>
     </div>

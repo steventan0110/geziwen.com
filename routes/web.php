@@ -36,3 +36,4 @@ Route::resource('plan.applicants', 'Agency\PlanApplicantsController');
 Route::resource('teacher.applicants', 'Agency\TeacherApplicantsController');
 
 Route::resource('agencies', 'Agency\AgenciesController');
+

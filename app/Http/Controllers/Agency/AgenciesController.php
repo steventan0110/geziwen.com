@@ -3,6 +3,12 @@
 namespace App\Http\Controllers\Agency;
 
 use App\Agency\Agency;
+use App\Http\Requests\AgencyCreateRequest;
+use App\Http\Requests\AgencyInviteRequest;
+use App\Http\Requests\AgencyStoreRequest;
+use App\Http\Requests\AgencyUpdateRequest;
+use App\User;
+use Illuminate\Auth\Access\AuthorizationException;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
@@ -16,6 +22,7 @@ class AgenciesController extends Controller
     public function index()
     {
         $agencies = Agency::all();
+        $array = ['id' => 1, 'id2' => 2];
         return view('agency.index', ['agencies' => $agencies]);
     }
 
@@ -26,6 +33,11 @@ class AgenciesController extends Controller
      */
     public function create()
     {
+        try {
+            $this->authorize('create', Agency::class);
+        } catch (AuthorizationException $exception) {
+            return redirect()->back();
+        }
         return view('agency.create');
     }
 
@@ -35,14 +47,23 @@ class AgenciesController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(AgencyUpdateRequest $request)
     {
-        $data = $request->all();
-        $agency = new Agency($data);
+        $data = $request->validated();
+        $agency = new Agency($data['agency']);
         $agency->verified = false;
+        $agency->published = false;
         $agency->logo = 'images/default.gif';
         $agency->save();
-        return view('agency.applied', compact('agency'));
+        $user = new User([
+            'name' => $agency->name,
+            'email' => $agency->email,
+            'password' => bcrypt('secret'),
+            'role' => 'agency',
+            'link' => $agency->id
+        ]);
+        $user->save();
+        return redirect()->route('home');
     }
 
     /**
@@ -68,6 +89,11 @@ class AgenciesController extends Controller
     public function edit($id)
     {
         $agency = Agency::findOrFail($id);
+        try {
+            $this->authorize('update', $agency);
+        } catch (AuthorizationException $exception) {
+            return redirect()->back();
+        }
         return view('agency.edit', compact('agency'));
     }
 
@@ -78,18 +104,11 @@ class AgenciesController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(AgencyUpdateRequest $request, $id)
     {
-        $agency = Agency::findOrFail($id);
-        $agency->name = $request->get('name');
-        $agency->introduction = $request->get('introduction');
-        $agency->address = $request->get('address');
-        $agency->telephone = $request->get('telephone');
-        $agency->website = $request->get('website');
-        $agency->email = $request->get('email');
-        $agency->started_on = $request->get('started_on');
-        $agency->save();
-        return view('agency.show', compact('agency'));
+        $data = $request->validated();
+        Agency::find($id)->update($data['agency']);
+        return redirect()->route('home');
     }
 
     /**
