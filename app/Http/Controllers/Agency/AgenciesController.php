@@ -26,7 +26,7 @@ class AgenciesController extends Controller
      */
     public function create()
     {
-        //
+        return view('agency.create');
     }
 
     /**
@@ -37,7 +37,12 @@ class AgenciesController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $data = $request->all();
+        $agency = new Agency($data);
+        $agency->verified = false;
+        $agency->logo = 'images/default.gif';
+        $agency->save();
+        return view('agency.applied', compact('agency'));
     }
 
     /**
@@ -51,7 +56,7 @@ class AgenciesController extends Controller
         $agency = Agency::findOrFail($id);
         $agency->applicants = $agency->applicants()->limit(5)->get();
         $agency->teachers = $agency->teachers()->limit(6)->get();
-        return view('agency.view', compact('agency', $agency));
+        return view('agency.show', compact('agency'));
     }
 
     /**
@@ -62,7 +67,8 @@ class AgenciesController extends Controller
      */
     public function edit($id)
     {
-        //
+        $agency = Agency::findOrFail($id);
+        return view('agency.edit', compact('agency'));
     }
 
     /**
@@ -74,7 +80,16 @@ class AgenciesController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $agency = Agency::findOrFail($id);
+        $agency->name = $request->get('name');
+        $agency->introduction = $request->get('introduction');
+        $agency->address = $request->get('address');
+        $agency->telephone = $request->get('telephone');
+        $agency->website = $request->get('website');
+        $agency->email = $request->get('email');
+        $agency->started_on = $request->get('started_on');
+        $agency->save();
+        return view('agency.show', compact('agency'));
     }
 
     /**
