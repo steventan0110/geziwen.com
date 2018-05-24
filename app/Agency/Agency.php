@@ -14,6 +14,8 @@ class Agency extends Model
 
     protected $table = "agencies";
 
+    protected $guarded = ['verified'];
+
     public function searchableAs() {
         return $this->table."_index";
     }
