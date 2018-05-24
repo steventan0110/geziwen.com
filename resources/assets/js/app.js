@@ -52,6 +52,9 @@ Vue.component('star-rating', StarRating);
 import VueResource from 'vue-resource';
 Vue.use(VueResource);
 
+import Croppa from 'vue-croppa';
+Vue.use(Croppa);
+
 Vue.component('comment',require('./components/CommentComponents/CommentComponent'));
 Vue.component('rating',require('./components/CommentComponents/RatingComponent'));
 

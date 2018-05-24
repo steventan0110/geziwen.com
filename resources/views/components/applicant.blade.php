@@ -3,6 +3,10 @@
         <strong class="d-block text-gray-dark">{{ $applicant->surname }}</strong>
         {{ $applicant->offers[0]->university->name }}
         <button class="btn btn-info btn-sm float-right" data-toggle="modal" data-target="#applicant-{{ $applicant->id }}">查看详细</button>
+        @if(Auth::user()->can('update', $applicant))
+            <a class="btn btn-warning btn-sm float-right mr-2"
+               href="{{ route('agency.applicants.edit', ['agency' => $applicant->agency->id, 'applicant' => $applicant->id]) }}">编辑</a>
+        @endif
     </div>
     <div class="modal fade" id="applicant-{{ $applicant->id }}" tabindex="-1" role="dialog" aria-labelledby="applicant-{{ $applicant->id }}-title" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
