@@ -25,7 +25,7 @@ class AgencyCreateRequest extends FormRequest
     {
         return [
             'agency.name' => 'required',
-            'agency.email' => 'required|email'
+            'agency.email' => 'required|email|unique:users,email|unique:agencies,email'
         ];
     }
 }

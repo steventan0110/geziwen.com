@@ -47,7 +47,7 @@ class AgenciesController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(AgencyUpdateRequest $request)
+    public function store(AgencyCreateRequest $request)
     {
         $data = $request->validated();
         $agency = new Agency($data['agency']);

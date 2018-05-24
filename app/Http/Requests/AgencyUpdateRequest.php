@@ -31,7 +31,7 @@ class AgencyUpdateRequest extends FormRequest
             'agency.telephone' => 'required|between:8,20',
             'agency.website' => 'required|url',
             'agency.started_on' => 'required|date',
-            'agency.email' => 'required|email'
+            'agency.email' => 'required|email|unique:users,email|unique:agencies,email'
         ];
     }
 }
