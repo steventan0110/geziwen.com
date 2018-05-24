@@ -18,26 +18,64 @@
             @endif
         </div>
     </section>
-    <div class="container">
-        <div class="row">
-            @foreach($agencies as $agency)
-                <div class="col-md-4">
-                    <div class="card mb-4 box-shadow">
-                        <img class="card-img-top" src="https://ss3.baidu.com/-rVXeDTa2gU2pMbgoY3K/it/u=629751542,2184084731&fm=202&mola=new&crop=v1" alt="logo" style="height: 225px; width: 100%; display: block;">
-                        <div class="card-body">
-                            <h5>{{ $agency->name }}</h5>
-                            <p class="card-text">{{ $agency->introduction }}</p>
-                            <div class="d-flex justify-content-between align-items-center">
-                                <div class="btn-group">
-                                    <a href="{{ route('agencies.show', ['id' => $agency->id]) }}" class="btn btn-sm btn-outline-primary">主页</a>
-                                    <a href="{{ route('agency.applicants.index', ['id' => $agency->id]) }}" class="btn btn-sm btn-outline-primary">案例</a>
+    @if(Auth::check()==true)
+        <section class="jumbotron text-center bg-info">
+            <h2 class="jumbotron-heading">中介机构</h2>
+        </section>
+
+        <div class="container">
+            <div class="row">
+                @foreach($agencies as $agency)
+                    @if($agency->type == 1)
+                        <div class="col-md-4">
+                            <div class="card mb-4 box-shadow">
+                                <img class="card-img-top" src="{{$agency->thumbnail}}" alt="logo" style="height: 225px; width: 100%; display: block;">
+                                <div class="card-body">
+                                    <h5>{{ $agency->name }}</h5>
+                                    <p class="card-text">{{ $agency->introduction }}</p>
+                                    <div class="d-flex justify-content-between align-items-center">
+                                        <div class="btn-group">
+                                            <a href="{{ route('agencies.show', ['id' => $agency->id]) }}" class="btn btn-sm btn-outline-primary">主页</a>
+                                            <a href="{{ route('agency.applicants.index', ['id' => $agency->id]) }}" class="btn btn-sm btn-outline-primary">案例</a>
+                                        </div>
+                                        <small class="text-muted">始于：{{ $agency->started_on }}</small>
+                                    </div>
                                 </div>
-                                <small class="text-muted">始于：{{ $agency->started_on }}</small>
                             </div>
                         </div>
-                    </div>
-                </div>
-            @endforeach
+                    @endif
+                @endforeach
+            </div>
         </div>
-    </div>
+
+        <section class="jumbotron text-center bg-info">
+            <h2 class="jumbotron-heading">语言培训机构</h2>
+        </section>
+
+        <div class="container">
+            <div class="row">
+                @foreach($agencies as $agency)
+                    @if($agency->type == 2)
+                        <div class="col-md-4">
+                            <div class="card mb-4 box-shadow">
+                                <img class="card-img-top" src="{{$agency->thumbnail}}" alt="logo" style="height: 225px; width: 100%; display: block;">
+                                <div class="card-body">
+                                    <h5>{{ $agency->name }}</h5>
+                                    <p class="card-text">{{ $agency->introduction }}</p>
+                                    <div class="d-flex justify-content-between align-items-center">
+                                        <div class="btn-group">
+                                            <a href="{{ route('agencies.show', ['id' => $agency->id]) }}" class="btn btn-sm btn-outline-primary">主页</a>
+                                            <a href="{{ route('agency.applicants.index', ['id' => $agency->id]) }}" class="btn btn-sm btn-outline-primary">案例</a>
+                                        </div>
+                                        <small class="text-muted">始于：{{ $agency->started_on }}</small>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    @endif
+                @endforeach
+            </div>
+        </div>
+
+    @endif
 @endsection

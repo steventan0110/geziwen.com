@@ -9,12 +9,19 @@ class CreateAgenciesTable extends Migration
     /**
      * Run the migrations.
      *
+     * Column 'type' is used to differentiate language trainers and standardized tests trainers
+     * 1 - Standardized tests; 2 - Language trainers
+     *
+     * 'thumbnail' has default 'null' instead of null because 'null' is naturally an invalid url
+     * that would result in a blank placeholder.
+     *
      * @return void
      */
     public function up()
     {
         Schema::create('agencies', function (Blueprint $table) {
             $table->increments('id');
+            $table->unsignedInteger('type');
             $table->string('name');
             $table->string('introduction');
             $table->string('address');
@@ -22,6 +29,7 @@ class CreateAgenciesTable extends Migration
             $table->string('website');
             $table->date('started_on');
             $table->string('email');
+            $table->string('thumbnail')->default('null');
             $table->timestamps();
         });
 

@@ -9,7 +9,7 @@
     <div id="applicants" class="container mb-4">
         <div class="jumbotron box-shadow bg-white">
             <div class="media">
-                <img class="ml-2 mr-3 img-thumbnail border border-info" src="https://ss0.bdstatic.com/-0U0bnSm1A5BphGlnYG/tam-ogel/a03f306fc98a8e119dae9d7c5510b656_121_121.jpg" alt="Generic placeholder image" width="100px">
+                <img class="ml-2 mr-3 img-thumbnail border border-info" src="{{$agency->thumbnail}}" alt="Generic placeholder image" width="100px">
                 <div class="media-body">
                     @if(isset($plan))
                         <h5><a href="{{ route('agency.plan.show', ['id' => $plan->id]) }}">{{ $plan->name }}</a> | 所有案例</h5>

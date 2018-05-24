@@ -22,7 +22,8 @@ class AgencyTableSeeder extends Seeder
                 'telephone' => $faker->phoneNumber,
                 'website' => $faker->url,
                 'email' => $faker->email,
-                'started_on' => $faker->date()
+                'started_on' => $faker->date(),
+                'type' => 1,
             ]);
 
             foreach (range(1, 3) as $j) {

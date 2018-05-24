@@ -47,7 +47,7 @@
         <div class="my-3 p-3 bg-white rounded box-shadow">
             <h5 class="border-bottom border-gray pb-2 mb-0">部分案例</h5>
             @foreach ($agency->applicants as $applicant)
-                @component('components.applicant', ['applicant' => $applicant])
+                @component('components.applicant', ['applicant' => $applicant, 'agency' => $agency])
 
                 @endcomponent
             @endforeach

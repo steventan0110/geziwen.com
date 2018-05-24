@@ -55,11 +55,12 @@ class Applicant extends Model
     }
 
     /**
-     * Each applicant may have one TOEFL record.
-     * @return \Illuminate\Database\Eloquent\Relations\HasOne
+     * Each applicant may have multiple TOEFL record.
+     * (Changed from one to multiple due to the language trainer feature)
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */
     public function toefl() {
-        return $this->hasOne(Toefl::class);
+        return $this->hasMany(Toefl::class);
     }
 
     /**
@@ -71,11 +72,12 @@ class Applicant extends Model
     }
 
     /**
-     * Each applicant may have one IELTS record.
-     * @return \Illuminate\Database\Eloquent\Relations\HasOne
+     * Each applicant may have multiple IELTS record.
+     * (Changed from one to multiple due to the language trainer feature)
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */
     public function ielts() {
-        return $this->hasOne(Ielts::class);
+        return $this->hasMany(Ielts::class);
     }
 
     /**
@@ -125,4 +127,8 @@ class Applicant extends Model
     public function teachers() {
         return $this->belongsToMany(Teacher::class,'teachers_applicants','teacher_id','applicant_id');
     }
+
+//    public function exam_type() {
+//        return $this->table.'exam_type_id';
+//    }
 }
