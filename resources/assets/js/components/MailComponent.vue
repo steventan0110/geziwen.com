@@ -3,7 +3,12 @@
         <div class="form-group row">
             <label for="email" class="col-md-4 col-form-label text-md-right">请输入邮箱地址</label>
             <div class="col-md-6">
-                <input id="email" type="email" class="form-control" v-model="strEmail" name="email" required>
+                <div class="input-group">
+                    <input id="email" type="email" v-bind:class="this.showEmailError ? 'is-invalid' : '' " class="form-control" v-model="strEmail" name="email" required>
+                    <div class="input-group-append">
+                        <button id="sendVerifySmsButton" class="btn btn-primary btn-md" @click="send">发送验证码</button>
+                    </div>
+                </div>
                 <span class="invalid-feedback" v-show="this.showEmailError" style="display: block">
                     <strong>{{ this.emailErrorMessage }}</strong>
                 </span>
@@ -12,7 +17,7 @@
         <div class="form-group row">
             <label for="v-code" class="col-md-4 col-form-label text-md-right">请输入验证码</label>
             <div class="col-md-6">
-                <input id="v-code" type="number"  class="form-control" name="vcode" required>
+                <input id="v-code" type="number" v-bind:class="this.showCodeError ? 'is-invalid' : '' "  class="form-control" name="vcode" required>
                 <span class="invalid-feedback" v-show="this.showCodeError" style="display: block">
                     <strong>{{ this.codeErrorMessage }}</strong>
                 </span>
@@ -23,7 +28,6 @@
                 <button @click="submit" class="btn btn-primary mr-4">
                     注册
                 </button>
-                <button id="sendVerifySmsButton" class="btn btn-success btn-md" @click="send">发送邮箱验证码</button>
             </div>
         </div>
     </div>

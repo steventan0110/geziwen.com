@@ -3,7 +3,15 @@
         <div class="form-group row">
             <label for="phone-number" class="col-md-4 col-form-label text-md-right">请输入手机号</label>
             <div class="col-md-6">
-                <input id="phone-number" type="tel" class="form-control" v-model="strMobile" name="mobile" required>
+                <div class="input-group">
+                    <input id="phone-number" type="tel" v-bind:class="this.showMobileError ? 'is-invalid' : '' " class="form-control" v-model="strMobile" name="mobile" required>
+                    <div class="input-group-append">
+                        <button id="sendVerifySmsButton" :disabled="sendMsgDisabled" type="button" class="btn btn-primary" @click="send">
+                            <span v-if="sendMsgDisabled">{{countDown+'秒后获取'}}</span>
+                            <span v-if="!sendMsgDisabled">发送验证码</span>
+                        </button>
+                    </div>
+                </div>
                 <span class="invalid-feedback" v-show="this.showMobileError" style="display: block">
                     <strong>{{ this.mobileErrorMessage }}</strong>
                 </span>
@@ -12,7 +20,7 @@
         <div class="form-group row">
             <label for="v-code" class="col-md-4 col-form-label text-md-right">请输入验证码</label>
             <div class="col-md-6">
-                <input id="v-code" type="number"  class="form-control" name="vcode" required>
+                <input id="v-code" type="number" v-bind:class="this.showCodeError ? 'is-invalid' : '' "  class="form-control" name="vcode" required>
                 <span class="invalid-feedback" v-show="this.showCodeError" style="display: block">
                     <strong>{{ this.codeErrorMessage }}</strong>
                 </span>
@@ -22,10 +30,6 @@
             <div class="col-md-6 offset-md-4">
                 <button @click="submit" class="btn btn-primary mr-4">
                     注册
-                </button>
-                <button id="sendVerifySmsButton" :disabled="sendMsgDisabled" class="btn btn-success btn-md" @click="send">
-                    <span v-if="sendMsgDisabled">{{countDown+'秒后获取'}}</span>
-                    <span v-if="!sendMsgDisabled">发送手机验证码</span>
                 </button>
             </div>
         </div>

@@ -81,9 +81,8 @@
                                         <hr class="my-5" style="width: 70%">
                                         <sms :show-mobile-error="'{{ $errors->has('mobile')==1 }}'"
                                              :mobile-error-message="'{{ $errors->first('mobile') }}'"
-                                             :show-code-error="'{{ $errors->has('vcode')==1 }}'"
-                                             :code-error-message="'{{ $errors->first('vcode') }}'"
-                                             :require-mobile="'true'"></sms>
+                                             :show-code-error="''"
+                                             :code-error-message="'{{ $errors->first('vcode') }}'"></sms>
                                     </form>
                                 </div>
                                 <div class="tab-pane fade show active" id="register-by-email">
@@ -198,30 +197,19 @@
 
                                         <div class="form-group row">
                                             <label for="password-confirm" class="col-md-4 col-form-label text-md-right">确认密码</label>
-
                                             <div class="col-md-6">
                                                 <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required>
                                             </div>
                                         </div>
-
                                         <hr class="my-5" style="width: 70%">
                                         <mail :show-email-error="'{{ $errors->has('email')==1 }}'"
                                               :email-error-message="'{{ $errors->first('email') }}'"
-                                              :show-code-error="'{{ $errors->has('vcode')==1 }}'"
+                                              :show-code-error="''"
                                               :code-error-message="'{{ $errors->first('vcode') }}'"></mail>
                                     </form>
                                 </div>
                         </div>
                             @endif
-
-                        {{--<div class="form-group row mb-0">--}}
-                        {{--<div class="col-md-6 offset-md-4">--}}
-                        {{--<button type="submit" class="btn btn-primary">--}}
-                        {{--注册--}}
-                        {{--</button>--}}
-                        {{--</div>--}}
-                        {{--</div>--}}
-
                     </div>
                 </div>
             </div>
