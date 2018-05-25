@@ -22,7 +22,6 @@ class AgenciesController extends Controller
     public function index()
     {
         $agencies = Agency::all();
-        $array = ['id' => 1, 'id2' => 2];
         return view('agency.index', ['agencies' => $agencies]);
     }
 
