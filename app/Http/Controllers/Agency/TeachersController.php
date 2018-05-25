@@ -17,7 +17,7 @@ class TeachersController extends Controller
     public function index(Request $request, $agency_id)
     {
         $agency = Agency::find($agency_id);
-        $teachers = $agency->teachers()->paginate(9);
+        $teachers = $agency->teachers()->paginate(6);
         return view('teachers.index', ['teachers'=>$teachers,'agency'=>$agency]);
         //
     }
