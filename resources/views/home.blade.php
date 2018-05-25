@@ -13,7 +13,7 @@
                     </div>
                 @endif
 
-                <div id="agency" class="col-sm-4">
+                <div id="agency" class="col-sm-4 mb-4">
                     <div class="p-3 bg-white rounded box-shadow">
                         <h5 class="border-bottom border-gray pb-2 mb-2">基本信息</h5>
                         <dl class="row">
@@ -37,7 +37,7 @@
                     </div>
                 </div>
 
-                <div id="applicants" class="col-md-8">
+                <div id="applicants" class="col-md-8 mb-4">
                     <div class="p-3 bg-white rounded box-shadow">
                         <h5 class="border-bottom border-gray pb-2 mb-0">部分案例</h5>
                         @foreach ($user->agency->applicants()->limit(5)->get() as $applicant)
