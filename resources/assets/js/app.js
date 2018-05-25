@@ -54,6 +54,8 @@ Vue.use(VueResource);
 
 Vue.component('comment',require('./components/CommentComponents/CommentComponent'));
 Vue.component('rating',require('./components/CommentComponents/RatingComponent'));
+Vue.component('sms',require('./components/SmsComponent'));
+Vue.component('mail',require('./components/MailComponent'));
 
 Vue.http.headers.common['X-CSRF-TOKEN'] = document.querySelector('meta[name=csrf-token]').getAttribute('content');
 

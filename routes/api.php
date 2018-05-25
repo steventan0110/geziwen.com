@@ -19,3 +19,5 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 Route::post('comment','CommentController@store');
 Route::post('comment/delete','CommentController@delete');
 Route::post('comment/get','CommentController@get');
+Route::post('sms/send','SmsController@send');
+Route::post('mail/send','MailController@send');
