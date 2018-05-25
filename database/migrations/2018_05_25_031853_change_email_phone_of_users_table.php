@@ -15,7 +15,7 @@ class ChangeEmailPhoneOfUsersTable extends Migration
     {
         Schema::table('users', function (Blueprint $table) {
             $table->string('mobile')->nullable()->change();
-            $table->string('email')->nullable()->change();
+            $table->string('email')->nullable()->unique()->change();
         });
     }
 
@@ -26,6 +26,9 @@ class ChangeEmailPhoneOfUsersTable extends Migration
      */
     public function down()
     {
-        //
+        Schema::table('users', function (Blueprint $table) {
+            $table->string('mobile')->nullable(false)->change();
+            $table->string('email')->nullable(false)->change();
+        });
     }
 }
