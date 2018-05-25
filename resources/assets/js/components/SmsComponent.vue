@@ -20,12 +20,12 @@
         </div>
         <div class="form-group row mb-0">
             <div class="col-md-6 offset-md-4">
-                <button type="submit" class="btn btn-primary mr-4">
+                <button @click="submit" class="btn btn-primary mr-4">
                     注册
                 </button>
                 <button id="sendVerifySmsButton" :disabled="sendMsgDisabled" class="btn btn-success btn-md" @click="send">
                     <span v-if="sendMsgDisabled">{{countDown+'秒后获取'}}</span>
-                    <span v-if="!sendMsgDisabled">发送验证码</span>
+                    <span v-if="!sendMsgDisabled">发送手机验证码</span>
                 </button>
             </div>
         </div>
@@ -35,22 +35,6 @@
 <script>
     export default {
         name: "sms-component",
-        // props: {
-        //     showMobileError: {
-        //         type: Boolean,
-        //         // default: false
-        //     },
-        //     mobileErrorMessage: {
-        //         type: String
-        //     },
-        //     showCodeError: {
-        //         type: Boolean,
-        //         // default: false
-        //     },
-        //     codeErrorMessage: {
-        //         type: String
-        //     }
-        // },
         props: ['showMobileError', 'mobileErrorMessage', 'showCodeError', 'codeErrorMessage'],
         data() {
             return {
@@ -100,6 +84,9 @@
                         window.clearInterval(timer);
                     }
                 }, 1000);
+            },
+            submit(){
+                mobileForm.submit();
             },
         }
     }

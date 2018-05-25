@@ -50,11 +50,17 @@ class RegisterController extends Controller
     {
         $validator = Validator::make($data, [
         'name' => 'required|string|max:255',
-        'email' => 'required|string|email|max:255|unique:users',
+        'email' => 'string|email|max:255|unique:users',
         'password' => 'required|string|min:6|confirmed',
-        'mobile' => 'required|unique:users',
+        'mobile' => 'unique:users',
         'vcode' => ['required', new Vcode]
     ]);
+        if(array_key_exists('email',$data)){
+            session(['type'=>'email']);
+        }
+        else{
+            session(['type'=>'mobile']);
+        }
         return $validator;
     }
 
@@ -66,11 +72,19 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
-        return User::create([
-            'name' => $data['name'],
-            'email' => $data['email'],
-            'password' => Hash::make($data['password']),
-            'mobile' => $data['mobile'],
-        ]);
+        if(array_key_exists('email',$data)){
+            return User::create([
+                'name' => $data['name'],
+                'email' => $data['email'],
+                'password' => Hash::make($data['password']),
+            ]);
+        }
+        else{
+            return User::create([
+                'name' => $data['name'],
+                'password' => Hash::make($data['password']),
+                'mobile' => $data['mobile'],
+            ]);
+        }
     }
 }
