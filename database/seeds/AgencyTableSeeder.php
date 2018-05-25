@@ -22,7 +22,11 @@ class AgencyTableSeeder extends Seeder
                 'telephone' => $faker->phoneNumber,
                 'website' => $faker->url,
                 'email' => $faker->email,
-                'started_on' => $faker->date()
+                'started_on' => $faker->date(),
+                'logo' => 'images/default.gif',
+                'verified' => false,
+                'published' => false,
+                'type' => ($i < 6 ? 'standard' : 'language')
             ]);
 
             foreach (range(1, 3) as $j) {

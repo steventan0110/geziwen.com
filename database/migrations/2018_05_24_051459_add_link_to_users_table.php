@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class AddPhoneNumberToUsersTable extends Migration
+class AddLinkToUsersTable extends Migration
 {
     /**
      * Run the migrations.
@@ -14,7 +14,7 @@ class AddPhoneNumberToUsersTable extends Migration
     public function up()
     {
         Schema::table('users', function (Blueprint $table) {
-            $table->string('mobile')->unique()->nullable();
+            $table->unsignedInteger('link');
         });
     }
 
@@ -26,7 +26,7 @@ class AddPhoneNumberToUsersTable extends Migration
     public function down()
     {
         Schema::table('users', function (Blueprint $table) {
-            $table->dropColumn('mobile');
+            $table->dropColumn('link');
         });
     }
 }
