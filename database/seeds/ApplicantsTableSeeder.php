@@ -51,8 +51,8 @@ class ApplicantsTableSeeder extends Seeder
         foreach (range(1, 100) as $i) {
             DB::table('admission_universities')->insert([
                 'name' => $faker->name,
-                'country' => $faker->countryCode,
-                'website' => $faker->url
+                'introduction' => $faker->sentence,
+                'location' => $faker->sentence,
             ]);
         }
 
@@ -69,85 +69,273 @@ class ApplicantsTableSeeder extends Seeder
             ]);
         }
 
-        foreach (range(1, 1000) as $i) {
+        foreach (range(1, 100) as $i) {
+
+            $plan_id = random_int(1, 30);
+
             DB::table('applicants')->insert([
                 'surname' => $faker->name,
-                'plan_id' => random_int(1, 30)
+                'plan_id' => $plan_id
             ]);
 
-            foreach (range(1, 5) as $j) {
-                DB::table('admission_applications')->insert([
-                    'applicant_id' => $i,
-                    'university_id' => random_int(1, 100),
-                    'plan_id' => random_int(1, 3),
-                    'decision_id' => random_int(1, 4)
-                ]);
+            if ($plan_id < 16) {
+                foreach (range(1, 5) as $j) {
+                    DB::table('admission_applications')->insert([
+                        'applicant_id' => $i,
+                        'university_id' => random_int(1, 100),
+                        'plan_id' => random_int(1, 3),
+                        'decision_id' => random_int(1, 4)
+                    ]);
+                }
             }
 
-            if (random_int(0, 1)) {
-                // TOEFL
-                DB::table('applicant_exam_toefls')->insert([
-                    'applicant_id' => $i,
-                    'taken_on' => $faker->date(),
-                    'reading' => random_int(10, 30),
-                    'listening' => random_int(10, 30),
-                    'speaking' => random_int(10, 30),
-                    'writing' => random_int(10, 30),
-                ]);
-            }
-            else {
-                // IELTS
-                DB::table('applicant_exam_ieltss')->insert([
-                    'applicant_id' => $i,
-                    'taken_on' => $faker->date(),
-                    'reading' => random_int(0, 18),
-                    'writing' => random_int(0, 18),
-                    'listening' => random_int(0, 18),
-                    'speaking' => random_int(0, 18)
-                ]);
-            }
+            if ($plan_id < 16) {
+                if (random_int(0, 1)) {
+                    // TOEFL
+                    DB::table('applicant_exams')->insert([
+                        'applicant_id' => $i,
+                        'taken_on' => $faker->date(),
+                        'type' => 'toefl',
+                        'score' => json_encode([
+                            'reading' => random_int(10, 30),
+                            'listening' => random_int(10, 30),
+                            'speaking' => random_int(10, 30),
+                            'writing' => random_int(10, 30)
+                        ]),
+                        'remark' => 'standard'
+                    ]);
+                }
+                else {
+                    // IELTS
+                    DB::table('applicant_exams')->insert([
+                        'applicant_id' => $i,
+                        'taken_on' => $faker->date(),
+                        'type' => 'ielts',
+                        'score' => json_encode([
+                            'reading' => random_int(0, 18),
+                            'writing' => random_int(0, 18),
+                            'listening' => random_int(0, 18),
+                            'speaking' => random_int(0, 18)
+                        ]),
+                        'remark' => 'standard'
+                    ]);
+                }
+                if (random_int(0, 1)) {
+                    // SAT
+                    DB::table('applicant_exams')->insert([
+                        'applicant_id' => $i,
+                        'taken_on' => $faker->date(),
+                        'type' => 'sat',
+                        'score' => json_encode([
+                            'reading' => random_int(10, 40) * 10,
+                            'writing' => random_int(10, 40) * 10,
+                            'math' => random_int(20, 80) * 10,
+                            'essay' => [
+                                'reading' => random_int(1,8),
+                                'writing' => random_int(1,8),
+                                'analysis' => random_int(1,8)
+                            ],
+                        ]),
+                        'remark' => 'standard'
+                    ]);
+                }
+                else {
+                    // ACT
+                    DB::table('applicant_exams')->insert([
+                        'applicant_id' => $i,
+                        'taken_on' => $faker->date(),
+                        'type' => 'act',
+                        'score' => json_encode([
+                            'reading' => random_int(0, 36),
+                            'english' => random_int(0, 36),
+                            'math' => random_int(0, 36),
+                            'science' => random_int(0, 36)
+                        ]),
+                        'remark' => 'standard',
+                    ]);
+                }
 
-            if (random_int(0, 1)) {
-                // SAT
-                DB::table('applicant_exam_sats')->insert([
-                    'applicant_id' => $i,
-                    'taken_on' => $faker->date(),
-                    'reading' => random_int(10, 40) * 10,
-                    'writing' => random_int(10, 40) * 10,
-                    'math' => random_int(20, 80) * 10,
-                    'essay' => "".random_int(1,8)."".random_int(1,8)."".random_int(1,8).""
-                ]);
-            }
-            else {
-                // ACT
-                DB::table('applicant_exam_acts')->insert([
-                    'applicant_id' => $i,
-                    'taken_on' => $faker->date(),
-                    'reading' => random_int(0, 36),
-                    'english' => random_int(0, 36),
-                    'math' => random_int(0, 36),
-                    'science' => random_int(0, 36)
-                ]);
-            }
+                foreach (range(1, 3) as $j) {
+                    // SAT Subject
+                    DB::table('applicant_exams')->insert([
+                        'applicant_id' => $i,
+                        'taken_on' => $faker->date(),
+                        'type' => 'sat2',
+                        'score' => json_encode([
+                            'subject' => $faker->name,
+                            'score' => random_int(20, 80) * 10
+                        ]),
+                        'remark' => 'standard'
+                    ]);
+                }
 
-            foreach (range(1, 3) as $j) {
-                // SAT Subject
-                DB::table('applicant_exam_sat_subjects')->insert([
-                    'applicant_id' => $i,
-                    'taken_on' => $faker->date(),
-                    'subject' => $faker->name,
-                    'score' => random_int(20, 80) * 10
-                ]);
-            }
-
-            foreach (range(1, 5) as $j) {
-                // AP
-                DB::table('applicant_exam_aps')->insert([
-                    'applicant_id' => $i,
-                    'taken_on' => $faker->date(),
-                    'subject' => $faker->name,
-                    'score' => random_int(1, 5)
-                ]);
+                foreach (range(1, 5) as $j) {
+                    // AP
+                    DB::table('applicant_exams')->insert([
+                        'applicant_id' => $i,
+                        'taken_on' => $faker->date(),
+                        'type' => 'ap',
+                        'score' => json_encode([
+                            'subject' => $faker->name,
+                            'score' => random_int(1, 5)
+                        ]),
+                        'remark' => 'standard'
+                    ]);
+                }
+            } else {
+                $test_type = random_int(1, 6);
+                switch ($test_type) {
+                    case 1: {
+                        if (random_int(0, 1)) {
+                            DB::table('applicant_exams')->insert([
+                                'applicant_id' => $i,
+                                'taken_on' => $faker->date(),
+                                'type' => 'toefl',
+                                'score' => json_encode([
+                                    'reading' => random_int(10, 30),
+                                    'listening' => random_int(10, 30),
+                                    'speaking' => random_int(10, 30),
+                                    'writing' => random_int(10, 30)
+                                ]),
+                                'remark' => 'before'
+                            ]);
+                        }
+                        DB::table('applicant_exams')->insert([
+                            'applicant_id' => $i,
+                            'taken_on' => $faker->date(),
+                            'type' => 'toefl',
+                            'score' => json_encode([
+                                'reading' => random_int(10, 30),
+                                'listening' => random_int(10, 30),
+                                'speaking' => random_int(10, 30),
+                                'writing' => random_int(10, 30)
+                            ]),
+                            'remark' => 'after'
+                        ]);
+                        break;
+                    }
+                    case 2: {
+                        if (random_int(0, 1)) {
+                            DB::table('applicant_exams')->insert([
+                                'applicant_id' => $i,
+                                'taken_on' => $faker->date(),
+                                'type' => 'ielts',
+                                'score' => json_encode([
+                                    'reading' => random_int(0, 18),
+                                    'writing' => random_int(0, 18),
+                                    'listening' => random_int(0, 18),
+                                    'speaking' => random_int(0, 18)
+                                ]),
+                                'remark' => 'before'
+                            ]);
+                        }
+                        DB::table('applicant_exams')->insert([
+                            'applicant_id' => $i,
+                            'taken_on' => $faker->date(),
+                            'type' => 'ielts',
+                            'score' => json_encode([
+                                'reading' => random_int(0, 18),
+                                'writing' => random_int(0, 18),
+                                'listening' => random_int(0, 18),
+                                'speaking' => random_int(0, 18)
+                            ]),
+                            'remark' => 'after'
+                        ]);
+                        break;
+                    }
+                    case 3: {
+                        if (random_int(0, 1)) {
+                            DB::table('applicant_exams')->insert([
+                                'applicant_id' => $i,
+                                'taken_on' => $faker->date(),
+                                'type' => 'sat',
+                                'score' => json_encode([
+                                    'reading' => random_int(10, 40) * 10,
+                                    'writing' => random_int(10, 40) * 10,
+                                    'math' => random_int(20, 80) * 10,
+                                    'essay' => [
+                                        'reading' => random_int(1,8),
+                                        'writing' => random_int(1,8),
+                                        'analysis' => random_int(1,8)
+                                    ],
+                                ]),
+                                'remark' => 'before'
+                            ]);
+                        }
+                        DB::table('applicant_exams')->insert([
+                            'applicant_id' => $i,
+                            'taken_on' => $faker->date(),
+                            'type' => 'sat',
+                            'score' => json_encode([
+                                'reading' => random_int(10, 40) * 10,
+                                'writing' => random_int(10, 40) * 10,
+                                'math' => random_int(20, 80) * 10,
+                                'essay' => [
+                                    'reading' => random_int(1,8),
+                                    'writing' => random_int(1,8),
+                                    'analysis' => random_int(1,8)
+                                ],
+                            ]),
+                            'remark' => 'after'
+                        ]);
+                        break;
+                    }
+                    case 4: {
+                        if (random_int(0, 1)) {
+                            DB::table('applicant_exams')->insert([
+                                'applicant_id' => $i,
+                                'taken_on' => $faker->date(),
+                                'type' => 'act',
+                                'score' => json_encode([
+                                    'reading' => random_int(0, 36),
+                                    'english' => random_int(0, 36),
+                                    'math' => random_int(0, 36),
+                                    'science' => random_int(0, 36)
+                                ]),
+                                'remark' => 'before',
+                            ]);
+                        }
+                        DB::table('applicant_exams')->insert([
+                            'applicant_id' => $i,
+                            'taken_on' => $faker->date(),
+                            'type' => 'act',
+                            'score' => json_encode([
+                                'reading' => random_int(0, 36),
+                                'english' => random_int(0, 36),
+                                'math' => random_int(0, 36),
+                                'science' => random_int(0, 36)
+                            ]),
+                            'remark' => 'after',
+                        ]);
+                        break;
+                    }
+                    case 5: {
+                        DB::table('applicant_exams')->insert([
+                            'applicant_id' => $i,
+                            'taken_on' => $faker->date(),
+                            'type' => 'sat2',
+                            'score' => json_encode([
+                                'subject' => $faker->name,
+                                'score' => random_int(20, 80) * 10
+                            ]),
+                            'remark' => 'after'
+                        ]);
+                        break;
+                    }
+                    case 6: {
+                        DB::table('applicant_exams')->insert([
+                            'applicant_id' => $i,
+                            'taken_on' => $faker->date(),
+                            'type' => 'ap',
+                            'score' => json_encode([
+                                'subject' => $faker->name,
+                                'score' => random_int(1, 5)
+                            ]),
+                            'remark' => 'after'
+                        ]);
+                        break;
+                    }
+                }
             }
 
             foreach (range(1, 5) as $j) {

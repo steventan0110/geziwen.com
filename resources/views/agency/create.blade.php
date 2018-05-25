@@ -31,6 +31,15 @@
                 <input type="email" class="form-control" id="email" name="agency[email]">
             </div>
             <div class="form-group mb-3">
+                <label for="type">机构类别</label>
+                <div class="input-group mb-3">
+                    <select class="custom-select" id="type" name="agency[type]">
+                        <option value="standard" selected>中介机构</option>
+                        <option value="language">语言培训机构</option>
+                    </select>
+                </div>
+            </div>
+            <div class="form-group mb-3">
                 <button type="submit" class="btn btn-info btn-block">邀请</button>
             </div>
         </form>
