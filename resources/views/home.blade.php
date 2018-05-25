@@ -13,27 +13,44 @@
                     </div>
                 @endif
 
-                <div id="agency" class="col-sm-4">
-                    <div class="p-3 bg-white rounded box-shadow">
-                        <h5 class="border-bottom border-gray pb-2 mb-2">基本信息</h5>
-                        <dl class="row">
-                            <dt class="col-sm-4">机构名称</dt>
-                            <dd class="col-sm-8">{{ $user->agency->name }}</dd>
-                            <dt class="col-sm-4">机构简介</dt>
-                            <dd class="col-sm-8">{{ $user->agency->introduction }}</dd>
-                            <dt class="col-sm-4">地址</dt>
-                            <dd class="col-sm-8">{{ $user->agency->address }}</dd>
-                            <dt class="col-sm-4">联系电话</dt>
-                            <dd class="col-sm-8">{{ $user->agency->telephone }}</dd>
-                            <dt class="col-sm-4">网址</dt>
-                            <dd class="col-sm-8">{{ $user->agency->website }}</dd>
-                            <dt class="col-sm-4">邮箱地址</dt>
-                            <dd class="col-sm-8">{{ $user->agency->email }}</dd>
-                            <dt class="col-sm-4">开办日期</dt>
-                            <dd class="col-sm-8">{{ $user->agency->started_on }}</dd>
-                        </dl>
-                        <a class="btn btn-warning btn-block" href="{{ route('agencies.edit', ['id' => $user->agency->id]) }}">编辑</a>
-                        <a class="btn btn-info btn-block" href="{{ route('agencies.show', ['id' => $user->agency->id]) }}">查看主页效果</a>
+                <div class="col-sm-4">
+                    <div id="account" class="container mb-4">
+                        <div class="p-3 bg-white rounded box-shadow">
+                            <h5 class="border-bottom border-gray pb-2 mb-2">账号信息</h5>
+                            <dl class="row">
+                                <dt class="col-sm-4">账号名称</dt>
+                                <dd class="col-sm-8">{{ $user->agency->name }}</dd>
+                                <dt class="col-sm-4">登录邮箱</dt>
+                                <dd class="col-sm-8">{{ $user->email }}</dd>
+                            </dl>
+                            <button type="button" class="btn btn-danger btn-block" data-toggle="tooltip"
+                                    data-placement="bottom" title="退出登录，点击忘记密码，接收邮件重置密码。">
+                                修改密码
+                            </button>
+                        </div>
+                    </div>
+                    <div id="agency" class="container mb-4">
+                        <div class="p-3 bg-white rounded box-shadow">
+                            <h5 class="border-bottom border-gray pb-2 mb-2">基本信息</h5>
+                            <dl class="row">
+                                <dt class="col-sm-4">机构名称</dt>
+                                <dd class="col-sm-8">{{ $user->agency->name }}</dd>
+                                <dt class="col-sm-4">机构简介</dt>
+                                <dd class="col-sm-8">{{ $user->agency->introduction }}</dd>
+                                <dt class="col-sm-4">地址</dt>
+                                <dd class="col-sm-8">{{ $user->agency->address }}</dd>
+                                <dt class="col-sm-4">联系电话</dt>
+                                <dd class="col-sm-8">{{ $user->agency->telephone }}</dd>
+                                <dt class="col-sm-4">网址</dt>
+                                <dd class="col-sm-8">{{ $user->agency->website }}</dd>
+                                <dt class="col-sm-4">邮箱地址</dt>
+                                <dd class="col-sm-8">{{ $user->agency->email }}</dd>
+                                <dt class="col-sm-4">开办日期</dt>
+                                <dd class="col-sm-8">{{ $user->agency->started_on }}</dd>
+                            </dl>
+                            <a class="btn btn-warning btn-block" href="{{ route('agencies.edit', ['id' => $user->agency->id]) }}">编辑</a>
+                            <a class="btn btn-info btn-block" href="{{ route('agencies.show', ['id' => $user->agency->id]) }}">查看主页效果</a>
+                        </div>
                     </div>
                 </div>
 
