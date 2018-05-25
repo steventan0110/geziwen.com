@@ -62,6 +62,9 @@ Vue.http.headers.common['X-CSRF-TOKEN'] = document.querySelector('meta[name=csrf
 
 const app = new Vue({
     el: '#app',
+    mounted: function () {
+        $('[data-toggle="tooltip"]').tooltip();
+    },
     data: {
         Middle: new Vue()
     }
