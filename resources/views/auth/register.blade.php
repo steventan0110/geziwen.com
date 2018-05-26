@@ -22,25 +22,8 @@
                                     <a class="nav-link" data-toggle="tab" href="#register-by-email" role="tab" aria-selected="true">邮箱注册</a>
                                 </li>
                             @endif
-                            {{--@if(session('type')=='phone')--}}
-                                {{--<li class="nav-item">--}}
-                                    {{--<a class="nav-link active" data-toggle="tab" href="#register-by-mobile" role="tab" aria-selected="true">手机注册</a>--}}
-                                {{--</li>--}}
-                                {{--<li class="nav-item">--}}
-                                    {{--<a class="nav-link" data-toggle="tab" href="#register-by-email" role="tab" aria-selected="false">邮箱注册</a>--}}
-                                {{--</li>--}}
-                            {{--@endif--}}
-                            {{--@if(session('type')!='phone'&&session('type')!='mobile')--}}
-                                    {{--<li class="nav-item">--}}
-                                        {{--<a class="nav-link active" data-toggle="tab" href="#register-by-mobile" role="tab" aria-selected="false">手机注册</a>--}}
-                                    {{--</li>--}}
-                                    {{--<li class="nav-item">--}}
-                                        {{--<a class="nav-link" data-toggle="tab" href="#register-by-email" role="tab" aria-selected="true">邮箱注册</a>--}}
-                                    {{--</li>--}}
-                            {{--@endif--}}
                         </ul>
                     </div>
-
                     <div class="card-body">
                         <div class="tab-content">
                             @if(session('type')=='email')

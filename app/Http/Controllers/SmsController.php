@@ -8,8 +8,6 @@
 
 namespace App\Http\Controllers;
 use Illuminate\Http\Request;
-use App\Sms;
-use Illuminate\Support\Facades\Session;
 
 class SmsController extends Controller
 {
@@ -21,9 +19,13 @@ class SmsController extends Controller
     }
 
     public function send(Request $request) {
+        $phoneNumber = $request->phoneNumber;
+        $user = \DB::table('users')->where('mobile',$phoneNumber)->get();
+        if($user->first() != null) {
+            return response("mobile has been registered", 505);
+        }
         $vcode = $this->generate_code(6);
         session(['vcode'=>$vcode]);
-        $phoneNumber = $request->phoneNumber;
         $sig = $request->sig;
         $urlRandom = $request->urlRandom;
         $url = 'https://yun.tim.qq.com/v5/tlssmssvr/sendsms?sdkappid=1400093698&random='.$urlRandom;
@@ -62,5 +64,6 @@ class SmsController extends Controller
             "tpl_id" => 126597
         ));
         list($returnCode, $returnContent) = http_post_json($url, $jsonStr);
+        return response("vcode has been sent", 200);
     }
 }

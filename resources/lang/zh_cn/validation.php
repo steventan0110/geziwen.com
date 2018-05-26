@@ -83,6 +83,7 @@ return [
     'unique'               => ':attribute 已存在',
     'uploaded'             => ':attribute 上传失败',
     'url'                  => ':attribute 无效的格式',
+    'vcode'                => ':attribute 不正确',
 
     /*
     |--------------------------------------------------------------------------
@@ -117,6 +118,7 @@ return [
         'account'  => '账号',
         'captcha'  => '验证码',
         'mobile'   => '手机号',
+        'vcode'    => '验证码',
         'password' => '密码',
         'content'  => '内容',
         'identity' => '手机号/用户名',
