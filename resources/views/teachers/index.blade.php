@@ -41,7 +41,7 @@
                 @endforeach
             </div>
     </div>
-    <small class="d-block text-right mt-3">
+    <small class="d-block text-right mt-4GIT">
         <div class="container align-content-center">
             <ul class="pagination justify-content-center text-info">
             {{ $teachers->links('vendor.pagination.bootstrap-4') }}
