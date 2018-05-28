@@ -11,7 +11,7 @@
                      src="{{ asset($teacher->picture) }}" alt="Generic placeholder image" width="100px">
                 <div class="media-body ml-3">
                     <h3>{{ $teacher->name }}</h3>
-                    <p class="small mt-3">所属中介: <a href="{{ route('agency.show', ['id' => $teacher->agency->id]) }}">{{ $teacher->agency->name }}</a></p>
+                    <p class="small mt-3">所属中介: <a href="{{ route('agencies.show', ['id' => $teacher->agency->id]) }}">{{ $teacher->agency->name }}</a></p>
                     <p class="small mt-3">介绍: {{ $teacher->introduction }}</p>
                 </div>
             </div>
