@@ -11,7 +11,12 @@ class MailController extends Controller
     public function send(Request $request)
     {
         $address = $request->address;
-        $verificaiton=new Vcode();
+        $user = \DB::table('users')->where('email',$address)->get();
+        if($user->first() != null) {
+            return response("address has been registered", 505);
+        }
+        $verificaiton = new Vcode();
         Mail::to($address)->send($verificaiton);
+        return response("vcode has been sent", 200);
     }
 }
