@@ -37,3 +37,5 @@ Route::resource('teacher.applicants', 'Agency\TeacherApplicantsController');
 
 Route::resource('agencies', 'Agency\AgenciesController');
 
+Route::resource('agency.teachers','Agency\TeachersController');
+
