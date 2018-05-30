@@ -47,9 +47,6 @@
             {{ $teachers->links('vendor.pagination.bootstrap-4') }}
             </ul>
         </div>
-        {{-- TODO: Implement Teacher Pagination --}}
-
     </small>
-    </div>
-    </div>
-
+</div>
+@endsection
