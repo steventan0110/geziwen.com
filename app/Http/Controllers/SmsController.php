@@ -17,13 +17,15 @@ class SmsController extends Controller
         $max = pow(10, $length) - 1;
         return rand($min, $max);
     }
-
-    public function send(Request $request) {
-        $phoneNumber = $request->phoneNumber;
-        $user = \DB::table('users')->where('mobile',$phoneNumber)->get();
+    public function test(Request $request){
+        $user = \DB::table('users')->where('mobile', $request->phoneNumber)->get();
         if($user->first() != null) {
             return response("mobile has been registered", 505);
         }
+        return response("", 200);
+    }
+    public function send(Request $request) {
+        $phoneNumber = $request->phoneNumber;
         $vcode = $this->generate_code(6);
         session(['vcode'=>$vcode]);
         $sig = $request->sig;
@@ -64,6 +66,5 @@ class SmsController extends Controller
             "tpl_id" => 126597
         ));
         list($returnCode, $returnContent) = http_post_json($url, $jsonStr);
-        return response("vcode has been sent", 200);
     }
 }

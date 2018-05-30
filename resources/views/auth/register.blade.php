@@ -51,9 +51,7 @@
                                             </div>
                                         </div>
                                         <hr class="my-5" style="width: 70%">
-                                        <sms :show-mobile-error="'{{ $errors->has('mobile')==1 }}'"
-                                             :mobile-error-message="'{{ $errors->first('mobile') }}'"
-                                             :show-code-error="''"
+                                        <sms :show-code-error="'{{ session('type')=='mobile' ? $errors->has('vcode')==1 : null }}'"
                                              :code-error-message="'{{ $errors->first('vcode') }}'"></sms>
                                     </form>
                                 </div>
@@ -90,9 +88,7 @@
                                             </div>
                                         </div>
                                         <hr class="my-5" style="width: 70%">
-                                        <mail :show-email-error="'{{ $errors->has('email')==1 }}'"
-                                              :email-error-message="'{{ $errors->first('email') }}'"
-                                              :show-code-error="'{{ $errors->has('vcode')==1 }}'"
+                                        <mail :show-code-error="'{{ session('type')=='email' ? $errors->has('vcode')==1 : null }}'"
                                               :code-error-message="'{{ $errors->first('vcode') }}'"></mail>
                                     </form>
                                 </div>
