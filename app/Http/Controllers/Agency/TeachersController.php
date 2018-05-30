@@ -19,7 +19,6 @@ class TeachersController extends Controller
         $agency = Agency::find($agency_id);
         $teachers = $agency->teachers()->paginate(6);
         return view('teachers.index', ['teachers'=>$teachers,'agency'=>$agency]);
-        //
     }
 
     /**

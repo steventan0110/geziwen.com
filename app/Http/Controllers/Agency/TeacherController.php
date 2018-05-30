@@ -12,6 +12,6 @@ class TeacherController extends Controller
     public function view(Request $request, $id) {
         $teacher = Teacher::findOrFail($id);
         $teacher->applicants = $teacher->applicants()->limit(5)->get();
-        return view('agency.teacher', ['teacher' => $teacher]);
+        return view('teacher.show', ['teacher' => $teacher]);
     }
 }

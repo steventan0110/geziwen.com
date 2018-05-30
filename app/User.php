@@ -2,6 +2,7 @@
 
 namespace App;
 
+use App\Agency\Agency;
 use Illuminate\Notifications\Notifiable;
 use app\Comment\Comment;
 use Illuminate\Foundation\Auth\User as Authenticatable;
@@ -20,7 +21,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password',
+        'name', 'email', 'password', 'role', 'link', 'mobile'
     ];
 
     /**
@@ -31,4 +32,8 @@ class User extends Authenticatable
     protected $hidden = [
         'password', 'remember_token',
     ];
+
+    public function agency() {
+        return $this->belongsTo(Agency::class, 'link');
+    }
 }

@@ -26,8 +26,7 @@ Route::prefix('plan')->group(function () {
 });
 
 Route::prefix('teacher')->group(function() {
-    Route::get('{id}', 'Agency\TeacherController@view')
-        ->name('agency.teacher.show');
+    Route::get('{id}', 'Agency\TeacherController@view')->name('agency.teacher.show');
 });
 
 Route::resource('agency.applicants', 'Agency\ApplicantsController');
@@ -39,3 +38,4 @@ Route::resource('teacher.applicants', 'Agency\TeacherApplicantsController');
 Route::resource('agencies', 'Agency\AgenciesController');
 
 Route::resource('agency.teachers','Agency\TeachersController');
+
