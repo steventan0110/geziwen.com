@@ -3,6 +3,7 @@
 namespace App\Agency;
 
 use App\Agency\Service\Plan;
+use App\User;
 use Illuminate\Database\Eloquent\Model;
 use App\Applicant\Applicant;
 use App\Comment\Comment;
@@ -13,6 +14,8 @@ class Agency extends Model
     use Searchable;
 
     protected $table = "agencies";
+
+    protected $guarded = ['verified'];
 
     public function searchableAs() {
         return $this->table."_index";
@@ -38,5 +41,9 @@ class Agency extends Model
 
     public function comments() {
         return $this->morphMany(Comment::class, 'commentable');
+    }
+
+    public function user() {
+        return $this->hasOne(User::class, 'link');
     }
 }
