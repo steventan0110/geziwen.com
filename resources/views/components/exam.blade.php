@@ -3,7 +3,7 @@
 @elseif($exam->is_before)
     <h6>培训前分数</h6>
 @endif
-<p>
+<h6>
     @if($exam->type == 'toefl')
         TOEFL:
         <span class="badge badge-pill badge-primary">阅读</span> {{ $exam->score['reading'] }}
@@ -25,7 +25,7 @@
 	    <span class="badge badge-pill badge-primary">阅读</span> {{ $exam->score['reading'] }}
 	@endif
 	@if($exam->score['writing'] != null)
-	    <span class="badge badge-pill badge-secondary">语法</span>  $exam->scorewriting'] }}
+	    <span class="badge badge-pill badge-secondary">语法</span> {{ $exam->score['writing'] }}
 	@endif
 	@if($exam->score['math'] != null)
 	    <span class="badge badge-pill badge-success">数学</span> {{ $exam->score['math'] }}
@@ -46,4 +46,4 @@
         AP:
         <span class="badge badge-pill badge-primary">{{ $exam->score['subject'] }}</span> {{ $exam->score['score'] }}
     @endif
-</p>
+</h6>

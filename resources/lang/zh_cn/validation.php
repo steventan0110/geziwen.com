@@ -129,6 +129,9 @@ return [
         'agency.website' => '机构网址',
         'agency.email' => '机构邮箱',
         'agency.started_on' => '开办日期',
+        'applicant.surname' => '案例名称',
+        'applicant.introduction' => '案例介绍',
+        'applicant.plan' => '所属项目'
     ],
 
 ];

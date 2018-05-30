@@ -21,6 +21,8 @@ class Applicant extends Model
 
     protected $table = "applicants";
 
+    protected $fillable = ['surname', 'introduction'];
+
     public function searchableAs() {
         return $this->table."_index";
     }
