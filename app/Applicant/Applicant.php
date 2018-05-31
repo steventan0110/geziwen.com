@@ -81,4 +81,6 @@ class Applicant extends Model
     public function teachers() {
         return $this->belongsToMany(Teacher::class,'teachers_applicants','teacher_id','applicant_id');
     }
+
+    protected $hidden = ['created_at', 'updated_at', 'id', 'plan_id', 'pivot'];
 }

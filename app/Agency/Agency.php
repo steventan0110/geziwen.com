@@ -46,4 +46,6 @@ class Agency extends Model
     public function user() {
         return $this->hasOne(User::class, 'link');
     }
+
+    protected $hidden = ['created_at', 'updated_at', 'id'];
 }
