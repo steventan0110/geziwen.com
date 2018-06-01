@@ -129,6 +129,10 @@ return [
         'agency.website' => '机构网址',
         'agency.email' => '机构邮箱',
         'agency.started_on' => '开办日期',
+        'teacher.name' => '老师名字',
+        'teacher.introduction' => '老师简介',
+        'teacher.years_of_teaching' => '入职时间',
+        'teacher.subject' => '教授科目',
     ],
 
 ];

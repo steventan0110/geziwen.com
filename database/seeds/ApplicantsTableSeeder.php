@@ -127,14 +127,15 @@ class ApplicantsTableSeeder extends Seeder
                         'taken_on' => $faker->date(),
                         'type' => 'sat',
                         'score' => json_encode([
-                            'reading' => random_int(10, 40) * 10,
-                            'writing' => random_int(10, 40) * 10,
-                            'math' => random_int(20, 80) * 10,
+                            'reading' => ($r = random_int(10, 40) * 10),
+                            'writing' => ($w = random_int(10, 40) * 10),
+                            'math' => ($m = random_int(20, 80) * 10),
                             'essay' => [
                                 'reading' => random_int(1,8),
                                 'writing' => random_int(1,8),
                                 'analysis' => random_int(1,8)
                             ],
+                            'score' => ($r + $w + $m)
                         ]),
                         'remark' => 'standard'
                     ]);

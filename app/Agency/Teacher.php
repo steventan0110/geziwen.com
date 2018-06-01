@@ -1,10 +1,4 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: asus
- * Date: 2018/3/13
- * Time: 10:39
- */
 namespace App\Agency;
 
 use Illuminate\Database\Eloquent\Model;
@@ -17,6 +11,8 @@ class Teacher extends Model
     use Searchable;
 
     protected $table = "teachers";
+
+    protected $fillable = ["name", "introduction", "subject", "years_of_teaching"];
 
     public function searchableAs() {
         return $this->table."_index";
