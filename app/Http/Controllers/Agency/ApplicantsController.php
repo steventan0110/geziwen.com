@@ -4,7 +4,9 @@ namespace App\Http\Controllers\Agency;
 
 use App\Agency\Agency;
 use App\Agency\Service\Plan;
+use App\Applicant\ActivityType;
 use App\Applicant\Applicant;
+use App\Application\University;
 use App\Http\Requests\ApplicantCreateRequest;
 use App\Http\Requests\ApplicantUpdateRequest;
 use Illuminate\Auth\Access\AuthorizationException;
@@ -41,7 +43,12 @@ class ApplicantsController extends Controller
             return redirect()->back();
         }
         $agency = \Auth::user()->agency;
-        return view('applicant.create', compact('agency'));
+        return view('applicant.create', [
+            'agency' => $agency,
+            'activity_types' => ActivityType::all(),
+            'universities' => University::all(),
+            'plans' => \App\Application\Plan::all()
+        ]);
     }
 
     /**
@@ -59,7 +66,13 @@ class ApplicantsController extends Controller
         }
         $data = $request->validated();
         $plan = Plan::find($request['applicant']['plan']);
-        $plan->applicants()->save(new Applicant($data['applicant']));
+        $applicant = $plan->applicants()->create($data['applicant']);
+        $applicant->exams()->createMany(array_key_exists('exams', $data) ? $data['exams'] : []);
+        if ($data['applicant_type'] === 'standard') {
+            $applicant->activities()->createMany(array_key_exists('activities', $data) ? $data['activities'] : []);
+            $applicant->awards()->createMany(array_key_exists('awards', $data) ? $data['awards'] : []);
+            $applicant->offers()->createMany(array_key_exists('offers', $data) ? $data['offers'] : []);
+        }
         return redirect()->route('home');
     }
 

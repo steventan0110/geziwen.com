@@ -24,9 +24,21 @@ class ApplicantCreateRequest extends FormRequest
     public function rules()
     {
         return [
+            'applicant_type' => 'required|in:standard,language',
             'applicant.surname' => 'required',
             'applicant.plan' => 'required|integer',
-            'applicant.introduction' => 'required'
+            'applicant.introduction' => 'required',
+            'exams.*.type' => 'required|in:toefl,ielts,sat,act,ap,sat2',
+            'exams.*.score' => 'required|array',
+            'exams.*.score.total' => 'required_unless:applicant_type,language|integer|nullable',
+            'activities.*.type_id' => 'required|integer',
+            'activities.*.name' => 'required',
+            'activities.*.description' => 'required',
+            'awards.*.name' => 'required',
+            'awards.*.received_on' => 'required',
+            'awards.*.description' => 'required',
+            'offers.*.university_id' => 'required|integer',
+            'offers.*.plan_id' => 'required|integer'
         ];
     }
 }
