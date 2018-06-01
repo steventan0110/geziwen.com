@@ -129,6 +129,20 @@ return [
         'agency.website' => '机构网址',
         'agency.email' => '机构邮箱',
         'agency.started_on' => '开办日期',
+        'applicant.surname' => '案例名称',
+        'applicant.introduction' => '案例介绍',
+        'applicant.plan' => '所属项目',
+        'exams.*.type' => '考试类型',
+        'exams.*.score' => '考试分数',
+        'exams.*.score.total' => '考试总分',
+        'activities.*.type_id' => '活动类型',
+        'activities.*.name' => '活动名称',
+        'activities.*.description' => '活动简介',
+        'awards.*.name' => '奖项名称',
+        'awards.*.received_on' => '奖项获得日期',
+        'awards.*.introduction' => '奖项介绍',
+        'offers.*.university_id' => '录取学校',
+        'offers.*.plan_id' => '申请时期'
     ],
 
 ];

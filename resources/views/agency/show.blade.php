@@ -76,7 +76,7 @@
                 @endforeach
             </div>
             <small class="d-block text-right mt-3">
-                <a href="">查看所有老师</a>
+                <a href="{{route('agency.teachers.index',['id'=>$agency->id]) }}">查看所有老师</a>
                 {{-- TODO: Implement Teacher Pagination --}}
             </small>
         </div>

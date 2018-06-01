@@ -19,7 +19,8 @@ class ApplicantPolicy
      */
     public function view(User $user, Applicant $applicant)
     {
-        return true;
+        return ($user->role == 'agency' && $user->link == $applicant->plan->agency->id)
+            || $user->role == 'geziwen';
     }
 
     /**
@@ -44,7 +45,7 @@ class ApplicantPolicy
      */
     public function update(User $user, Applicant $applicant)
     {
-        return ($user->role == 'agency' && $user->link == $applicant->agency->id)
+        return ($user->role == 'agency' && $user->link == $applicant->plan->agency->id)
             || $user->role == 'geziwen';
     }
 
@@ -57,7 +58,7 @@ class ApplicantPolicy
      */
     public function delete(User $user, Applicant $applicant)
     {
-        return $user->role == 'agency' && $user->link == $applicant->agency->id
+        return ($user->role == 'agency' && $user->link == $applicant->plan->agency->id)
             || $user->role == 'geziwen';
     }
 }
