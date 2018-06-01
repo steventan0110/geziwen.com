@@ -2,11 +2,16 @@
 
 use Illuminate\Http\Request;
 
-use App\Http\Resources\UniversityCollection;
-use App\Http\Resources\ApplicationPlanCollection;
 use App\Application\University;
 use App\Application\Plan;
-
+use App\Agency\Agency;
+use App\Agency\Teacher;
+use App\Applicant\Applicant;
+use App\Http\Resources\ApplicationPlanCollection;
+use App\Http\Resources\UniversityCollection;
+use App\Http\Resources\ApplicantResource;
+use App\Http\Resources\TeacherResource;
+use App\Http\Resources\AgencyResource;
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -36,3 +41,28 @@ Route::get('university', function () {
 Route::get('application/plan', function () {
     return new ApplicationPlanCollection(Plan::all());
 });
+
+Route::get('agencies', function() {
+    return AgencyResource::collection(Agency::paginate(5));
+});
+
+Route::get('agencies/{agency_id}', function($agency_id) {
+    return new AgencyResource(Agency::find($agency_id));
+});
+
+Route::get('teacher/{teacher_id}', function($teacher_id) {
+    return new TeacherResource(Teacher::find($teacher_id));
+});
+
+Route::get('agency/{agency_id}/teachers', function($agency_id) {
+    return TeacherResource::collection(Agency::find($agency_id)->teachers()->paginate(5));
+});
+
+Route::get('applicant/{applicant_id}', function($applicant_id) {
+    return new ApplicantResource(Applicant::find($applicant_id));
+});
+
+Route::get('agency/{agency_id}/applicants', function($agency_id) {
+    return ApplicantResource::collection(Agency::find($agency_id)->applicants()->paginate(5));
+});
+
