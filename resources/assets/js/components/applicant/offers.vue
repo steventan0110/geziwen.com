@@ -1,6 +1,8 @@
 <template>
     <div>
         <div v-for="(offer, index) in offers" class="row">
+            <input type="hidden" :name='"offers[" + index + "][id]"' :value='offer.id'/>
+            <input type="hidden" :name='"offers[" + index + "][applicant_id]"' :value="applicant">
             <div class="col-md-10 form-row">
                 <div class="col-md-8 form-group">
                     <select required class="form-control" v-model="offer.university_id" :name='"offers[" + index + "][university_id]"'>
@@ -31,19 +33,36 @@
     export default {
         name: "applicant-offers",
         mounted: function () {
-            this.create();
             this.$http.get('/api/university').then(response => {
                 this.universities = response.body.data;
-                console.log(this.universities);
             }, response => {
                 alert('服务器错误，请联系管理员。');
             });
             this.$http.get('/api/application/plan').then(response => {
                 this.plans = response.body.data;
-                console.log(this.plans);
             }, response => {
                 alert('服务器错误，请联系管理员');
-            })
+            });
+            if (this.update) {
+                this.$http.get('/api/applicant/' + this.applicant + '/offers').then(response => {
+                    this.offers = response.body.data;
+                    console.log(response.body.data);
+                }, response => {
+                    alert('服务器错误，请联系管理员！');
+                });
+            } else {
+                this.create();
+            }
+        },
+        props: {
+            update: {
+                required: false,
+                default: false,
+            },
+            applicant: {
+                required: false,
+                default: 0
+            }
         },
         data: function () {
             return {
@@ -55,9 +74,11 @@
         methods: {
             create: function () {
                 this.offers.push({
+                    id: 0,
                     university_id: null,
                     plan_id: null,
                 });
+                console.log(this.offers);
             },
             remove: function(index) {
                 this.offers.splice(index, 1);

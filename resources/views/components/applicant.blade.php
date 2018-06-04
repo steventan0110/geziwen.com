@@ -15,7 +15,7 @@
                        href="{{ route('agency.applicants.edit', ['agency' => $applicant->plan->agency->id, 'applicant' => $applicant->id]) }}">编辑</a>
                     <a class="dropdown-item" data-toggle="modal" data-target="#applicant-{{ $applicant->id }}-delete">删除</a>
                     <a class="dropdown-item"
-                       href="{{ route('agency.applicants.show', ['agency' => $applicant->plan->agency->id, 'applicant' => $applicant->id]) }}">查看</a>
+                       data-toggle="modal" data-target="#applicant-{{ $applicant->id }}">查看详细</a>
                 </div>
             </div>
         @endcan

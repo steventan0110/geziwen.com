@@ -1,6 +1,8 @@
 <template>
     <div>
         <div v-for="(award, index) in awards" class="row">
+            <input type="hidden" :name='"awards[" + index + "][id]"' :value='award.id'/>
+            <input type="hidden" :name='"awards[" + index + "][applicant_id]"' :value="applicant">
             <div class="col-md-10 form-row">
                 <div class="col-md-8 form-group">
                     <input required class="form-control" type="text" v-model="award.name" :name='"awards[" + index + "][name]"' placeholder="奖项名称">
@@ -28,7 +30,25 @@
     export default {
         name: "applicant-awards",
         mounted: function () {
-            this.create();
+            if (this.update) {
+                this.$http.get('/api/applicant/' + this.applicant + '/awards').then(response => {
+                    this.awards = response.body.data;
+                }, response => {
+                    alert('服务器错误，请联系管理员！');
+                });
+            } else {
+                this.create();
+            }
+        },
+        props: {
+            update: {
+                required: false,
+                default: false,
+            },
+            applicant: {
+                required: false,
+                default: 0
+            }
         },
         data: function () {
             return {
@@ -38,10 +58,12 @@
         methods: {
             create: function () {
                 this.awards.push({
+                    id: 0,
                     name: null,
                     description: null,
                     received_on: null
                 });
+                console.log(this.awards);
             },
             remove: function(index) {
                 this.awards.splice(index, 1);

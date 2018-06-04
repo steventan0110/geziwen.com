@@ -16,7 +16,10 @@ class OfferResource extends JsonResource
     public function toArray($request)
     {
         return [
+            'id' => $this->id,
+            'university_id' => $this->university_id,
             'university' => new UniversityResource($this->university),
+            'plan_id' => $this->plan_id,
             'plan' => new PlanResource($this->plan),
         ];
     }

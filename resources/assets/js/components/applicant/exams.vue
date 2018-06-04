@@ -1,10 +1,10 @@
 <template>
     <div>
         <div v-for="(exam, index) in exams" class="row">
-            <input type="hidden" :name='"exams[" + index + "][type]"' :value='exam.type'>
-            <input v-if="type === 'standard'" type="hidden" :name='"exams[" + index + "][remark]"' value="standard">
-            <input v-else-if="index === 0" type="hidden" :name='"exams[" + index + "][remark]"' value="before">
-            <input v-else-if="index === 1" type="hidden" :name='"exams[" + index + "][remark]"' value="after">
+            <input type="hidden" :name='"exams[" + index + "][type]"' :value='exam.type'/>
+            <input type="hidden" :name='"exams[" + index + "][id]"' :value="exam.id">
+            <input type="hidden" :name='"exams[" + index + "][applicant_id]"' :value="applicant">
+            <input type="hidden" :name='"exams[" + index + "][remark]"' :value="exam.remark">
             <div class="col-md-2">
                 <input v-model="exam.score.total"
                        v-if="exam.type !== 'sat2' && exam.type !== 'ap'"
@@ -44,7 +44,7 @@
                     <input v-model="exam.score.reading" type="number" class="form-control" :name='"exams[" + index + "][score][reading]"' placeholder="阅读"/>
                 </div>
                 <div class="form-group col-sm-3">
-                    <input v-model="exam.score.writing" type="number" class="form-control" :name='"exams[" + index + "][score][writing]"' placeholder="语法"/>
+                    <input v-model="exam.score.english" type="number" class="form-control" :name='"exams[" + index + "][score][english]"' placeholder="英语"/>
                 </div>
                 <div class="form-group col-sm-3">
                     <input v-model="exam.score.math" type="number" class="form-control" :name='"exams[" + index + "][score][math]"' placeholder="数学">
@@ -99,13 +99,18 @@
             </div>
             <div class="col-md-2">
                 <button v-if="type === 'standard'" type="button" class="btn btn-danger btn-block" @click="remove(index)">删除</button>
-                <input v-else-if="index === 0" value="培训前分数（可不填）" disabled class="form-control-plaintext" />
-                <input v-else-if="index === 1" value="培训后分数" disabled class="form-control-plaintext" />
+                <div class="form-group" v-else-if="exam.remark === 'before'">
+                    <button type="button" class="btn btn-danger" @click="remove(index)">删除培训前</button>
+                </div>
+                <input v-else-if="exam.remark === 'after'" value="培训后分数" disabled class="form-control-plaintext" />
             </div>
         </div>
         <div class="row mb-4">
             <div v-if="type === 'standard'" class="form-group mb-2 col-sm-2">
-                <button type="button" class="btn btn-warning btn-block" @click="create">新建</button>
+                <button type="button" class="btn btn-warning btn-block" @click="create('standard')">新建</button>
+            </div>
+            <div v-else-if="this.exams.length === 1" class="form-group mb-2 col-sm-2">
+                <button type="button" class="btn btn-warning btn-block" @click="create('before')">添加培训前</button>
             </div>
             <div class="form-group mb-2 col-sm-4">
                 <select class="form-control" name="exam-type" v-model='selectedType' @change="changeExamType">
@@ -127,12 +132,31 @@
         props: {
             type: {
                 required: true
+            },
+            update: {
+                required: false,
+                default: false
+            },
+            applicant: {
+                required: false,
+                default: 0
             }
         },
         mounted: function () {
-            this.create();
-            if (this.type === 'language') {
+            if (this.update) {
+                this.$http.get('/api/applicant/' + this.applicant + '/exams').then(response => {
+                    this.exams = response.body.data;
+                    if (this.type === 'language') {
+                        this.selectedType = this.exams[0].type;
+                    }
+                }, response => {
+                    alert('服务器错误，请联系管理员！');
+                });
+            } else {
                 this.create();
+                if (this.type === 'language') {
+                    this.create();
+                }
             }
         },
         data: function () {
@@ -147,10 +171,11 @@
                     "sat2": "SAT II"
                 },
                 selectedType: 'sat',
+
             }
         },
         methods: {
-            create: function () {
+            create: function (remark="standard") {
                 var examTemplates = {
                     "sat": {
                         "reading": null,
@@ -164,7 +189,7 @@
                     },
                     "act": {
                         "reading": null,
-                        "writing": null,
+                        "english": null,
                         "math": null,
                         "science": null
                     },
@@ -190,10 +215,16 @@
                     }
                 };
                 this.exams.push({
+                    'id': 0,
                     "type": this.selectedType,
-                    "score": examTemplates[this.selectedType]
+                    "score": examTemplates[this.selectedType],
+                    "remark": remark
                 });
-
+                if (remark === 'before') {
+                    this.exams.sort(function (e1, e2) {
+                        return e1.remark === 'after';
+                    });
+                }
                 console.log(this.exams);
             },
             remove: function (index) {
@@ -202,8 +233,8 @@
             changeExamType: function () {
                 if (this.type === "language") {
                     this.exams = [];
-                    this.create();
-                    this.create();
+                    this.create('before');
+                    this.create('after');
                 }
             }
         }

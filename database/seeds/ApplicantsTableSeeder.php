@@ -136,7 +136,7 @@ class ApplicantsTableSeeder extends Seeder
                                 'writing' => random_int(1,8),
                                 'analysis' => random_int(1,8)
                             ],
-                            'score' => $r + $w + $m
+                            'total' => $r + $w + $m
                         ]),
                         'remark' => 'standard'
                     ]);

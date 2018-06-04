@@ -1,9 +1,11 @@
 <template>
     <div>
         <div v-for="(activity, index) in activities" class="row">
+            <input type="hidden" :name='"activities[" + index + "][id]"' :value='activity.id'/>
+            <input type="hidden" :name='"activities[" + index + "][applicant_id]"' :value="applicant">
             <div class="col-md-10 form-row">
                 <div class="col-md-4 form-group">
-                    <select required class="form-control" :name='"activities[" + index + "][type_id]"' v-model="activity.type">
+                    <select required class="form-control" :name='"activities[" + index + "][type_id]"' v-model="activity.type_id">
                         <option :value="0" disabled>请选择活动种类</option>
                         <option v-for="(type, index) in JSON.parse(activityTypes)" :value="type.id">{{ type.name }}</option>
                     </select>
@@ -37,11 +39,30 @@
     export default {
         name: "applicant-activities",
         mounted: function () {
-            this.create();
+            if (this.update) {
+                this.$http.get('/api/applicant/' + this.applicant + '/activities').then(
+                    response => {
+                        this.activities = response.body.data;
+                        console.log(this.activityTypes);
+                    }, response => {
+                        alert('服务器错误，请联系管理员！');
+                    }
+                );
+            } else {
+                this.create();
+            }
         },
         props: {
             activityTypes: {
                 required: true
+            },
+            update: {
+                required: false,
+                default: false,
+            },
+            applicant: {
+                required: false,
+                default: 0
             }
         },
         data: function () {
@@ -52,12 +73,14 @@
         methods: {
             create: function () {
                 this.activities.push({
-                    type: null,
+                    id: 0,
+                    type_id: null,
                     name: null,
                     description: null,
                     start: null,
                     end: null
                 });
+                console.log(this.activities);
             },
             remove: function(index) {
                 this.activities.splice(index, 1);

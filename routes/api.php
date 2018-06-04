@@ -12,6 +12,11 @@ use App\Http\Resources\UniversityCollection;
 use App\Http\Resources\ApplicantResource;
 use App\Http\Resources\TeacherResource;
 use App\Http\Resources\AgencyResource;
+use App\Http\Resources\ExamResource;
+use App\Http\Resources\ActivityResource;
+use App\Http\Resources\OfferResource;
+use App\Http\Resources\AwardResource;
+
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -58,8 +63,27 @@ Route::get('agency/{agency_id}/teachers', function($agency_id) {
     return TeacherResource::collection(Agency::find($agency_id)->teachers()->paginate(5));
 });
 
-Route::get('applicant/{applicant_id}', function($applicant_id) {
-    return new ApplicantResource(Applicant::find($applicant_id));
+Route::prefix('applicant/{applicant}')->group(function () {
+
+    Route::get('/', function ($applicant) {
+        return new ApplicantResource(Applicant::find($applicant));
+    });
+
+    Route::get('exams', function ($applicant) {
+        return ExamResource::collection(Applicant::find($applicant)->exams()->get());
+    });
+
+    Route::get('activities', function ($applicant) {
+        return ActivityResource::collection(Applicant::find($applicant)->activities()->get());
+    });
+
+    Route::get('awards', function ($applicant) {
+        return AwardResource::collection(Applicant::find($applicant)->awards()->get());
+    });
+
+    Route::get('offers', function ($applicant) {
+        return OfferResource::collection(Applicant::find($applicant)->offers()->get());
+    });
 });
 
 Route::get('agency/{agency_id}/applicants', function($agency_id) {

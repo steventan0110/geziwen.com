@@ -38,13 +38,21 @@
         @endif
     @elseif($exam->type == 'act')
         ACT:
-        @if($exam->score['total'] != null)
+        @if(isset($exam->score['total']))
             <span class="badge badge-pill badge-info">总分</span> {{ $exam->score['total'] }}
         @endif
-        <span class="badge badge-pill badge-primary">阅读</span> {{ $exam->score['reading'] }}
-        <span class="badge badge-pill badge-secondary">英语</span> {{ $exam->score['english'] }}
-        <span class="badge badge-pill badge-success">数学</span> {{ $exam->score['math'] }}
-        <span class="badge badge-pill badge-danger">科学</span> {{ $exam->score['science'] }}
+        @if(isset($exam->score['reading']))
+            <span class="badge badge-pill badge-primary">阅读</span> {{ $exam->score['reading'] }}
+        @endif
+        @if(isset($exam->score['english']))
+            <span class="badge badge-pill badge-secondary">英语</span> {{ $exam->score['english'] }}
+        @endif
+        @if(isset($exam->score['math']))
+            <span class="badge badge-pill badge-success">数学</span> {{ $exam->score['math'] }}
+        @endif
+        @if(isset($exam->score['science']))
+            <span class="badge badge-pill badge-danger">科学</span> {{ $exam->score['science'] }}
+        @endif
     @elseif($exam->type == 'sat2')
         SAT II:
         <span class="badge badge-pill badge-primary">{{ $exam->score['subject'] }}</span> {{ $exam->score['total'] }}
