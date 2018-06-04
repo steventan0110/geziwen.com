@@ -4,7 +4,6 @@ namespace App\Providers;
 
 use App\Agency\Agency;
 use App\Agency\Teacher;
-use function foo\func;
 use Illuminate\Database\Eloquent\Relations\Relation;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Facades\Schema;

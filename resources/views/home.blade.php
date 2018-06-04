@@ -3,7 +3,9 @@
 @section('content')
 
     @if(Auth::user()->role == 'agency')
-
+    <div class="container">
+        @include('teacher.messages')
+    </div>
         <div class="container">
 
             <div class="row">
@@ -53,7 +55,7 @@
                         </div>
                     </div>
                 </div>
-                <div id="applicants" class="col-lg-4 mb-4">
+                <div id="applicants" class="col-lg-8 mb-4">
                     <div class="p-3 bg-white rounded box-shadow">
                         <h5 class="border-bottom border-gray pb-2 mb-0">部分案例</h5>
                         @foreach ($user->agency->applicants()->limit(5)->get() as $applicant)
@@ -66,10 +68,26 @@
                             <a class="btn btn-block btn-info" href="{{ route('agency.applicants.index', ['id' => $user->agency->id]) }}">查看所有案例</a>
                         </small>
                     </div>
+
+
+                    <div class="p-3 mt-3 bg-white rounded box-shadow">
+                        <h5 class="border-bottom border-gray pb-2 mb-0">师资</h5>
+                            <div class="row">
+                                @foreach($user->agency->teachers()->limit(6)->get() as $teacher)
+                                    @component('components.teacher',['agency'=>$user->agency,'teacher'=>$teacher])
+
+                                    @endcomponent
+
+                                @endforeach
+                                <hr>
+                            </div>
+                        <div class="mt-3">
+                            <a class="btn btn-sm btn-warning btn-block "  href="{{route('agency.teachers.create',['agency_id'=>$teacher->agency->id,'teacher_id'=>$teacher->id])}}">添加老师</a>
+                            <a class="btn btn-sm btn-info btn-block"  href="{{route('agency.teachers.index',['agency_id'=>$teacher->agency->id])}}">查看所有</a>
+                        </div>
+                    </div>
                 </div>
-
             </div>
-
         </div>
 
     @elseif(Auth::user()->role == 'geziwen')
