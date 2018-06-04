@@ -8,7 +8,9 @@ class Award extends Model
 {
     protected $table = "applicant_awards";
 
-    public function student() {
+    protected $fillable = ['name', 'description', 'received_on', 'applicant_id'];
+
+    public function applicant() {
         $this->belongsTo(Applicant::class);
     }
 }

@@ -39,4 +39,6 @@ class Teacher extends Model
     public function comments() {
         return $this->morphMany(Comment::class, 'commentable');
     }
+
+    protected $hidden = ['created_at', 'updated_at', 'id', 'agency_id', 'pivot'];
 }

@@ -26,10 +26,10 @@ class AppServiceProvider extends ServiceProvider
             'teachers' => Teacher::class
         ]);
         Blade::if('create', function () {
-            return strpos( Route::currentRouteName(), 'create' )!= false;
+            return strpos(Route::currentRouteName(), 'create') != false;
         });
-        Blade::if('edit',function(){
-            return strpos( Route::currentRouteName(),'edit') !=false;
+        Blade::if('edit', function () {
+            return strpos(Route::currentRouteName(), 'edit') != false;
         });
     }
 

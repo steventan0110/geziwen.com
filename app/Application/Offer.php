@@ -9,6 +9,8 @@ class Offer extends Model
 {
     protected $table = "admission_applications";
 
+    protected $fillable = ['university_id', 'plan_id', 'applicant_id'];
+
     public function applicant() {
         return $this->belongsTo(Applicant::class);
     }
