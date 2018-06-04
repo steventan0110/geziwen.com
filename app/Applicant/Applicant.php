@@ -21,6 +21,10 @@ class Applicant extends Model
 
     protected $table = "applicants";
 
+    protected $hidden = ['created_at', 'updated_at', 'id', 'plan_id', 'pivot'];
+
+    protected $fillable = ['surname', 'introduction'];
+
     public function searchableAs() {
         return $this->table."_index";
     }
@@ -81,4 +85,5 @@ class Applicant extends Model
     public function teachers() {
         return $this->belongsToMany(Teacher::class,'teachers_applicants','teacher_id','applicant_id');
     }
+
 }

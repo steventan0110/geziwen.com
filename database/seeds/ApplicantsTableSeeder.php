@@ -83,8 +83,7 @@ class ApplicantsTableSeeder extends Seeder
                     DB::table('admission_applications')->insert([
                         'applicant_id' => $i,
                         'university_id' => random_int(1, 100),
-                        'plan_id' => random_int(1, 3),
-                        'decision_id' => random_int(1, 4)
+                        'plan_id' => random_int(1, 3)
                     ]);
                 }
             }
@@ -97,10 +96,11 @@ class ApplicantsTableSeeder extends Seeder
                         'taken_on' => $faker->date(),
                         'type' => 'toefl',
                         'score' => json_encode([
-                            'reading' => random_int(10, 30),
-                            'listening' => random_int(10, 30),
-                            'speaking' => random_int(10, 30),
-                            'writing' => random_int(10, 30)
+                            'reading' => ($r = random_int(10, 30)),
+                            'listening' => ($l = random_int(10, 30)),
+                            'speaking' => ($s = random_int(10, 30)),
+                            'writing' => ($w = random_int(10, 30)),
+                            'total' => ($r + $l + $s + $w)
                         ]),
                         'remark' => 'standard'
                     ]);
@@ -112,10 +112,11 @@ class ApplicantsTableSeeder extends Seeder
                         'taken_on' => $faker->date(),
                         'type' => 'ielts',
                         'score' => json_encode([
-                            'reading' => random_int(0, 18),
-                            'writing' => random_int(0, 18),
-                            'listening' => random_int(0, 18),
-                            'speaking' => random_int(0, 18)
+                            'reading' => ($r = random_int(0, 18)),
+                            'writing' => ($w = random_int(0, 18)),
+                            'listening' => ($l = random_int(0, 18)),
+                            'speaking' => ($s = random_int(0, 18)),
+                            'total' => ($r + $w + $l + $s)
                         ]),
                         'remark' => 'standard'
                     ]);
@@ -127,14 +128,15 @@ class ApplicantsTableSeeder extends Seeder
                         'taken_on' => $faker->date(),
                         'type' => 'sat',
                         'score' => json_encode([
-                            'reading' => random_int(10, 40) * 10,
-                            'writing' => random_int(10, 40) * 10,
-                            'math' => random_int(20, 80) * 10,
+                            'reading' => ($r = random_int(10, 40) * 10),
+                            'writing' => ($w = random_int(10, 40) * 10),
+                            'math' => ($m = random_int(20, 80) * 10),
                             'essay' => [
                                 'reading' => random_int(1,8),
                                 'writing' => random_int(1,8),
                                 'analysis' => random_int(1,8)
                             ],
+                            'total' => $r + $w + $m
                         ]),
                         'remark' => 'standard'
                     ]);
@@ -146,10 +148,11 @@ class ApplicantsTableSeeder extends Seeder
                         'taken_on' => $faker->date(),
                         'type' => 'act',
                         'score' => json_encode([
-                            'reading' => random_int(0, 36),
-                            'english' => random_int(0, 36),
-                            'math' => random_int(0, 36),
-                            'science' => random_int(0, 36)
+                            'reading' => ($r = random_int(0, 36)),
+                            'english' => ($e = random_int(0, 36)),
+                            'math' => ($m = random_int(0, 36)),
+                            'science' => ($s = random_int(0, 36)),
+                            'total' => ($r + $e + $m + $s) / 4
                         ]),
                         'remark' => 'standard',
                     ]);
@@ -163,7 +166,7 @@ class ApplicantsTableSeeder extends Seeder
                         'type' => 'sat2',
                         'score' => json_encode([
                             'subject' => $faker->name,
-                            'score' => random_int(20, 80) * 10
+                            'total' => random_int(20, 80) * 10
                         ]),
                         'remark' => 'standard'
                     ]);
@@ -177,7 +180,7 @@ class ApplicantsTableSeeder extends Seeder
                         'type' => 'ap',
                         'score' => json_encode([
                             'subject' => $faker->name,
-                            'score' => random_int(1, 5)
+                            'total' => random_int(1, 5)
                         ]),
                         'remark' => 'standard'
                     ]);
@@ -192,10 +195,11 @@ class ApplicantsTableSeeder extends Seeder
                                 'taken_on' => $faker->date(),
                                 'type' => 'toefl',
                                 'score' => json_encode([
-                                    'reading' => random_int(10, 30),
-                                    'listening' => random_int(10, 30),
-                                    'speaking' => random_int(10, 30),
-                                    'writing' => random_int(10, 30)
+                                    'reading' => ($r = random_int(10, 30)),
+                                    'listening' => ($l = random_int(10, 30)),
+                                    'speaking' => ($s = random_int(10, 30)),
+                                    'writing' => ($w = random_int(10, 30)),
+                                    'total' => ($r + $l + $s + $w)
                                 ]),
                                 'remark' => 'before'
                             ]);
@@ -205,10 +209,11 @@ class ApplicantsTableSeeder extends Seeder
                             'taken_on' => $faker->date(),
                             'type' => 'toefl',
                             'score' => json_encode([
-                                'reading' => random_int(10, 30),
-                                'listening' => random_int(10, 30),
-                                'speaking' => random_int(10, 30),
-                                'writing' => random_int(10, 30)
+                                'reading' => ($r = random_int(10, 30)),
+                                'listening' => ($l = random_int(10, 30)),
+                                'speaking' => ($s = random_int(10, 30)),
+                                'writing' => ($w = random_int(10, 30)),
+                                'total' => ($r + $l + $s + $w)
                             ]),
                             'remark' => 'after'
                         ]);
@@ -221,10 +226,11 @@ class ApplicantsTableSeeder extends Seeder
                                 'taken_on' => $faker->date(),
                                 'type' => 'ielts',
                                 'score' => json_encode([
-                                    'reading' => random_int(0, 18),
-                                    'writing' => random_int(0, 18),
-                                    'listening' => random_int(0, 18),
-                                    'speaking' => random_int(0, 18)
+                                    'reading' => ($r = random_int(0, 18)),
+                                    'writing' => ($w = random_int(0, 18)),
+                                    'listening' => ($l = random_int(0, 18)),
+                                    'speaking' => ($s = random_int(0, 18)),
+                                    'total' => ($r + $w + $l + $s)
                                 ]),
                                 'remark' => 'before'
                             ]);
@@ -234,10 +240,11 @@ class ApplicantsTableSeeder extends Seeder
                             'taken_on' => $faker->date(),
                             'type' => 'ielts',
                             'score' => json_encode([
-                                'reading' => random_int(0, 18),
-                                'writing' => random_int(0, 18),
-                                'listening' => random_int(0, 18),
-                                'speaking' => random_int(0, 18)
+                                'reading' => ($r = random_int(0, 18)),
+                                'writing' => ($w = random_int(0, 18)),
+                                'listening' => ($l = random_int(0, 18)),
+                                'speaking' => ($s = random_int(0, 18)),
+                                'total' => ($r + $w + $l + $s)
                             ]),
                             'remark' => 'after'
                         ]);
@@ -250,14 +257,15 @@ class ApplicantsTableSeeder extends Seeder
                                 'taken_on' => $faker->date(),
                                 'type' => 'sat',
                                 'score' => json_encode([
-                                    'reading' => random_int(10, 40) * 10,
-                                    'writing' => random_int(10, 40) * 10,
-                                    'math' => random_int(20, 80) * 10,
+                                    'reading' => ($r = random_int(10, 40) * 10),
+                                    'writing' => ($w = random_int(10, 40) * 10),
+                                    'math' => ($m = random_int(20, 80) * 10),
                                     'essay' => [
                                         'reading' => random_int(1,8),
                                         'writing' => random_int(1,8),
                                         'analysis' => random_int(1,8)
                                     ],
+                                    'score' => $r + $w + $m
                                 ]),
                                 'remark' => 'before'
                             ]);
@@ -267,14 +275,15 @@ class ApplicantsTableSeeder extends Seeder
                             'taken_on' => $faker->date(),
                             'type' => 'sat',
                             'score' => json_encode([
-                                'reading' => random_int(10, 40) * 10,
-                                'writing' => random_int(10, 40) * 10,
-                                'math' => random_int(20, 80) * 10,
+                                'reading' => ($r = random_int(10, 40) * 10),
+                                'writing' => ($w = random_int(10, 40) * 10),
+                                'math' => ($m = random_int(20, 80) * 10),
                                 'essay' => [
                                     'reading' => random_int(1,8),
                                     'writing' => random_int(1,8),
                                     'analysis' => random_int(1,8)
                                 ],
+                                'score' => $r + $w + $m
                             ]),
                             'remark' => 'after'
                         ]);
@@ -287,10 +296,11 @@ class ApplicantsTableSeeder extends Seeder
                                 'taken_on' => $faker->date(),
                                 'type' => 'act',
                                 'score' => json_encode([
-                                    'reading' => random_int(0, 36),
-                                    'english' => random_int(0, 36),
-                                    'math' => random_int(0, 36),
-                                    'science' => random_int(0, 36)
+                                    'reading' => ($r = random_int(0, 36)),
+                                    'english' => ($e = random_int(0, 36)),
+                                    'math' => ($m = random_int(0, 36)),
+                                    'science' => ($s = random_int(0, 36)),
+                                    'total' => ($r + $e + $m + $s) / 4
                                 ]),
                                 'remark' => 'before',
                             ]);
@@ -300,10 +310,11 @@ class ApplicantsTableSeeder extends Seeder
                             'taken_on' => $faker->date(),
                             'type' => 'act',
                             'score' => json_encode([
-                                'reading' => random_int(0, 36),
-                                'english' => random_int(0, 36),
-                                'math' => random_int(0, 36),
-                                'science' => random_int(0, 36)
+                                'reading' => ($r = random_int(0, 36)),
+                                'english' => ($e = random_int(0, 36)),
+                                'math' => ($m = random_int(0, 36)),
+                                'science' => ($s = random_int(0, 36)),
+                                'total' => ($r + $e + $m + $s) / 4
                             ]),
                             'remark' => 'after',
                         ]);
@@ -316,7 +327,7 @@ class ApplicantsTableSeeder extends Seeder
                             'type' => 'sat2',
                             'score' => json_encode([
                                 'subject' => $faker->name,
-                                'score' => random_int(20, 80) * 10
+                                'total' => random_int(20, 80) * 10
                             ]),
                             'remark' => 'after'
                         ]);
@@ -329,7 +340,7 @@ class ApplicantsTableSeeder extends Seeder
                             'type' => 'ap',
                             'score' => json_encode([
                                 'subject' => $faker->name,
-                                'score' => random_int(1, 5)
+                                'total' => random_int(1, 5)
                             ]),
                             'remark' => 'after'
                         ]);
@@ -355,7 +366,6 @@ class ApplicantsTableSeeder extends Seeder
                     'description' => $faker->text,
                     'start' => $faker->date(),
                     'end' => $faker->date(),
-                    'hours_per_week' => random_int(1, 7 * 24)
                 ]);
             }
         }

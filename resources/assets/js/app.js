@@ -44,7 +44,7 @@ Vue.use(InstantSearch);
 /**
  * Search Component
  */
-Vue.component('search', require('./components/SearchComponent'));
+Vue.component('search', require('./components/search'));
 
 import StarRating from 'vue-star-rating';
 Vue.component('star-rating', StarRating);
@@ -55,10 +55,15 @@ Vue.use(VueResource);
 import Croppa from 'vue-croppa';
 Vue.use(Croppa);
 
-Vue.component('comment',require('./components/CommentComponents/CommentComponent'));
-Vue.component('rating',require('./components/CommentComponents/RatingComponent'));
-Vue.component('sms',require('./components/SmsComponent'));
-Vue.component('mail',require('./components/MailComponent'));
+Vue.component('comment', require('./components/comment/comment'));
+Vue.component('rating', require('./components/comment/rating'));
+Vue.component('sms', require('./components/register/sms'));
+Vue.component('mail', require('./components/register/email'));
+
+Vue.component('applicant-exams', require('./components/applicant/exams'));
+Vue.component('applicant-activities', require('./components/applicant/activities'));
+Vue.component('applicant-awards', require('./components/applicant/awards'));
+Vue.component('applicant-offers', require('./components/applicant/offers'));
 
 Vue.http.headers.common['X-CSRF-TOKEN'] = document.querySelector('meta[name=csrf-token]').getAttribute('content');
 

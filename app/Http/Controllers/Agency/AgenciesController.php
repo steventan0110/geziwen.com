@@ -106,7 +106,13 @@ class AgenciesController extends Controller
     public function update(AgencyUpdateRequest $request, $id)
     {
         $data = $request->validated();
-        Agency::find($id)->update($data['agency']);
+        $agency = Agency::find($id);
+        try {
+            $this->authorize('update', $agency);
+        } catch (AuthorizationException $exception) {
+            return redirect()->back();
+        }
+        $agency->update($data['agency']);
         return redirect()->route('home');
     }
 
