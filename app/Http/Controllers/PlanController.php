@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Agency;
+namespace App\Http\Controllers;
 
 use App\Agency\Service\Plan;
 use Illuminate\Http\Request;

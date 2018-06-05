@@ -40,14 +40,14 @@
                 @endcomponent
             @endforeach
             <small class="d-block text-right mt-3">
-                <a href="{{ route('plan.applicants.index', ['id' => $plan->id]) }}">查看所有案例</a>
+                <a href="{{ route('plan.applicant.index', ['id' => $plan->id]) }}">查看所有案例</a>
             </small>
         </div>
     </div>
 
     @component('components.agency', ['agency' => $plan->agency])
         @slot('button')
-            <a href="{{ route('agencies.show', ['id' => $plan->agency->id]) }}" class="btn btn-info float-right">前往主页</a>
+            <a href="{{ route('agency.show', ['id' => $plan->agency->id]) }}" class="btn btn-info float-right">前往主页</a>
         @endslot
     @endcomponent
 

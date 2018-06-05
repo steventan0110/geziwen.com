@@ -147,17 +147,23 @@
                 this.$http.get('/api/applicant/' + this.applicant + '/exams').then(response => {
                     this.exams = response.body.data;
                     if (this.type === 'language') {
-                        this.selectedType = this.exams[0].type;
+                        if (this.exams.length === 0) {
+                            this.create('before');
+                            this.create('after');
+                        } else {
+                            this.selectedType = this.exams[0].type;
+                        }
                     }
                 }, response => {
                     alert('服务器错误，请联系管理员！');
                 });
+            } else if (this.type === 'language') {
+                this.create('before');
+                this.create('after')
             } else {
-                this.create();
-                if (this.type === 'language') {
-                    this.create();
-                }
+                this.created();
             }
+
         },
         data: function () {
             return {

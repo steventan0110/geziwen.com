@@ -10,18 +10,18 @@
                     <button class="btn btn-info btn-sm float-right" data-toggle="modal" data-target="#applicant-{{ $applicant->id }}">查看详细</button>
                 @endcannot
                 @can('update', $applicant)
-                <div class="dropdown float-right">
-                    <button class="btn btn-info btn-sm dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        动作
-                    </button>
-                    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                        <a class="dropdown-item"
-                           href="{{ route('agency.applicants.edit', ['agency' => $applicant->plan->agency->id, 'applicant' => $applicant->id]) }}">编辑</a>
-                        <a class="dropdown-item" data-toggle="modal" data-target="#applicant-{{ $applicant->id }}-delete">删除</a>
-                        <a class="dropdown-item"
-                           data-toggle="modal" data-target="#applicant-{{ $applicant->id }}">查看详细</a>
+                    <div class="dropdown float-right">
+                        <button class="btn btn-info btn-sm dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            动作
+                        </button>
+                        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                            <a class="dropdown-item"
+                               href="{{ route('agency.applicant.edit', ['agency' => $applicant->plan->agency->id, 'applicant' => $applicant->id]) }}">编辑</a>
+                            <a class="dropdown-item" data-toggle="modal" data-target="#applicant-{{ $applicant->id }}-delete">删除</a>
+                            <a class="dropdown-item"
+                               data-toggle="modal" data-target="#applicant-{{ $applicant->id }}">查看详细</a>
+                        </div>
                     </div>
-                </div>
                 @endcan
             </div>
         </div>
@@ -138,7 +138,7 @@
                     <button type="submit" class="btn btn-danger col-5 mr-4" onclick="event.preventDefault();
                                                      document.getElementById('{{ $applicant->id }}-delete-form').submit();">确认</button>
                     <form id="{{ $applicant->id }}-delete-form" method="post"
-                          action="{{ route('agency.applicants.destroy', ['agency' => $applicant->plan->agency->id, 'applicant' => $applicant->id]) }}">
+                          action="{{ route('agency.applicant.destroy', ['agency' => $applicant->plan->agency->id, 'applicant' => $applicant->id]) }}">
                         @csrf
                         @method('DELETE')
                     </form>
