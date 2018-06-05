@@ -1,12 +1,12 @@
 <?php
 
-namespace App\Http\Controllers\Agency;
+namespace App\Http\Controllers;
 
 use App\Agency\Service\Plan;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
-class PlanApplicantsController extends Controller
+class PlanApplicantController extends Controller
 {
     /**
      * Display a listing of the resource.

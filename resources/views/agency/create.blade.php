@@ -7,7 +7,7 @@
 @section('content')
 
     <div id="agency" class="container">
-        <form action="{{ route('agencies.store') }}" method="post" class="bg-white box-shadow jumbotron">
+        <form action="{{ route('agency.store') }}" method="post" class="bg-white box-shadow jumbotron">
             {{ csrf_field() }}
             @method('POST')
             <h2>基本信息</h2>

@@ -7,7 +7,7 @@
 @section('content')
 
     <div class="container" id="applicant">
-        <form action="{{ route('agency.applicants.update', ['agency' => $agency->id, 'applicant' => $applicant->id]) }}" method="post">
+        <form action="{{ route('agency.applicant.update', ['agency' => $agency->id, 'applicant' => $applicant->id]) }}" method="post">
             {{ csrf_field() }}
             @method('PUT')
             <div class="bg-white box-shadow rounded p-3">

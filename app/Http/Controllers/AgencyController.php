@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Agency;
+namespace App\Http\Controllers;
 
 use App\Agency\Agency;
 use App\Http\Requests\AgencyCreateRequest;
@@ -9,10 +9,9 @@ use App\Http\Requests\AgencyStoreRequest;
 use App\Http\Requests\AgencyUpdateRequest;
 use App\User;
 use Illuminate\Auth\Access\AuthorizationException;
-use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
-class AgenciesController extends Controller
+class AgencyController extends Controller
 {
     /**
      * Display a listing of the resource.

@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Agency;
+namespace App\Http\Controllers;
 
 use App\Agency\Agency;
 use App\Agency\Service\Plan;
@@ -16,7 +16,7 @@ use Illuminate\Auth\Access\AuthorizationException;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
-class ApplicantsController extends Controller
+class AgencyApplicantController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -145,13 +145,17 @@ class ApplicantsController extends Controller
         foreach ($applicant->exams as $exam) {
             array_push($originalExamIds, $exam->id);
         }
-        foreach ($data['exams'] as $exam) {
-            array_push($newExamIds, $exam['id']);
+        if (array_key_exists('exams', $data)) {
+            foreach ($data['exams'] as $exam) {
+                array_push($newExamIds, $exam['id']);
+            }
         }
         Exam::destroy(collect($originalExamIds)->diff($newExamIds)->all());
         // Update or create exams that did not get deleted.
-        foreach ($data['exams'] as $examData) {
-            $exam = Exam::updateOrCreate(['id' => $examData['id']], $examData);
+        if (array_key_exists('exams', $data)) {
+            foreach ($data['exams'] as $examData) {
+                $exam = Exam::updateOrCreate(['id' => $examData['id']], $examData);
+            }
         }
         if ($data['applicant_type'] === 'standard') {
             // Activities
@@ -161,13 +165,17 @@ class ApplicantsController extends Controller
             foreach ($applicant->activities as $activity) {
                 array_push($originalActivityIds, $activity->id);
             }
-            foreach ($data['activities'] as $activity) {
-                array_push($newActivityIds, $activity['id']);
+            if (array_key_exists('activities', $data)) {
+                foreach ($data['activities'] as $activity) {
+                    array_push($newActivityIds, $activity['id']);
+                }
             }
             Activity::destroy(collect($originalActivityIds)->diff($newActivityIds)->all());
             // Update or create activities that did not get deleted.
-            foreach ($data['activities'] as $activityData) {
-                $activity = Activity::updateOrCreate(['id' => $activityData['id']], $activityData);
+            if (array_key_exists('activities', $data)) {
+                foreach ($data['activities'] as $activityData) {
+                    $activity = Activity::updateOrCreate(['id' => $activityData['id']], $activityData);
+                }
             }
             // Awards
             // Diff awards that got deleted and destroy them in database.
@@ -176,27 +184,36 @@ class ApplicantsController extends Controller
             foreach ($applicant->awards as $award) {
                 array_push($originalAwardIds, $award->id);
             }
-            foreach ($data['awards'] as $activity) {
-                array_push($newAwardIds, $award['id']);
+            if (array_key_exists('awards', $data)) {
+                foreach ($data['awards'] as $award) {
+                    array_push($newAwardIds, $award['id']);
+                }
             }
             Award::destroy(collect($originalAwardIds)->diff($newAwardIds)->all());
             // Update or create awards that did not get deleted.
-            foreach ($data['awards'] as $awardData) {
-                $award = Award::updateOrCreate(['id' => $awardData['id']], $awardData);
+            if (array_key_exists('awards', $data)) {
+                foreach ($data['awards'] as $awardData) {
+                    $award = Award::updateOrCreate(['id' => $awardData['id']], $awardData);
+                }
             }
             // Offers
+            // Diff offers that go deleted and destroy them in database
             $originalOfferIds = [];
             $newOfferIds = [];
             foreach ($applicant->offers as $offer) {
                 array_push($originalOfferIds, $offer->id);
             }
-            foreach ($data['offers'] as $activity) {
-                array_push($newOfferIds, $offer['id']);
+            if (array_key_exists('offers', $data)) {
+                foreach ($data['offers'] as $activity) {
+                    array_push($newOfferIds, $offer['id']);
+                }
             }
             Offer::destroy(collect($originalOfferIds)->diff($newOfferIds)->all());
             // Update or create awards that did not get deleted.
-            foreach ($data['offers'] as $offerData) {
-                $offer = Offer::updateOrCreate(['id' => $offerData['id']], $offerData);
+            if (array_key_exists('offers', $data)) {
+                foreach ($data['offers'] as $offerData) {
+                    $offer = Offer::updateOrCreate(['id' => $offerData['id']], $offerData);
+                }
             }
         }
         return redirect()->route('home');

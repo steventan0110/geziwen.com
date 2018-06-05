@@ -53,7 +53,7 @@
                 @endcomponent
             @endforeach
             <small class="d-block text-right mt-3">
-                <a href="{{ route('agency.applicants.index', ['id' => $agency->id]) }}">查看所有案例</a>
+                <a href="{{ route('agency.applicant.index', ['id' => $agency->id]) }}">查看所有案例</a>
             </small>
         </div>
     </div>
@@ -70,13 +70,13 @@
                         <p class="small m-3">{{ $teacher->introduction }}</p>
                         <p class="small">
                             <a class="btn btn-info btn-sm" role="button"
-                               href="{{ route('agency.teacher.show', ['id' => $teacher->id]) }}">查看详细</a>
+                               href="{{ route('agency.teacher.show', ['agency' => $teacher->agency->id, 'id' => $teacher->id]) }}">查看详细</a>
                         </p>
                     </div>
                 @endforeach
             </div>
             <small class="d-block text-right mt-3">
-                <a href="{{route('agency.teachers.index',['id'=>$agency->id]) }}">查看所有老师</a>
+                <a href="{{route('agency.teacher.index',['id'=>$agency->id]) }}">查看所有老师</a>
                 {{-- TODO: Implement Teacher Pagination --}}
             </small>
         </div>
