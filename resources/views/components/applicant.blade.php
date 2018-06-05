@@ -1,24 +1,30 @@
 <div class="media pt-3">
     <div class="media-body pb-3 mb-0 small lh-125 border-bottom border-gray">
-        <strong class="d-block text-gray-dark">{{ $applicant->surname }}</strong>
-        {{ $applicant->introduction }}
-        @cannot('update', $applicant)
-            <button class="btn btn-info btn-sm float-right" data-toggle="modal" data-target="#applicant-{{ $applicant->id }}">查看详细</button>
-        @endcannot
-        @can('update', $applicant)
-            <div class="dropdown float-right">
-                <button class="btn btn-info btn-sm dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    动作
-                </button>
-                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                    <a class="dropdown-item"
-                       href="{{ route('agency.applicants.edit', ['agency' => $applicant->plan->agency->id, 'applicant' => $applicant->id]) }}">编辑</a>
-                    <a class="dropdown-item" data-toggle="modal" data-target="#applicant-{{ $applicant->id }}-delete">删除</a>
-                    <a class="dropdown-item"
-                       data-toggle="modal" data-target="#applicant-{{ $applicant->id }}">查看详细</a>
-                </div>
+        <div class="row">
+            <div class="col-sm-10">
+                <strong class="d-block text-gray-dark">{{ $applicant->surname }}</strong>
+                {{ $applicant->introduction }}
             </div>
-        @endcan
+            <div class="col-sm-2">
+                @cannot('update', $applicant)
+                    <button class="btn btn-info btn-sm float-right" data-toggle="modal" data-target="#applicant-{{ $applicant->id }}">查看详细</button>
+                @endcannot
+                @can('update', $applicant)
+                <div class="dropdown float-right">
+                    <button class="btn btn-info btn-sm dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        动作
+                    </button>
+                    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                        <a class="dropdown-item"
+                           href="{{ route('agency.applicants.edit', ['agency' => $applicant->plan->agency->id, 'applicant' => $applicant->id]) }}">编辑</a>
+                        <a class="dropdown-item" data-toggle="modal" data-target="#applicant-{{ $applicant->id }}-delete">删除</a>
+                        <a class="dropdown-item"
+                           data-toggle="modal" data-target="#applicant-{{ $applicant->id }}">查看详细</a>
+                    </div>
+                </div>
+                @endcan
+            </div>
+        </div>
     </div>
     <div class="modal fade" id="applicant-{{ $applicant->id }}" tabindex="-1" role="dialog" aria-labelledby="applicant-{{ $applicant->id }}-title" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered modal-lg" role="document">

@@ -26,7 +26,8 @@ class AgencyTableSeeder extends Seeder
                 'logo' => 'images/default.gif',
                 'verified' => false,
                 'published' => false,
-                'type' => ($i < 6 ? 'standard' : 'language')
+                'type' => ($i < 6 ? 'standard' : 'language'),
+                'manager_id' => random_int(1, 100),
             ]);
 
             foreach (range(1, 3) as $j) {

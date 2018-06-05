@@ -82,8 +82,8 @@
                                 <hr>
                             </div>
                         <div class="mt-3">
-                            <a class="btn btn-sm btn-warning btn-block "  href="{{route('agency.teachers.create',['agency_id'=>$teacher->agency->id,'teacher_id'=>$teacher->id])}}">添加老师</a>
-                            <a class="btn btn-sm btn-info btn-block"  href="{{route('agency.teachers.index',['agency_id'=>$teacher->agency->id])}}">查看所有</a>
+                            <a class="btn btn-md btn-warning btn-block "  href="{{route('agency.teachers.create',['agency_id'=>$teacher->agency->id,'teacher_id'=>$teacher->id])}}">添加老师</a>
+                            <a class="btn btn-md btn-info btn-block"  href="{{route('agency.teachers.index',['agency_id'=>$teacher->agency->id])}}">查看所有</a>
                         </div>
                     </div>
                 </div>
@@ -91,24 +91,60 @@
         </div>
 
     @elseif(Auth::user()->role == 'geziwen')
-
         <div class="container">
-            <div class="row justify-content-center">
-                <div class="col-md-8">
-                    <div class="card">
-                        <div class="card-header">Dashboard</div>
+        <div class="row">
+        <div class="col-lg-4">
+            <div id="account" class="mb-4">
+                <div class="p-3 bg-white rounded box-shadow">
+                    <h5 class="border-bottom border-gray pb-2 mb-2">账号信息</h5>
+                    <dl class="row">
+                        <dt class="col-sm-4">账号名称</dt>
+                        <dd class="col-sm-8">{{ $user->name }}</dd>
+                        @if ($user->email != null)
+                            <dt class="col-sm-4">用户邮箱</dt>
+                            <dd class="col-sm-8">{{ $user->email }}</dd>
+                        @else
+                            <dt class="col-sm-4">用户手机</dt>
+                            <dd class="col-sm-8">{{ $user->mobile }}</dd>
+                        @endif
 
-                        <div class="card-body">
-                            @if (session('status'))
-                                <div class="alert alert-success">
-                                    {{ session('status') }}
-                                </div>
-                            @endif
-                        </div>
-                    </div>
+                    </dl>
+                    <button type="button" class="btn btn-danger btn-block" data-toggle="tooltip">
+                        修改密码
+                    </button>
                 </div>
             </div>
         </div>
+
+    <div class="col-lg-8 mb-4">
+        <div class="card">
+            <div class="p-3 bg-white rounded box-shadow">
+                <h5 class="border-bottom border-gray pb-2 mb-0">邀请机构</h5>
+                @foreach($user->agencies as $agency)
+                <div class="media pt-3">
+                    <div class="media-body pb-3 mb-0 small lh-125 border-bottom border-gray">
+                        <div class="row">
+                            <div class="col-md-8">
+                                <strong class="d-block text-gray-dark">{{ $agency->name }}</strong>
+                            </div>
+                            <div class="col-md-4">
+                                <a class="btn btn-info btn-sm float-right ml-2" href="{{route('agencies.show',[$agency->id])}}">查看详细</a>
+                                @can('update', $agency)
+                                    <a class="btn btn-warning btn-sm  float-right" href="{{route('agencies.edit',[$agency->id])}}">编辑</a>
+                                @endcan
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                @endforeach
+                @can('create')
+                    <a class="btn btn-block btn-md btn-info mt-3" href="{{route('agencies.create')}}">添加机构</a>
+                @endcan
+             </div>
+        </div>
+    </div>
+
+
 
     @else
 

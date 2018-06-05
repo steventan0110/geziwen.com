@@ -53,6 +53,7 @@ class AgenciesController extends Controller
         $agency->verified = false;
         $agency->published = false;
         $agency->logo = 'images/default.gif';
+        $agency->manager_id = \Auth::user()->id;
         $agency->save();
         $user = new User([
             'name' => $agency->name,
