@@ -1,20 +1,23 @@
 @extends('layouts.app')
 
+@section('title')
+    个人中心
+@endsection
+
 @section('content')
 
-    @if(Auth::user()->role == 'agency')
+    @agency
+
     <div class="container">
         @include('teacher.messages')
     </div>
         <div class="container">
-
             <div class="row">
                 @if (isset($mesasage))
                     <div class="alert alert-{{ $mesasge->type }}">
                         {{ $message->body }}
                     </div>
                 @endif
-
                 <div class="col-lg-4">
                     <div id="account" class="mb-4">
                         <div class="p-3 bg-white rounded box-shadow">
@@ -77,20 +80,19 @@
                                     @component('components.teacher',['agency'=>$user->agency,'teacher'=>$teacher])
 
                                     @endcomponent
-
                                 @endforeach
                                 <hr>
                             </div>
                         <div class="mt-3">
-                            <a class="btn btn-sm btn-warning btn-block "  href="{{route('agency.teacher.create',['agency_id'=>$teacher->agency->id,'teacher_id'=>$teacher->id])}}">添加老师</a>
-                            <a class="btn btn-sm btn-info btn-block"  href="{{route('agency.teacher.index',['agency_id'=>$teacher->agency->id])}}">查看所有</a>
+                            <a class="btn btn-sm btn-warning btn-block "  href="{{route('agency.teacher.create', ['agency' => $user->agency->id])}}">添加老师</a>
+                            <a class="btn btn-sm btn-info btn-block"  href="{{route('agency.teacher.index', ['agency' => $user->agency->id])}}">查看所有</a>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
 
-    @elseif(Auth::user()->role == 'geziwen')
+    @elsegeziwen
 
         <div class="container">
             <div class="row">
@@ -108,9 +110,9 @@
                                     <dt class="col-sm-4">用户手机</dt>
                                     <dd class="col-sm-8">{{ $user->mobile }}</dd>
                                 @endif
-
                             </dl>
-                            <button type="button" class="btn btn-danger btn-block" data-toggle="tooltip">
+                            <button type="button" class="btn btn-danger btn-block" data-toggle="tooltip"
+                                    data-placement="bottom" title="退出登录，点击忘记密码，接收邮件重置密码。">
                                 修改密码
                             </button>
                         </div>
@@ -118,36 +120,51 @@
                 </div>
 
                 <div class="col-lg-8 mb-4">
-                    <div class="card">
-                        <div class="p-3 bg-white rounded box-shadow">
-                            <h5 class="border-bottom border-gray pb-2 mb-0">邀请机构</h5>
-                            @foreach($user->agencies as $agency)
-                                <div class="media pt-3">
-                                    <div class="media-body pb-3 mb-0 small lh-125 border-bottom border-gray">
-                                        <div class="row">
-                                            <div class="col-md-8">
-                                                <strong class="d-block text-gray-dark">{{ $agency->name }}</strong>
-                                            </div>
-                                            <div class="col-md-4">
-                                                <a class="btn btn-info btn-sm float-right ml-2" href="{{route('agencies.show',[$agency->id])}}">查看详细</a>
-                                                @can('update', $agency)
-                                                    <a class="btn btn-warning btn-sm  float-right" href="{{route('agencies.edit',[$agency->id])}}">编辑</a>
-                                                @endcan
-                                            </div>
+                    <div class="p-3 bg-white rounded box-shadow">
+                        <h5 class="border-bottom pb-2 mb-0">我邀请的机构</h5>
+                        @foreach($user->agencies as $agency)
+                            <div class="media pt-3">
+                                <div class="media-body pb-3 mb-0 small lh-125 border-bottom">
+                                    <div class="row">
+                                        <div class="col-md-8">
+                                            <strong class="d-block text-gray-dark">{{ $agency->name }}</strong>
+                                        </div>
+                                        <div class="col-md-4">
+                                            @can('update', $agency)
+                                                <div class="dropdown float-right">
+                                                    <button class="btn btn-info btn-sm dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                        动作
+                                                    </button>
+                                                    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                                        <a class="dropdown-item"
+                                                           href="{{ route('agency.applicant.index', ['agency' => $agency->id]) }}">所有案例</a>
+                                                        <a class="dropdown-item"
+                                                           href="{{ route('agency.applicant.create', ['agency' => $agency->id]) }}">新建案例</a>
+                                                        <a class="dropdown-item"
+                                                           href="{{ route('agency.teacher.index', ['agency' => $agency->id]) }}">所有老师</a>
+                                                        <a class="dropdown-item"
+                                                           href="{{ route('agency.teacher.create', ['agency' => $agency->id]) }}">新建老师</a>
+                                                        <a class="dropdown-item"
+                                                           href="{{ route('agency.edit', ['agency' => $agency->id]) }}">基本信息</a>
+                                                        <a class="dropdown-item"
+                                                           href="{{ route('agency.show', ['agency' => $agency->id]) }}">访问主页</a>
+                                                    </div>
+                                                </div>
+                                            @endcan
                                         </div>
                                     </div>
                                 </div>
-                            @endforeach
-                            @can('create')
-                                <a class="btn btn-block btn-md btn-info mt-3" href="{{route('agencies.create')}}">添加机构</a>
-                            @endcan
-                        </div>
+                            </div>
+                        @endforeach
+                        @can('create', \App\Agency\Agency::class)
+                            <a class="btn btn-block btn-md btn-info mt-3" href="{{route('agency.create')}}">新机构入驻</a>
+                        @endcan
                     </div>
                 </div>
             </div>
         </div>
 
-    @else
+    @elseuser
 
         <div class="container">
             <div class="row justify-content-center">
@@ -163,6 +180,6 @@
             </div>
         </div>
 
-    @endif
+    @enduser
 
 @endsection

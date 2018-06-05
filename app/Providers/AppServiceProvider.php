@@ -31,6 +31,15 @@ class AppServiceProvider extends ServiceProvider
         Blade::if('edit', function () {
             return strpos(Route::currentRouteName(), 'edit') != false;
         });
+        Blade::if('agency', function () {
+            return \Auth::user()->role === 'agency';
+        });
+        Blade::if('geziwen', function () {
+            return \Auth::user()->role === 'geziwen';
+        });
+        Blade::if('user', function () {
+            return \Auth::user()->role === 'user';
+        });
     }
 
 

@@ -43,7 +43,7 @@ class AgencyPolicy
     public function update(User $user, Agency $agency)
     {
         return ($user->role == 'agency' && $user->link == $agency->id)
-            || $user->role == 'geziwen';
+            || $user->role == 'geziwen' && $agency->manager->id == $user->id;
     }
 
     /**
@@ -55,6 +55,6 @@ class AgencyPolicy
      */
     public function delete(User $user, Agency $agency)
     {
-        return $user->role == 'geziwen';
+        return $user->role == 'geziwen' && $agency->manager->id == $user->id;
     }
 }
