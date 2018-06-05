@@ -22,20 +22,17 @@ Route::prefix('search')->group(function () {
 });
 
 Route::prefix('plan')->group(function () {
-    Route::get('{id}', 'Agency\PlanController@view')->name('agency.plan.show');
+    Route::get('{id}', 'PlanController@view')->name('agency.plan.show');
 });
 
-Route::prefix('teacher')->group(function() {
-    Route::get('{id}', 'Agency\TeacherController@view')->name('agency.teacher.show');
-});
+Route::resource('agency.applicant', 'AgencyApplicantController');
 
-Route::resource('agency.applicants', 'Agency\ApplicantsController');
+Route::resource('plan.applicant', 'PlanApplicantController');
 
-Route::resource('plan.applicants', 'Agency\PlanApplicantsController');
+Route::resource('teacher.applicant', 'TeacherApplicantController');
 
-Route::resource('teacher.applicants', 'Agency\TeacherApplicantsController');
+Route::resource('agency.teacher','TeacherController');
 
-Route::resource('agencies', 'Agency\AgenciesController');
+Route::resource('agency', 'AgencyController');
 
-Route::resource('agency.teachers','Agency\TeachersController');
 

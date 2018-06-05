@@ -50,8 +50,8 @@
                                 <dt class="col-sm-4">开办日期</dt>
                                 <dd class="col-sm-8">{{ $user->agency->started_on }}</dd>
                             </dl>
-                            <a class="btn btn-warning btn-block" href="{{ route('agencies.edit', ['id' => $user->agency->id]) }}">编辑</a>
-                            <a class="btn btn-info btn-block" href="{{ route('agencies.show', ['id' => $user->agency->id]) }}">查看主页效果</a>
+                            <a class="btn btn-warning btn-block" href="{{ route('agency.edit', ['id' => $user->agency->id]) }}">编辑</a>
+                            <a class="btn btn-info btn-block" href="{{ route('agency.show', ['id' => $user->agency->id]) }}">查看主页效果</a>
                         </div>
                     </div>
                 </div>
@@ -64,8 +64,8 @@
                             @endcomponent
                         @endforeach
                         <small class="d-block text-right mt-3">
-                            <a class="btn btn-block btn-warning" href="{{ route('agency.applicants.create', ['agency' => $user->agency->id ]) }}">创建新案例</a>
-                            <a class="btn btn-block btn-info" href="{{ route('agency.applicants.index', ['id' => $user->agency->id]) }}">查看所有案例</a>
+                            <a class="btn btn-block btn-warning" href="{{ route('agency.applicant.create', ['agency' => $user->agency->id ]) }}">创建新案例</a>
+                            <a class="btn btn-block btn-info" href="{{ route('agency.applicant.index', ['id' => $user->agency->id]) }}">查看所有案例</a>
                         </small>
                     </div>
 
@@ -82,8 +82,8 @@
                                 <hr>
                             </div>
                         <div class="mt-3">
-                            <a class="btn btn-sm btn-warning btn-block "  href="{{route('agency.teachers.create',['agency_id'=>$teacher->agency->id,'teacher_id'=>$teacher->id])}}">添加老师</a>
-                            <a class="btn btn-sm btn-info btn-block"  href="{{route('agency.teachers.index',['agency_id'=>$teacher->agency->id])}}">查看所有</a>
+                            <a class="btn btn-sm btn-warning btn-block "  href="{{route('agency.teacher.create',['agency_id'=>$teacher->agency->id,'teacher_id'=>$teacher->id])}}">添加老师</a>
+                            <a class="btn btn-sm btn-info btn-block"  href="{{route('agency.teacher.index',['agency_id'=>$teacher->agency->id])}}">查看所有</a>
                         </div>
                     </div>
                 </div>

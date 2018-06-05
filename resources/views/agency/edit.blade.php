@@ -7,7 +7,7 @@
 @section('content')
 
     <div id="agency" class="container">
-        <form action="{{ route('agencies.update', ['id' => $agency->id]) }}" method="post" class="bg-white box-shadow jumbotron">
+        <form action="{{ route('agency.update', ['id' => $agency->id]) }}" method="post" class="bg-white box-shadow jumbotron">
             @method('PUT')
             @csrf
             <h5 class="border-bottom border-gray pb-2 mb-2">编辑基本信息</h5>

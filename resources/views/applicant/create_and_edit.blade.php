@@ -14,10 +14,10 @@
 
     <div class="container" id="applicant">
         @create
-            <form action="{{ route('agency.applicants.store', ['agency' => $agency->id]) }}" method="post">
+            <form action="{{ route('agency.applicant.store', ['agency' => $agency->id]) }}" method="post">
         @endcreate
         @edit
-            <form action="{{ route('agency.applicants.update', ['agency' => $agency->id, 'applicant' => $applicant->id]) }}" method="post">
+            <form action="{{ route('agency.applicant.update', ['agency' => $agency->id, 'applicant' => $applicant->id]) }}" method="post">
         @endedit
             {{ csrf_field() }}
             @edit

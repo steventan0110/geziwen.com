@@ -2,7 +2,7 @@
 
 namespace App\Http\Resources;
 
-use App\Http\Controllers\Agency\PlanApplicantsController;
+use App\Http\Controllers\Agency\PlanApplicantController;
 use Illuminate\Http\Resources\Json\JsonResource;
 
 class OfferResource extends JsonResource

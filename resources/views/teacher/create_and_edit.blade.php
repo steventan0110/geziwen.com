@@ -13,8 +13,8 @@
     <div id="teacher" class="container">
 
         <form
-                @edit  action= "{{route('agency.teachers.update',['agency_id'=>$teacher->agency->id,'teacher_id'=>$teacher->id])}}" @endedit
-                @create action= "{{route('agency.teachers.store',['agency_id'=>$agency->id])}}" @endcreate
+                @edit  action= "{{route('agency.teacher.update',['agency_id'=>$teacher->agency->id,'teacher_id'=>$teacher->id])}}" @endedit
+                @create action= "{{route('agency.teacher.store',['agency_id'=>$agency->id])}}" @endcreate
 
                 method="post"
                 class="bg-white box-shadow jumbotron">

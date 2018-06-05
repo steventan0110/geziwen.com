@@ -11,7 +11,7 @@
                      src="{{ asset($teacher->picture) }}" alt="Generic placeholder image" width="100px">
                 <div class="media-body ml-3">
                     <h3>{{ $teacher->name }}</h3>
-                    <p class="small mt-3">所属中介: <a href="{{ route('agencies.show', ['id' => $teacher->agency->id]) }}">{{ $teacher->agency->name }}</a></p>
+                    <p class="small mt-3">所属中介: <a href="{{ route('agency.show', ['id' => $teacher->agency->id]) }}">{{ $teacher->agency->name }}</a></p>
                     <p class="small mt-3">介绍: {{ $teacher->introduction }}</p>
                 </div>
             </div>
@@ -35,7 +35,7 @@
                 @endcomponent
             @endforeach
             <small class="d-block text-right mt-3">
-                <a href="{{ route('teacher.applicants.index', ['id' => $teacher->id]) }}">查看所有案例</a>
+                <a href="{{ route('teacher.applicant.index', ['id' => $teacher->id]) }}">查看所有案例</a>
             </small>
         </div>
     </div>

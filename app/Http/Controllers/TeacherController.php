@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Agency;
+namespace App\Http\Controllers;
 
 use App\Agency\Teacher;
 use App\Http\Requests\TeacherStoreRequest;
@@ -14,7 +14,7 @@ use App\Agency\Agency;
 use App\User;
 use Illuminate\Support\Facades\Auth;
 
-class TeachersController extends Controller
+class TeacherController extends Controller
 {
     /**
      * Display a listing of the resource.
