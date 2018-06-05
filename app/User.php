@@ -11,7 +11,8 @@ class User extends Authenticatable
 {
     use Notifiable;
 
-    public function comments() {
+    public function comments()
+    {
         return $this->hasMany(Comment::class);
     }
 
@@ -33,7 +34,14 @@ class User extends Authenticatable
         'password', 'remember_token',
     ];
 
-    public function agency() {
+    public function agency()
+    {
         return $this->belongsTo(Agency::class, 'link');
+    }
+
+
+    public function agencies()
+    {
+        return $this->hasMany(Agency::class, 'manager_id');
     }
 }

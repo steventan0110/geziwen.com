@@ -46,6 +46,9 @@ class Agency extends Model
     public function user() {
         return $this->hasOne(User::class, 'link');
     }
+    public function manager() {
+        return $this->belongsTo(User::class, 'manager_id');
+    }
 
     protected $hidden = ['created_at', 'updated_at', 'id'];
 }
