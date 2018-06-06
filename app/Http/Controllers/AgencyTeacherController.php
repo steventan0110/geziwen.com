@@ -5,25 +5,20 @@ namespace App\Http\Controllers;
 use App\Agency\Teacher;
 use App\Http\Requests\TeacherStoreRequest;
 use Illuminate\Auth\Access\AuthorizationException;
-use Illuminate\Auth\AuthenticationException;
 use Illuminate\Http\Request;
-use App\Http\Requests\TeacherCreateRequest;
-use App\Http\Requests\TeacherUpdateRequest;
-use App\Http\Controllers\Controller;
 use App\Agency\Agency;
-use App\User;
 use Illuminate\Support\Facades\Auth;
 
-class TeacherController extends Controller
+class AgencyTeacherController extends Controller
 {
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function index(Request $request, $agency_id)
+    public function index(Request $request, $agency)
     {
-        $agency = Agency::find($agency_id);
+        $agency = Agency::find($agency);
         $teachers = $agency->teachers()->paginate(6);
         return view('teacher.index', ['teachers'=>$teachers,'agency'=>$agency]);
     }
@@ -33,15 +28,21 @@ class TeacherController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create($agency_id)
+    public function create(Request $request, $agencyId)
     {
-        $agency = Agency::findOrFail($agency_id);
-        try{
+        $agency = Agency::findOrFail($agencyId);
+        if (Auth::user()->agency->id != $agencyId) {
+            return redirect('home')
+                ->with('type', 'danger')
+                ->with('title', '您无权访问该链接！')
+                ->with('detail', '访问链接'.$request->url().'属于恶意操作，请不要再尝试！');
+        }
+        try {
             $this->authorize('create', Teacher::class);
-        }catch(AuthorizationException $exception){
-            return redirect()->back();}
-         return view('teacher.create_and_edit',['agency' => $agency]);
-        //
+        } catch (AuthorizationException $exception) {
+            return redirect()->back();
+        }
+        return view('teacher.create_and_edit', ['agency' => $agency]);
     }
 
     /**
@@ -50,17 +51,17 @@ class TeacherController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(TeacherStoreRequest $request,$agency_id)
+    public function store(TeacherStoreRequest $request, $agency_id)
     {
-        $data=$request->validated();
+        $data = $request->validated();
         $teacher = new Teacher($data['teacher']);
         $teacher-> agency_id = $agency_id;
         $teacher-> picture = 'images/default.gif';
         $teacher->save();
-        return redirect('/home')->with('success','添加成功！')->with('details','您已添加'.$teacher->name.'老师。');
-
-
-        //
+        return redirect('home')
+            ->with('type', 'success')
+            ->with('title', '添加成功！')
+            ->with('details', '您已添加'.$teacher->name.'老师。');
     }
 
     /**
@@ -73,7 +74,7 @@ class TeacherController extends Controller
     {
         $teacher = Teacher::findOrFail($teacher_id);
         $teacher->applicants = $teacher->applicants()->limit(5)->get();
-        return view('teacher.show', ['teacher' => $teacher]);//
+        return view('teacher.show', ['teacher' => $teacher]);
     }
 
     /**
@@ -105,8 +106,10 @@ class TeacherController extends Controller
         $data = $request->validated();
         Teacher::find($teacher_id)->update($data['teacher']);
         $teacher = Teacher::find($teacher_id);
-        return redirect()->route('home')->with('success','修改成功！')->with('details','您已修改'.$teacher->name.'老师的个人信息。');
-        //
+        return redirect()->route('home')
+            ->with('type', 'success')
+            ->with('title','修改成功！')
+            ->with('detail','您已修改'.$teacher->name.'老师的个人信息。');
     }
 
     /**
@@ -123,10 +126,10 @@ class TeacherController extends Controller
         } catch (AuthorizationException $exception){
             return redirect()->back();
         }
-        $teacher -> delete();
-        return redirect()->back()->with('success','删除成功！')->with('details','您已删除'.$teacher->name.'老师的所有信息。');
-
-
-        //
+        $teacher->delete();
+        return redirect()->back()
+            ->with('type', 'success')
+            ->with('title','删除成功！')
+            ->with('detail','您已删除'.$teacher->name.'老师的所有信息。');
     }
 }
