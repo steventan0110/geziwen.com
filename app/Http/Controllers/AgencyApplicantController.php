@@ -41,21 +41,38 @@ class AgencyApplicantController extends Controller
     public function create(Request $request, $agencyId)
     {
         $agency = Agency::find($agencyId);
-        if (Auth::user()->agency->id == $agencyId || $agency->manager->id === Auth::user()->id) {
-            try {
-                $this->authorize('create', Applicant::class);
-            } catch (AuthorizationException $exception) {
-                return redirect()->back();
-            }
-            return view('applicant.create_and_edit', [
-                'agency' => $agency,
-                'activity_types' => ActivityType::all()
-            ]);
-        } else {
-            return redirect('home')
+        try {
+            $this->authorize('create', Applicant::class);
+        } catch (AuthorizationException $exception) {
+            return redirect()->back()
                 ->with('type', 'danger')
                 ->with('title', '您无权访问该链接！')
-                ->with('detail', '访问链接'.$request->url().'属于恶意操作，请不要再尝试！');
+                ->with('detail', '访问链接'.$request->url().'属于恶意操作，请勿再尝试！');
+        }
+        if (Auth::user()->role === 'geziwen') {
+            if ($agency->manager->id != Auth::user()->id) {
+                return redirect('home')
+                    ->with('type', 'danger')
+                    ->with('title', '您无权访问该链接！')
+                    ->with('detail', '访问链接'.$request->url().'属于恶意操作，请勿再尝试！');
+            } else {
+                return view('applicant.create_and_edit', [
+                    'agency' => $agency,
+                    'activity_types' => ActivityType::all()
+                ]);
+            }
+        } else if (Auth::user()->role == 'agency') {
+            if ($agency->user->id != Auth::user()->id) {
+                return redirect('home')
+                    ->with('type', 'danger')
+                    ->with('title', '您无权访问该链接！')
+                    ->with('detail', '访问链接'.$request->url().'属于恶意操作，请勿再尝试！');
+            } else {
+                return view('applicant.create_and_edit', [
+                    'agency' => $agency,
+                    'activity_types' => ActivityType::all()
+                ]);
+            }
         }
     }
 
@@ -107,28 +124,44 @@ class AgencyApplicantController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($agencyId, $applicantId)
-    {
+    public function edit(Request $request, $agencyId, $applicantId) {
         $agency = Agency::find($agencyId);
         $applicant = Applicant::find($applicantId);
-        if (Auth::user()->agency->id == $agencyId || $agency->manager->id === Auth::user()->id) {
-            try {
-                $this->authorize('update', $applicant);
-            } catch (AuthorizationException $exception) {
-                return redirect()->back();
+        try {
+            $this->authorize('update', $applicant);
+        } catch (AuthorizationException $exception) {
+            return redirect()->back();
+        }
+        if (Auth::user()->role == 'geziwen') {
+            if (Auth::user()->id != $agency->manager->id) {
+                return redirect('home')
+                    ->with('type', 'danger')
+                    ->with('title', '您无权访问该链接！')
+                    ->with('detail', '访问链接' . $request->url() . '属于恶意操作，请勿再尝试！');
+            } else {
+                return view('applicant.create_and_edit', [
+                    'applicant' => $applicant,
+                    'agency' => $applicant->plan->agency,
+                    'activity_types' => ActivityType::all(),
+                    'universities' => University::all(),
+                    'plans' => \App\Application\Plan::all()
+                ]);
             }
-            return view('applicant.create_and_edit', [
-                'applicant' => $applicant,
-                'agency' => $applicant->plan->agency,
-                'activity_types' => ActivityType::all(),
-                'universities' => University::all(),
-                'plans' => \App\Application\Plan::all()
-            ]);
-        } else {
-            return redirect('home')
-                ->with('type', 'danger')
-                ->with('title', '您无权访问该链接！')
-                ->with('detail', '访问链接'.$request->url().'属于恶意操作，请不要再尝试！');
+        } else if (Auth::user()->role == 'agency') {
+            if ($agency->user->id != Auth::user()->id) {
+                return redirect('home')
+                    ->with('type', 'danger')
+                    ->with('title', '您无权访问该链接！')
+                    ->with('detail', '访问链接' . $request->url() . '属于恶意操作，请勿再尝试！');
+            } else {
+                return view('applicant.create_and_edit', [
+                    'applicant' => $applicant,
+                    'agency' => $applicant->plan->agency,
+                    'activity_types' => ActivityType::all(),
+                    'universities' => University::all(),
+                    'plans' => \App\Application\Plan::all()
+                ]);
+            }
         }
     }
 
