@@ -31,18 +31,29 @@ class AgencyTeacherController extends Controller
     public function create(Request $request, $agencyId)
     {
         $agency = Agency::findOrFail($agencyId);
-        if (Auth::user()->agency->id != $agencyId) {
-            return redirect('home')
-                ->with('type', 'danger')
-                ->with('title', '您无权访问该链接！')
-                ->with('detail', '访问链接'.$request->url().'属于恶意操作，请不要再尝试！');
-        }
         try {
             $this->authorize('create', Teacher::class);
         } catch (AuthorizationException $exception) {
             return redirect()->back();
         }
-        return view('teacher.create_and_edit', ['agency' => $agency]);
+        if (Auth::user()->role === 'geziwen') {
+            if ($agency->manager->id != Auth::user()->id) {
+                return redirect('home')
+                    ->with('type', 'danger')
+                    ->with('title', '您无权访问该链接！')
+                    ->with('detail', '访问链接'.$request->url().'属于恶意操作，请不要再尝试！');
+            } else {
+                return view('teacher.create_and_edit', ['agency' => $agency]);
+            }
+        } else if (Auth::user()->role == 'agency') {
+            if ($agency->user->id != Auth::user()->id) {
+                return redirect('home')
+                    ->with('type', 'danger')
+                    ->with('title', '您无权访问该链接！')
+                    ->with('detail', '访问链接' . $request->url() . '属于恶意操作，请不要再尝试！');
+            }
+            return view('teacher.create_and_edit', ['agency' => $agency]);
+        }
     }
 
     /**
@@ -83,15 +94,34 @@ class AgencyTeacherController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($agency_id, $teacher_id)
+    public function edit(Request $request, $agency_id, $teacher_id)
     {
-       $teacher = Teacher::findorFail($teacher_id);
-       try{
-           $this->authorize('update', $teacher);
-       } catch (AuthorizationException $exception){
-           return redirect()->back();
-       }
-       return view('teacher.create_and_edit', ['teacher' => $teacher]);
+        $agency = Agency::findOrFail($agency_id);
+        $teacher = Teacher::findOrFail($teacher_id);
+        try{
+            $this->authorize('update', $teacher);
+        } catch (AuthorizationException $exception){
+            return redirect()->back();
+        }
+        if (Auth::user()->role == 'geziwen') {
+            if (Auth::user()->id != $agency->manager->id) {
+                return redirect('home')
+                    ->with('type', 'danger')
+                    ->with('title', '您无权访问该链接！')
+                    ->with('detail', '访问链接' . $request->url() . '属于恶意操作，请勿再尝试！');
+            } else {
+                return view('teacher.create_and_edit', ['teacher' => $teacher]);
+            }
+        } else if (Auth::user()->role == 'agency') {
+            if ($agency->user->id != Auth::user()->id) {
+                return redirect('home')
+                    ->with('type', 'danger')
+                    ->with('title', '您无权访问该链接！')
+                    ->with('detail', '访问链接' . $request->url() . '属于恶意操作，请勿再尝试！');
+            } else {
+                return view('teacher.create_and_edit', ['teacher' => $teacher]);
+            }
+        }
     }
 
     /**
