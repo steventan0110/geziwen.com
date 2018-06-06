@@ -11,7 +11,7 @@
 |
 */
 
-Route::get('/', 'WelcomeController@welcome')->name('welcome');
+Route::get('/', 'WelcomeController@')->name('welcome');
 
 Auth::routes();
 
@@ -31,7 +31,7 @@ Route::resource('plan.applicant', 'PlanApplicantController');
 
 Route::resource('teacher.applicant', 'TeacherApplicantController');
 
-Route::resource('agency.teacher','TeacherController');
+Route::resource('agency.teacher','AgencyTeacherController');
 
 Route::resource('agency', 'AgencyController');
 
