@@ -8,16 +8,9 @@
 
     @agency
 
-    <div class="container">
-        @include('teacher.messages')
-    </div>
+        @include('components.alert')
         <div class="container">
             <div class="row">
-                @if (isset($mesasage))
-                    <div class="alert alert-{{ $mesasge->type }}">
-                        {{ $message->body }}
-                    </div>
-                @endif
                 <div class="col-lg-4">
                     <div id="account" class="mb-4">
                         <div class="p-3 bg-white rounded box-shadow">

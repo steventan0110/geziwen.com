@@ -20,7 +20,6 @@ class TeacherPolicy
     public function view(User $user, Teacher $teacher)
     {
         return true;
-        //
     }
 
     /**
@@ -44,8 +43,12 @@ class TeacherPolicy
      */
     public function update(User $user, Teacher $teacher)
     {
-        $agency = $user->agency;
-        return $user->role == 'geziwen'|| ($user->role == 'agency' && $user->link == $agency->id);//
+        if ($user->role == 'agency') {
+            return $user->link == $teacher->agency->id;
+        } else if ($user->role == 'geziwen') {
+            return $teacher->agency->manager->id == $user->id;
+        }
+        return false;
     }
 
     /**
@@ -57,8 +60,11 @@ class TeacherPolicy
      */
     public function delete(User $user, Teacher $teacher)
     {
-        $agency = $user->agency;
-        return $user->role == 'geziwen'|| ($user->role == 'agency' && $user->link == $agency->id);
-        //
+        if ($user->role == 'agency') {
+            return $user->link == $teacher->agency->id;
+        } else if ($user->role == 'geziwen') {
+            return $teacher->agency->manager->id == $user->id;
+        }
+        return false;
     }
 }

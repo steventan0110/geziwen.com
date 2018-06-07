@@ -19,8 +19,12 @@ class ApplicantPolicy
      */
     public function view(User $user, Applicant $applicant)
     {
-        return ($user->role == 'agency' && $user->link == $applicant->plan->agency->id)
-            || ($user->role == 'geziwen' && $applicant->agency->manager->id == $user->id);
+        if ($user->role == 'agency') {
+            return $user->link == $applicant->plan->agency->id;
+        } else if ($user->role == 'geziwen') {
+            return $applicant->plan->agency->manager->id == $user->id;
+        }
+        return false;
     }
 
     /**
@@ -45,8 +49,12 @@ class ApplicantPolicy
      */
     public function update(User $user, Applicant $applicant)
     {
-        return ($user->role == 'agency' && $user->link == $applicant->plan->agency->id)
-            || ($user->role == 'geziwen' && $applicant->agency->manager->id == $user->id);
+        if ($user->role == 'agency') {
+            return $user->link == $applicant->plan->agency->id;
+        } else if ($user->role == 'geziwen') {
+            return $applicant->plan->agency->manager->id == $user->id;
+        }
+        return false;
     }
 
     /**
@@ -58,7 +66,11 @@ class ApplicantPolicy
      */
     public function delete(User $user, Applicant $applicant)
     {
-        return ($user->role == 'agency' && $user->link == $applicant->plan->agency->id)
-            || ($user->role == 'geziwen' && $applicant->agency->manager->id == $user->id);
+        if ($user->role == 'agency') {
+            return $user->link == $applicant->plan->agency->id;
+        } else if ($user->role == 'geziwen') {
+            return $applicant->plan->agency->manager->id == $user->id;
+        }
+        return false;
     }
 }
