@@ -2,7 +2,7 @@
 
 namespace App\Http\Resources;
 
-use App\Http\Controllers\Agency\PlanApplicantController;
+use App\Http\Controllers\PlanApplicantController;
 use Illuminate\Http\Resources\Json\JsonResource;
 
 class OfferResource extends JsonResource
@@ -20,7 +20,7 @@ class OfferResource extends JsonResource
             'university_id' => $this->university_id,
             'university' => new UniversityResource($this->university),
             'plan_id' => $this->plan_id,
-            'plan' => new PlanResource($this->plan),
+            'plan' => new ApplicationPlanResource($this->plan),
         ];
     }
 }
