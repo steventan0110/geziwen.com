@@ -15,10 +15,10 @@
             </div>
         </div>
         <div class="form-group row">
-            <label for="v-code" class="col-md-4 col-form-label text-md-right">请输入验证码</label>
+            <label for="mobile-vcode" class="col-md-4 col-form-label text-md-right">请输入验证码</label>
             <div class="col-md-6">
                 <div class="input-group">
-                    <input id="v-code" type="number" v-bind:class="this.showCodeError ? 'is-invalid' : '' "  class="form-control" name="vcode" required>
+                    <input id="mobile-vcode" type="number" v-bind:class="this.showCodeError ? 'is-invalid' : '' "  class="form-control" name="vcode" required>
                     <div class="input-group-append">
                         <button id="sendVerifySmsButton" :disabled="sendDisabled" type="button" class="btn btn-primary" @click="send">
                             <span v-if="sendMsgDisabled">{{countDown+'秒后获取'}}</span>

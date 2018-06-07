@@ -5,9 +5,11 @@ namespace App\Providers;
 use App\Agency\Agency;
 use App\Agency\Service\Plan;
 use App\Agency\Teacher;
+use App\Comment\Comment;
 use App\Applicant\Applicant;
 use App\Policies\AgencyPolicy;
 use App\Policies\ApplicantPolicy;
+use App\Policies\CommentPolicy;
 use App\Policies\PlanPolicy;
 use App\Policies\TeacherPolicy;
 use Illuminate\Support\Facades\Gate;
@@ -26,6 +28,7 @@ class AuthServiceProvider extends ServiceProvider
         Applicant::class => ApplicantPolicy::class,
         Teacher::class => TeacherPolicy::class,
         Plan::class => PlanPolicy::class,
+        Comment::class => CommentPolicy::class,
     ];
 
     /**
