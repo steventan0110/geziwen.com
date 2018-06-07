@@ -13,6 +13,8 @@ class Plan extends Model
 
     protected $table = "agency_service_plans";
 
+    protected $fillable = ['name', 'introduction', 'price'];
+
     public function searchableAs() {
         return $this->table.'_index';
     }

@@ -64,8 +64,6 @@
                             <a class="btn btn-block btn-info" href="{{ route('agency.applicant.index', ['id' => $user->agency->id]) }}">查看所有案例</a>
                         </small>
                     </div>
-
-
                     <div class="p-3 mt-3 bg-white rounded box-shadow">
                         <h5 class="border-bottom border-gray pb-2 mb-0">师资</h5>
                             <div class="row">
@@ -80,6 +78,19 @@
                             <a class="btn btn-sm btn-warning btn-block "  href="{{route('agency.teacher.create', ['agency' => $user->agency->id])}}">添加老师</a>
                             <a class="btn btn-sm btn-info btn-block"  href="{{route('agency.teacher.index', ['agency' => $user->agency->id])}}">查看所有</a>
                         </div>
+                    </div>
+                </div>
+                <div id="plans" class="col-lg-8 offset-lg-4 mb-4">
+                    <div class="p-3 bg-white rounded box-shadow">
+                        <h5 class="border-bottom border-gray pb-2 mb-0">所有方案</h5>
+                        @foreach ($user->agency->plans()->get() as $plan)
+                            @component('components.plan', ['plan' => $plan])
+
+                            @endcomponent
+                        @endforeach
+                        <small class="d-block text-right mt-3">
+                            <a class="btn btn-block btn-warning" href="{{ route('agency.plan.create', ['agency' => $user->agency->id ]) }}">创建新方案</a>
+                        </small>
                     </div>
                 </div>
             </div>

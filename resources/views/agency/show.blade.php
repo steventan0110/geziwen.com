@@ -35,7 +35,7 @@
                                     <li>{{ $feature->name }}</li>
                                 @endforeach
                             </ul>
-                            <a href="{{ route('agency.plan.show', ['id' => $plan->id]) }}"
+                            <a href="{{ route('agency.plan.show', ['agency' => $plan->agency->id, 'id' => $plan->id]) }}"
                                class="btn btn-lg btn-block btn-info">了解更多</a>
                         </div>
                     </div>
