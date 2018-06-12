@@ -9,7 +9,9 @@ use App\Http\Requests\AgencyStoreRequest;
 use App\Http\Requests\AgencyUpdateRequest;
 use App\User;
 use Illuminate\Auth\Access\AuthorizationException;
+use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Storage;
 
 class AgencyController extends Controller
 {
@@ -105,6 +107,9 @@ class AgencyController extends Controller
      */
     public function update(AgencyUpdateRequest $request, $id)
     {
+        if($request->hasfile('photo')) {
+            Storage::putFileAs('agency-'.$id, $request->file('photo'), 'photo'.'.jpg');
+        }
         $data = $request->validated();
         $agency = Agency::find($id);
         try {

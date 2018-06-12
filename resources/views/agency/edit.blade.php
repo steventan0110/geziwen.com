@@ -7,7 +7,7 @@
 @section('content')
 
     <div id="agency" class="container">
-        <form action="{{ route('agency.update', ['id' => $agency->id]) }}" method="post" class="bg-white box-shadow jumbotron">
+        <form action="{{ route('agency.update', ['id' => $agency->id]) }}" method="post" class="bg-white box-shadow jumbotron" enctype="multipart/form-data">
             @method('PUT')
             @csrf
             <h5 class="border-bottom border-gray pb-2 mb-2">编辑基本信息</h5>
@@ -48,6 +48,10 @@
             <div class="form-group mb-3">
                 <label for="started_on">开办日期</label>
                 <input type="date" class="form-control" id="started_on" name="agency[started_on]" value="{{ $agency->started_on }}">
+            </div>
+            <div class="form-group mb-3">
+                <label for="image">机构头像</label>
+                <input type="file" class="form-control-file" id="image" name="photo">
             </div>
             <div class="form-group mb-3">
                 <button type="submit" class="btn btn-info btn-block">更新</button>
