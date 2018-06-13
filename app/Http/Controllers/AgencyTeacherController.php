@@ -8,6 +8,7 @@ use Illuminate\Auth\Access\AuthorizationException;
 use Illuminate\Http\Request;
 use App\Agency\Agency;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Storage;
 
 class AgencyTeacherController extends Controller
 {
@@ -66,8 +67,15 @@ class AgencyTeacherController extends Controller
     {
         $data = $request->validated();
         $teacher = new Teacher($data['teacher']);
-        $teacher-> agency_id = $agency_id;
-        $teacher-> picture = 'images/default.gif';
+        if ($request->hasFile('picture')) {
+            if ($teacher->picture !== 'images/default.gif') {
+                Storage::disk('local')->delete($teacher->picture);
+            }
+            $picture = $request->file('picture')->storePublicly('teachers', 'local');
+            $teacher->picture = $picture;
+        }
+        $teacher->agency_id = $agency_id;
+        $teacher->picture = 'teachers/default_teacher.gif';
         $teacher->save();
         return redirect('home')
             ->with('type', 'success')
@@ -134,8 +142,18 @@ class AgencyTeacherController extends Controller
     public function update(TeacherStoreRequest $request, $agency_id, $teacher_id)
     {
         $data = $request->validated();
-        Teacher::find($teacher_id)->update($data['teacher']);
         $teacher = Teacher::find($teacher_id);
+        if ($request->hasFile('picture')) {
+            if ($teacher->picture !== 'teachers/default_teacher.gif') {
+                Storage::disk('local')->delete($teacher->picture);
+            }
+            $picture = $request->file('picture')->storePublicly('teachers', 'local');
+            $teacher->picture = $picture;
+            $teacher->save();
+        }
+//        $data['teacher']['picture'] = $picture;
+        $teacher->update($data['teacher']);
+
         return redirect()->route('home')
             ->with('type', 'success')
             ->with('title','修改成功！')

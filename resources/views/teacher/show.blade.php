@@ -7,8 +7,8 @@
     <div class="container" id="teacher">
         <div class="jumbotron bg-white box-shadow">
             <div class="media">
-                <img class="ml-2 mr-3 img-thumbnail border border-info rounded-circle"
-                     src="{{ asset($teacher->picture) }}" alt="Generic placeholder image" width="100px">
+                <img class="ml-2 mr-3 border border-info rounded-circle"
+                     src="{{ asset('storage/' . $teacher->picture) }}" alt="Generic placeholder image" width="100px">
                 <div class="media-body ml-3">
                     <h3>{{ $teacher->name }}</h3>
                     <p class="small mt-3">所属中介: <a href="{{ route('agency.show', ['id' => $teacher->agency->id]) }}">{{ $teacher->agency->name }}</a></p>

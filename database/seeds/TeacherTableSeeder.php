@@ -20,7 +20,7 @@ class TeacherTableSeeder extends Seeder {
                 'subject' => $faker->text,
                 'introduction' => $faker->text,
                 'years_of_teaching' => $faker->year,
-                'picture' => $faker->url
+                'picture' => 'images/default_teacher.gif'
             ]);
         }
 
