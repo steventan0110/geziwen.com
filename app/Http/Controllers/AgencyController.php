@@ -114,9 +114,8 @@ class AgencyController extends Controller
             if ($agency->logo !== 'images/default.gif') {
                 Storage::disk('local')->delete($agency->logo);
             }
-            $logo = $request->file('logo')->storePublicly('logos', 'local');
+            $data['agency']['logo'] = $request->file('logo')->storePublicly('logos', 'local');
         }
-        $data['agency']['logo'] = $logo;
         $agency->update($data['agency']);
         return redirect()->route('home');
     }
