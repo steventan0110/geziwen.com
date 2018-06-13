@@ -12,7 +12,7 @@
 @section('content')
     <div id="teacher" class="container">
 
-        <form @edit action= "{{route('agency.teacher.update',['agency_id'=>$teacher->agency->id,'teacher_id'=>$teacher->id])}}" @endedit
+        <form @edit enctype="multipart/form-data" action= "{{route('agency.teacher.update',['agency_id'=>$teacher->agency->id,'teacher_id'=>$teacher->id])}}" @endedit
         @create action= "{{route('agency.teacher.store',['agency_id'=>$agency->id])}}" @endcreate
 
                 method="post"
@@ -53,6 +53,10 @@
             <div class="form-group mb-3">
                 <label for="subject">教授内容</label>
                 <textarea type="text" class="form-control" id="subject" name="teacher[subject]" >@edit{{ $teacher->subject }} @endedit</textarea>
+            </div>
+            <div class="form-group mb-3">
+                <label for="image">教师头像</label>
+                <input type="file" class="form-control-file" id="image" name="picture">
             </div>
             <div class="form-group mb-3 mt-3">
                 <button type="submit" class="btn btn-info btn-block">
