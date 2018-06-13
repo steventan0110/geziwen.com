@@ -4,12 +4,10 @@ namespace App\Http\Controllers;
 
 use App\Agency\Agency;
 use App\Http\Requests\AgencyCreateRequest;
-use App\Http\Requests\AgencyInviteRequest;
-use App\Http\Requests\AgencyStoreRequest;
 use App\Http\Requests\AgencyUpdateRequest;
 use App\User;
 use Illuminate\Auth\Access\AuthorizationException;
-use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Storage;
 
 class AgencyController extends Controller
 {
@@ -112,6 +110,13 @@ class AgencyController extends Controller
         } catch (AuthorizationException $exception) {
             return redirect()->back();
         }
+        if ($request->hasFile('logo')) {
+            if ($agency->logo !== 'images/default.gif') {
+                Storage::disk('local')->delete($agency->logo);
+            }
+            $logo = $request->file('logo')->storePublicly('logos', 'local');
+        }
+        $data['agency']['logo'] = $logo;
         $agency->update($data['agency']);
         return redirect()->route('home');
     }

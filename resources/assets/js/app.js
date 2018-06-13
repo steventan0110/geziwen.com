@@ -64,7 +64,8 @@ Vue.component('applicant-exams', require('./components/applicant/exams'));
 Vue.component('applicant-activities', require('./components/applicant/activities'));
 Vue.component('applicant-awards', require('./components/applicant/awards'));
 Vue.component('applicant-offers', require('./components/applicant/offers'));
-
+Vue.component('plan-features', require('./components/plan/features'));
+Vue.component('plan-steps', require('./components/plan/steps'));
 Vue.http.headers.common['X-CSRF-TOKEN'] = document.querySelector('meta[name=csrf-token]').getAttribute('content');
 
 const app = new Vue({

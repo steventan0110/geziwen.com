@@ -12,6 +12,42 @@
         <div class="container">
             <div class="row">
                 <div class="col-lg-4">
+                    {{--<div id="head" class="mb-4">--}}
+                        {{--<div class="p-3 bg-white rounded box-shadow">--}}
+
+                            {{--<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter">--}}
+                                {{--修改密码--}}
+                            {{--</button>--}}
+                        {{--</div>--}}
+                        {{--<div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">--}}
+                            {{--<div class="modal-dialog modal-dialog-centered" role="document">--}}
+                                {{--<div class="modal-content">--}}
+                                    {{--<div class="modal-header">--}}
+                                        {{--<h5 class="modal-title" id="exampleModalLongTitle">Modal title</h5>--}}
+                                        {{--<button type="button" class="close" data-dismiss="modal" aria-label="Close">--}}
+                                            {{--<span aria-hidden="true">&times;</span>--}}
+                                        {{--</button>--}}
+                                    {{--</div>--}}
+                                    {{--<form action="{{ route('agency.update', ['id' => $user->agency->id]) }}" method="post" class="bg-white box-shadow jumbotron">--}}
+                                        {{--@csrf--}}
+                                        {{--<div class="modal-body">--}}
+
+                                            {{--<div class="form-group mb-3">--}}
+                                                {{--<label for="image">机构头像</label>--}}
+                                                {{--<input type="file" class="form-control-file" id="image" name="image">--}}
+                                            {{--</div>--}}
+
+                                        {{--</div>--}}
+                                        {{--<div class="modal-footer">--}}
+                                            {{--<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>--}}
+                                            {{--<button type="submit" class="btn btn-primary">Save changes</button>--}}
+                                        {{--</div>--}}
+                                    {{--</form>--}}
+                                {{--</div>--}}
+                            {{--</div>--}}
+                        {{--</div>--}}
+                    {{--</div>--}}
+
                     <div id="account" class="mb-4">
                         <div class="p-3 bg-white rounded box-shadow">
                             <h5 class="border-bottom border-gray pb-2 mb-2">账号信息</h5>
@@ -30,6 +66,8 @@
                     <div id="agency" class="mb-4">
                         <div class="p-3 bg-white rounded box-shadow">
                             <h5 class="border-bottom border-gray pb-2 mb-2">基本信息</h5>
+                            <img style="height: 10%; width: 100%" class="img-fluid mb-4 rounded d-block"
+                                 src="{{ asset('storage/' . $user->agency->logo) }}">
                             <dl class="row">
                                 <dt class="col-sm-4">机构名称</dt>
                                 <dd class="col-sm-8">{{ $user->agency->name }}</dd>
@@ -64,8 +102,6 @@
                             <a class="btn btn-block btn-info" href="{{ route('agency.applicant.index', ['id' => $user->agency->id]) }}">查看所有案例</a>
                         </small>
                     </div>
-
-
                     <div class="p-3 mt-3 bg-white rounded box-shadow">
                         <h5 class="border-bottom border-gray pb-2 mb-0">师资</h5>
                             <div class="row">
@@ -80,6 +116,19 @@
                             <a class="btn btn-sm btn-warning btn-block "  href="{{route('agency.teacher.create', ['agency' => $user->agency->id])}}">添加老师</a>
                             <a class="btn btn-sm btn-info btn-block"  href="{{route('agency.teacher.index', ['agency' => $user->agency->id])}}">查看所有</a>
                         </div>
+                    </div>
+                </div>
+                <div id="plans" class="col-lg-8 offset-lg-4 mb-4">
+                    <div class="p-3 bg-white rounded box-shadow">
+                        <h5 class="border-bottom border-gray pb-2 mb-0">所有方案</h5>
+                        @foreach ($user->agency->plans()->get() as $plan)
+                            @component('components.plan', ['plan' => $plan])
+
+                            @endcomponent
+                        @endforeach
+                        <small class="d-block text-right mt-3">
+                            <a class="btn btn-block btn-warning" href="{{ route('agency.plan.create', ['agency' => $user->agency->id ]) }}">创建新方案</a>
+                        </small>
                     </div>
                 </div>
             </div>

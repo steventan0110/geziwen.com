@@ -146,7 +146,16 @@ return [
         'awards.*.received_on' => '奖项获得日期',
         'awards.*.introduction' => '奖项介绍',
         'offers.*.university_id' => '录取学校',
-        'offers.*.plan_id' => '申请时期'
+        'offers.*.plan_id' => '申请时期',
+        'steps.*.name' => '阶段名称',
+        'steps.*.period' => '阶段时间',
+        'steps.*.introduction' => '阶段介绍',
+        'features.*.name' => '特点名称',
+        'features.*.introduction' => '特点介绍',
+        'plan.name' => '方案名称',
+        'plan.price' => '方案价格',
+        'plan.introduction' => '方案介绍',
+
     ],
 
 ];
