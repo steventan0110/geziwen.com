@@ -1,19 +1,14 @@
 
 @extends('layouts.app')
-<div class="container">
-    @include('teacher.messages')
-</div>
-
-
-
 
 @section('title')
     {{ $agency->name }} | 所有师资
 @endsection
 
-
-
 @section('content')
+
+    @include('components.alert')
+
     <div id="applicants" class="container mb-4">
         <div class="jumbotron box-shadow bg-white">
             <div class="media">
@@ -27,24 +22,22 @@
         </div>
     </div>
 
-<div class="container" id="teachers">
+    <div class="container" id="teachers">
         <div class="my-3 p-3 bg-white rounded box-shadow">
-
             <div class="row">
                 @foreach($teachers as $teacher)
                     @component('components.teacher', ['agency'=> $agency,'teacher'=>$teacher])
 
                     @endcomponent
-
                 @endforeach
             </div>
-    </div>
-    <small class="d-block text-right mt-4">
-        <div class="container align-content-center">
-            <ul class="pagination justify-content-center text-info">
-            {{ $teachers->links('vendor.pagination.bootstrap-4') }}
-            </ul>
         </div>
-    </small>
-</div>
+        <small class="d-block text-right mt-4GIT">
+            <div class="container align-content-center">
+                <ul class="pagination justify-content-center text-info">
+                {{ $teachers->links('vendor.pagination.bootstrap-4') }}
+                </ul>
+            </div>
+        </small>
+    </div>
 @endsection

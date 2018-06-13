@@ -12,9 +12,8 @@
 @section('content')
     <div id="teacher" class="container">
 
-        <form
-                @edit  action= "{{route('agency.teacher.update',['agency_id'=>$teacher->agency->id,'teacher_id'=>$teacher->id])}}" @endedit
-                @create action= "{{route('agency.teacher.store',['agency_id'=>$agency->id])}}" @endcreate
+        <form @edit action= "{{route('agency.teacher.update',['agency_id'=>$teacher->agency->id,'teacher_id'=>$teacher->id])}}" @endedit
+        @create action= "{{route('agency.teacher.store',['agency_id'=>$agency->id])}}" @endcreate
 
                 method="post"
                 class="bg-white box-shadow jumbotron">
@@ -39,7 +38,6 @@
             @endif
             <div class="form-group mb-3">
                 <label for="name">老师名字</label>
-
                 <input type="text" class="form-control" id="teacher_name" name="teacher[name]"
                        @edit value="{{ $teacher->name }}" @endedit>
             </div>
@@ -49,17 +47,18 @@
                 <textarea type="text" class="form-control" id="teacher_introduction" name="teacher[introduction]" >@edit{{ $teacher->introduction}}@endedit</textarea>
             </div>
             <div class="form-group mb-3">
-                <label for="years_of_teaching">入职时间</label>
-
-                <input type="text" class="form-control" id="years_of_teaching" name="teacher[years_of_teaching]" @edit value="{{ $teacher->years_of_teaching }}"@endedit>
+                <label for="years_of_teaching">入职年数</label>
+                <input type="number" class="form-control" id="years_of_teaching" name="teacher[years_of_teaching]" @edit value="{{ $teacher->years_of_teaching }}"@endedit>
             </div>
             <div class="form-group mb-3">
                 <label for="subject">教授内容</label>
-
                 <textarea type="text" class="form-control" id="subject" name="teacher[subject]" >@edit{{ $teacher->subject }} @endedit</textarea>
             </div>
             <div class="form-group mb-3 mt-3">
-                <button type="submit" class="btn btn-info btn-block">添加</button>
+                <button type="submit" class="btn btn-info btn-block">
+                    @edit 更新 @endedit
+                    @create 新建 @endcreate
+                </button>
             </div>
         </form>
     </div>
