@@ -51,7 +51,7 @@
             </div>
             <div class="form-group mb-3">
                 <label for="image">机构头像</label>
-                <input type="file" class="form-control-file" id="image" name="photo">
+                <input type="file" class="form-control-file" id="image" name="logo">
             </div>
             <div class="form-group mb-3">
                 <button type="submit" class="btn btn-info btn-block">更新</button>

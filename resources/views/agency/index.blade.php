@@ -23,7 +23,7 @@
             @foreach($agencies as $agency)
                 <div class="col-md-4">
                     <div class="card mb-4 box-shadow">
-                        <img class="card-img-top" src="{{ Storage::exists('agency-'.$agency->id) ? asset('/storage/app/agency-'.$agency->id.'/photo.jpg') : asset('/storage/app/default.jpg') }}" alt="logo">
+                        <img class="card-img-top" src="{{ 'storage/' . $agency->logo }}" alt="logo">
                         <div class="card-body">
                             <h5>{{ $agency->name }}</h5>
                             <p class="card-text">{{ $agency->introduction }}</p>

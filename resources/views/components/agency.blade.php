@@ -2,7 +2,7 @@
     <div class="jumbotron bg-white box-shadow">
         <div class="media">
             <img class="ml-2 mr-3 img-thumbnail border border-info"
-                 src="{{ Storage::exists('agency-'.$agency->id) ? asset('/storage/app/agency-'.$agency->id.'/photo.jpg') : asset('/storage/app/default.jpg') }}"
+                 src="{{ asset('storage/' . $agency->logo) }}"
                  alt="Generic placeholder image" width="100px">
             <div class="media-body">
                 <h3>{{ $agency->name }}</h3>

@@ -73,9 +73,8 @@
                     <div id="agency" class="mb-4">
                         <div class="p-3 bg-white rounded box-shadow">
                             <h5 class="border-bottom border-gray pb-2 mb-2">基本信息</h5>
-
-                                <img style="height: 10%; width: 100%" class="img-fluid mb-4 rounded d-block" src="{{ Storage::exists('agency-'.$user->agency->id) ? asset('/storage/app/agency-'.$user->agency->id.'/photo.jpg') : asset('/storage/app/default.jpg') }}" alt="">
-
+                            <img style="height: 10%; width: 100%" class="img-fluid mb-4 rounded d-block"
+                                 src="{{ asset('storage/' . $user->agency->logo) }}">
                             <dl class="row">
                                 <dt class="col-sm-4">机构名称</dt>
                                 <dd class="col-sm-8">{{ $user->agency->name }}</dd>
