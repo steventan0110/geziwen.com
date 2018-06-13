@@ -68,14 +68,16 @@ class AgencyTeacherController extends Controller
         $data = $request->validated();
         $teacher = new Teacher($data['teacher']);
         if ($request->hasFile('picture')) {
-            if ($teacher->picture !== 'images/default.gif') {
+            if ($teacher->picture !== 'teachers/default_teacher.gif') {
                 Storage::disk('local')->delete($teacher->picture);
             }
             $picture = $request->file('picture')->storePublicly('teachers', 'local');
             $teacher->picture = $picture;
         }
+        else {
+            $teacher->picture = 'teachers/default_teacher.gif';
+        }
         $teacher->agency_id = $agency_id;
-        $teacher->picture = 'teachers/default_teacher.gif';
         $teacher->save();
         return redirect('home')
             ->with('type', 'success')
