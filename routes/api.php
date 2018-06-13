@@ -7,6 +7,7 @@ use App\Agency\Service\Plan;
 use App\Agency\Agency;
 use App\Agency\Teacher;
 use App\Applicant\Applicant;
+use App\Applicant\ActivityType;
 use App\Http\Resources\UniversityCollection;
 use App\Http\Resources\ApplicantResource;
 use App\Http\Resources\TeacherResource;
@@ -17,6 +18,7 @@ use App\Http\Resources\OfferResource;
 use App\Http\Resources\ApplicationPlanCollection;
 use App\Http\Resources\AgencyPlanResource;
 use App\Http\Resources\AwardResource;
+use App\Http\Resources\ActivityTypeCollection;
 
 /*
 |--------------------------------------------------------------------------
@@ -42,6 +44,10 @@ Route::post('mail/test','MailController@test');
 
 Route::get('university', function () {
     return new UniversityCollection(University::all());
+});
+
+Route::get('activity-types', function () {
+    return new ActivityTypeCollection(ActivityType::all());
 });
 
 Route::get('agencies', function() {
