@@ -47,14 +47,6 @@
                 <textarea type="text" class="form-control" id="teacher_introduction" name="teacher[introduction]" >@edit{{ $teacher->introduction}}@endedit</textarea>
             </div>
             <div class="form-group mb-3">
-                <label for="years_of_teaching">入职年数</label>
-                <input type="number" class="form-control" id="years_of_teaching" name="teacher[years_of_teaching]" @edit value="{{ $teacher->years_of_teaching }}"@endedit>
-            </div>
-            <div class="form-group mb-3">
-                <label for="subject">教授内容</label>
-                <textarea type="text" class="form-control" id="subject" name="teacher[subject]" >@edit{{ $teacher->subject }} @endedit</textarea>
-            </div>
-            <div class="form-group mb-3">
                 <label for="image">教师头像</label>
                 <input type="file" class="form-control-file" id="image" name="picture">
             </div>
