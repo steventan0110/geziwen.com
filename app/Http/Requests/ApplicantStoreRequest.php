@@ -33,10 +33,7 @@ class ApplicantStoreRequest extends FormRequest
             'exams.*.score.total' => 'required_unless:applicant_type,language|integer|nullable',
             'activities.*.type_id' => 'required|integer',
             'activities.*.name' => 'required',
-            'activities.*.description' => 'required',
             'awards.*.name' => 'required',
-            'awards.*.received_on' => 'required',
-            'awards.*.description' => 'required',
             'offers.*.university_id' => 'required|integer',
             'offers.*.plan_id' => 'required|integer'
         ];

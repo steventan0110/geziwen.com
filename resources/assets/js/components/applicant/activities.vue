@@ -13,15 +13,6 @@
                 <div class="col-md-8 form-group">
                     <input required class="form-control" type="text" v-model="activity.name" :name='"activities[" + index + "][name]"' placeholder="活动名称">
                 </div>
-                <div class="col-md-12 form-group">
-                    <textarea required class="form-control" type="text" v-model="activity.description" :name='"activities[" + index + "][description]"' placeholder="活动简介"></textarea>
-                </div>
-                <div class="col-md-6 form-group">
-                    <input class="form-control" type="date" v-model="activity.start" :name='"activities[" + index + "][start]"' placeholder="开始日期">
-                </div>
-                <div class="col-md-6 form-group">
-                    <input class="form-control" type="date" v-model="activity.end" :name='"activities[" + index + "][end]"' placeholder="结束日期">
-                </div>
             </div>
             <div class="col-md-2">
                 <button type="button" class="btn btn-danger btn-block" @click="remove(index)">删除</button>
@@ -43,7 +34,6 @@
                 this.$http.get('/api/applicant/' + this.applicant + '/activities').then(
                     response => {
                         this.activities = response.body.data;
-                        console.log(this.activityTypes);
                     }, response => {
                         alert('服务器错误，请联系管理员！');
                     }
@@ -76,11 +66,7 @@
                     id: 0,
                     type_id: null,
                     name: null,
-                    description: null,
-                    start: null,
-                    end: null
                 });
-                console.log(this.activities);
             },
             remove: function(index) {
                 this.activities.splice(index, 1);
