@@ -63,16 +63,9 @@
             <h5 class="border-bottom border-gray pb-2 mb-2">部分师资</h5>
             <div class="row">
                 @foreach($agency->teachers as $teacher)
-                    <div class="col-sm-4 text-center mt-4  pl-2 pr-2">
-                        <img class="rounded-circle mb-2" src="{{ asset($teacher->picture) }}"
-                             alt="Generic placeholder image" width="100px" height="100px">
-                        <h5>{{ $teacher->name }}</h5>
-                        <p class="small m-3">{{ $teacher->introduction }}</p>
-                        <p class="small">
-                            <a class="btn btn-info btn-sm" role="button"
-                               href="{{ route('agency.teacher.show', ['agency' => $teacher->agency->id, 'id' => $teacher->id]) }}">查看详细</a>
-                        </p>
-                    </div>
+                    @component('components.teacher', ['teacher' => $teacher])
+
+                    @endcomponent
                 @endforeach
             </div>
             <small class="d-block text-right mt-3">
