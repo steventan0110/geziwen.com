@@ -22,36 +22,40 @@
                 </div>
             @endif
             <div class="form-group mb-3">
-                <label for="name">机构名称</label>
+                <label for="name">机构名称 <span class="text-danger">必填</span></label>
                 <input type="text" class="form-control" id="name" name="agency[name]" value="{{ $agency->name }}">
             </div>
             <div class="form-group mb-3">
-                <label for="introduction">机构简介</label>
+                <label for="introduction">机构简介 <span class="text-danger">必填</span></label>
                 <textarea class="form-control" id="introduction" name="agency[introduction]">{{ $agency->introduction }}</textarea>
             </div>
             <div class="form-group mb-3">
-                <label for="address">地址</label>
+                <label for="address">地址 <span class="text-danger">必填</span></label>
                 <input type="text" class="form-control" id="address" name="agency[address]" value="{{ $agency->address }}">
             </div>
             <div class="form-group mb-3">
-                <label for="telephone">联系电话</label>
+                <label for="telephone">联系电话 <span class="text-danger">必填</span></label>
                 <input type="tel" class="form-control" id="telephone" name="agency[telephone]" value="{{ $agency->telephone }}">
             </div>
             <div class="form-group mb-3">
-                <label for="website">网址</label>
+                <label for="website">网址 <span class="text-danger">必填</span></label>
                 <input type="url" class="form-control" id="website" name="agency[website]" value="{{ $agency->website }}">
             </div>
             <div class="form-group mb-3">
-                <label for="email">邮箱地址</label>
+                <label for="email">邮箱地址 <span class="text-danger">必填</span></label>
                 <input type="email" class="form-control" id="email" name="agency[email]" value="{{ $agency->email }}" disabled>
             </div>
             <div class="form-group mb-3">
-                <label for="started_on">开办日期</label>
+                <label for="started_on">开办日期 <span class="text-danger">必填</span></label>
                 <input type="date" class="form-control" id="started_on" name="agency[started_on]" value="{{ $agency->started_on }}">
             </div>
             <div class="form-group mb-3">
-                <label for="image">机构头像</label>
-                <input type="file" class="form-control-file" id="image" name="logo">
+                <label for="logo">机构Logo <span class="text-info">选填</span></label>
+                <input type="file" class="form-control-file" id="logo" name="logo">
+            </div>
+            <div class="form-group mb-3">
+                <label for="thumbnail">机构封面图 <span class="text-info">选填</span></label>
+                <input type="file" class="form-control-file" id="thumbnail" name="thumbnail">
             </div>
             <div class="form-group mb-3">
                 <button type="submit" class="btn btn-info btn-block">更新</button>
