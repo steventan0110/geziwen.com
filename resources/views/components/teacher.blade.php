@@ -1,10 +1,10 @@
 
 <div class="col-sm-4 text-center mt-4 pl-2 pr-2 mb-3">
 
-    <a href="{{ route('agency.teacher.show', ['agency'=> $agency->id, 'teacher'=>$teacher->id]) }}">
+    <a href="{{ route('agency.teacher.show', ['agency'=> $teacher->agency->id, 'teacher'=>$teacher->id]) }}">
         <img class="rounded-circle mb-2" src="{{ asset('storage/' . $teacher->picture) }}" alt="Generic placeholder image" width="140px" height="140px"></a>
-    <div  class="mt-3 mb-2" style="overflow : hidden;text-overflow: ellipsis;display: -webkit-box;-webkit-line-clamp: 1;-webkit-box-orient: vertical;height:25px;">
-        <h5><a href="{{ route('agency.teacher.show', ['agency'=> $agency->id,'teacher'=>$teacher->id]) }}" class="text-info">{{ $teacher->name }}</a></h5>
+    <div  class="mt-3 mb-2" style="overflow : hidden;text-overflow: ellipsis;display: -webkit-box; -webkit-line-clamp: 1;-webkit-box-orient: vertical;height:25px;">
+        <h5><a href="{{ route('agency.teacher.show', ['agency'=> $teacher->agency->id,'teacher'=>$teacher->id]) }}" class="text-info">{{ $teacher->name }}</a></h5>
     </div>
 
     <div  style="overflow : hidden;text-overflow: ellipsis;display: -webkit-box;-webkit-line-clamp: 4;-webkit-box-orient: vertical;height:70px;align-self: center">
@@ -13,10 +13,9 @@
     @can('update', $teacher)
         <div class="mt-3">
             <a class="btn btn-warning btn-sm "
-            href="{{ route('agency.teacher.edit', ['agency' => $agency->id, 'teacher' => $teacher->id]) }}"> 编辑 </a>
+            href="{{ route('agency.teacher.edit', ['agency' => $teacher->agency->id, 'teacher' => $teacher->id]) }}"> 编辑 </a>
             <a class="btn btn-danger btn-sm text-white "
                data-toggle="modal" data-target="#deleteTeacherModalCenter-{{$teacher->id}}"
-
                > 删除 </a>
         </div>
         <!-- Modal -->
@@ -31,7 +30,6 @@
                     </div>
                     <div class="modal-body">
                         <p style="font-size: small">请问您确认删除{{$teacher->name}}的所有信息吗？您的操作将不可逆转</p>
-
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-dismiss="modal">取消</button>
@@ -40,7 +38,7 @@
                            onclick="event.preventDefault()
                             document.getElementById('{{$teacher->id}}-delete-form').submit();">确认</button>
                         <form id="{{$teacher->id}}-delete-form" method="post"
-                              action="{{route('agency.teacher.destroy', ['agency' => $agency->id, 'teacher' => $teacher->id])}}">
+                              action="{{route('agency.teacher.destroy', ['agency' => $teacher->agency->id, 'teacher' => $teacher->id])}}">
                             @csrf
                             @method('DELETE')
                         </form>
