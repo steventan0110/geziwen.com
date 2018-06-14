@@ -48,8 +48,8 @@
                                 <dt class="col-sm-4">开办日期</dt>
                                 <dd class="col-sm-8">{{ $user->agency->started_on }}</dd>
                             </dl>
-                            <a class="btn btn-warning btn-block" href="{{ route('agency.edit', ['id' => $user->agency->id]) }}">编辑</a>
-                            <a class="btn btn-info btn-block" href="{{ route('agency.show', ['id' => $user->agency->id]) }}">查看主页效果</a>
+                            <a class="btn btn-sm btn-warning btn-block" href="{{ route('agency.edit', ['id' => $user->agency->id]) }}">编辑</a>
+                            <a class="btn btn-sm btn-info btn-block" href="{{ route('agency.show', ['id' => $user->agency->id]) }}">查看主页效果</a>
                         </div>
                     </div>
                 </div>

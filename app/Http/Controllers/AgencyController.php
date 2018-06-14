@@ -50,6 +50,7 @@ class AgencyController extends Controller
         $agency->verified = false;
         $agency->published = false;
         $agency->logo = 'logos/default.gif';
+        $agency->thumbnail = 'thumbnails/default.svg';
         $agency->manager_id = \Auth::user()->id;
         $agency->save();
         $user = new User([
@@ -111,10 +112,16 @@ class AgencyController extends Controller
             return redirect()->back();
         }
         if ($request->hasFile('logo')) {
-            if ($agency->logo !== 'images/default.gif') {
+            if ($agency->logo !== 'logos/default.gif') {
                 Storage::disk('local')->delete($agency->logo);
             }
             $data['agency']['logo'] = $request->file('logo')->storePublicly('logos', 'local');
+        }
+        if ($request->hasFile('thumbnail')) {
+            if ($agency->thumbnail !== 'thumbnails/default.svg') {
+                Storage::disk('local')->delete($agency->thumbnail);
+            }
+            $data['agency']['thumbnail'] = $request->file('thumbnail')->storePublicly('thumbnails', 'local');
         }
         $agency->update($data['agency']);
         return redirect()->route('home');
