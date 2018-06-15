@@ -9,10 +9,18 @@
         @if($exam->score['total'] != null)
             <span class="badge badge-pill badge-info">总分</span> {{ $exam->score['total'] }}
         @endif
-        <span class="badge badge-pill badge-primary">阅读</span> {{ $exam->score['reading'] }}
-        <span class="badge badge-pill badge-secondary">听力</span> {{ $exam->score['listening'] }}
-        <span class="badge badge-pill badge-success">口语</span> {{ $exam->score['speaking'] }}
-        <span class="badge badge-pill badge-danger">写作</span> {{ $exam->score['writing'] }}
+        @if($exam->score['reading'] != null)
+	        <span class="badge badge-pill badge-primary">阅读</span> {{ $exam->score['reading'] }}
+    	@endif
+        @if($exam->score['listening'] != null)
+          	<span class="badge badge-pill badge-secondary">听力</span> {{ $exam->score['listening'] }}
+        @endif
+        @if($exam->score['speaking'] != null)
+          	<span class="badge badge-pill badge-success">口语</span> {{ $exam->score['speaking'] }}
+		@endif
+        @if($exam->score['writing'] != null)
+            <span class="badge badge-pill badge-danger">写作</span> {{ $exam->score['writing'] }}
+		@endif
     @elseif($exam->type == 'ielts')
         IELTS:
         @if($exam->score['total'] != null)
