@@ -24,6 +24,9 @@
         <span class="badge badge-pill badge-danger">写作</span> {{ floatval($exam->score['writing']) / 2 }}
     @elseif($exam->type == 'sat')
         SAT:
+        @if($exam->score['total'] != null)
+            <span class="badge badge-pill badge-info">总分</span> {{ $exam->score['total'] }}
+        @endif
         @if($exam->score['reading'] != null)
             <span class="badge badge-pill badge-primary">阅读</span> {{ $exam->score['reading'] }}
         @endif
@@ -33,7 +36,7 @@
         @if($exam->score['math'] != null)
             <span class="badge badge-pill badge-success">数学</span> {{ $exam->score['math'] }}
         @endif
-        @if($exam->score['essay'] != null)
+        @if($exam->score['essay']['reading'] != null && $exam->score['essay']['writing'] != null && $exam->score['essay']['analysis'] != null)
             <span class="badge badge-pill badge-danger">写作</span>{{ $exam->score['essay']['reading'] }}{{ $exam->score['essay']['writing'] }}{{ $exam->score['essay']['analysis'] }}
         @endif
     @elseif($exam->type == 'act')
