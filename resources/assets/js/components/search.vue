@@ -22,7 +22,7 @@
                                      :src="'/storage/' + result.agency.logo" alt="所属机构Logo">
                             </a>
                             <div class="media-body border-bottom border-grey">
-                                <h6 class="mt-0">{{ result.surname }} |
+                                <h6 class="mt-1">{{ result.surname }} |
                                     <a :href="agencyHomePage(result.agency.id)">{{ result.agency.name }}</a>
                                 </h6>
                                 <p v-if="result.type === 'standard'" class="mb-0">
