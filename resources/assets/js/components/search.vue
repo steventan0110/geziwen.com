@@ -25,14 +25,14 @@
                                 <h6 class="mt-0">{{ result.surname }} |
                                     <a :href="agencyHomePage(result.agency.id)">{{ result.agency.name }}</a>
                                 </h6>
-                                <p v-if="result.type === 'standard'">
+                                <p v-if="result.type === 'standard'" class="mb-0">
                                     <strong>录取学校：</strong>
                                     <span v-for="offer in result.offers">
                                     <span class="badge badge-pill badge-info">{{ offer.plan_shorthand }}</span>
-                                    {{ offer.university }}
-                                </span>
+                                        {{ offer.university }}
+                                    </span>
                                 </p>
-                                <p v-else>
+                                <p v-else class="mb-0">
                                     <strong>培训结果：</strong>
                                     <span v-for="exam in result.exams" v-if="exam.remark === 'after'">
                                     <span class="badge badge-pill badge-info">
@@ -66,11 +66,11 @@
                                      :src="'/storage/' + result.picture" alt="教师头像">
                             </a>
                             <div class="media-body border-bottom border-grey">
-                                <h6 class="mt-0">
+                                <h6 class="mt-1">
                                     <a class="info" :href="teacherHomePage(result.id)">{{ result.name }}</a> |
                                     <a class="successAg" :href="agencyHomePage(result.agency.id)">{{ result.agency.name }}</a>
                                 </h6>
-                                {{ result.introduction }}
+                                <p>{{ result.introduction }}</p>
                             </div>
                         </div>
                     </template>
@@ -92,10 +92,10 @@
                                      :src="'/storage/' + result.logo" alt="机构Logo">
                             </a>
                             <div class="media-body border-bottom border-grey">
-                                <h6 class="mt-0">
+                                <h6 class="mt-1">
                                     <a :href="agencyHomePage(result.id)">{{ result.name }}</a>
                                 </h6>
-                                {{ result.introduction }}
+                                <p>{{ result.introduction }}</p>
                             </div>
                         </div>
                     </template>
