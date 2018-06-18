@@ -18,9 +18,10 @@
                     <template slot-scope="{ result }">
                         <div class="media">
                             <a :href="agencyHomePage(result.agency.id)">
-                                <img class="mr-3" :src="result.agency.logo" alt="所属机构Logo">
+                                <img class="ml-2 mr-3 img-thumbnail border border-info" width="100px"
+                                     :src="'/storage/' + result.agency.logo" alt="所属机构Logo">
                             </a>
-                            <div class="media-body">
+                            <div class="media-body border-bottom border-grey">
                                 <h5 class="mt-0">{{ result.surname }} |
                                     <a :href="agencyHomePage(result.agency.id)">{{ result.agency.name }}</a>
                                 </h5>
@@ -61,9 +62,10 @@
                     <template slot-scope="{ result }">
                         <div class="media">
                             <a :href="teacherHomePage(result.id)">
-                                <img class="mr-3" :src="result.picture" alt="教师头像">
+                                <img class="ml-2 mr-3 img-thumbnail border border-info" width="100px"
+                                     :src="'/storage/' + result.picture" alt="教师头像">
                             </a>
-                            <div class="media-body">
+                            <div class="media-body border-bottom border-grey">
                                 <h5 class="mt-0">
                                     <a class="info" :href="teacherHomePage(result.id)">{{ result.name }}</a> |
                                     <a class="successAg" :href="agencyHomePage(result.agency.id)">{{ result.agency.name }}</a>
@@ -86,9 +88,10 @@
                     <template slot-scope="{ result }">
                         <div class="media">
                             <a :href="agencyHomePage(result.id)">
-                                <img class="mr-3" :src="result.logo" alt="机构Logo">
+                                <img class="ml-2 mr-3 img-thumbnail border border-info" width="100px"
+                                     :src="'/storage/' + result.logo" alt="机构Logo">
                             </a>
-                            <div class="media-body">
+                            <div class="media-body border-bottom border-grey">
                                 <h5 class="mt-0">
                                     <a :href="agencyHomePage(result.id)">{{ result.name }}</a>
                                 </h5>
