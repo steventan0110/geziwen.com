@@ -18,13 +18,13 @@
                     <template slot-scope="{ result }">
                         <div class="media">
                             <a :href="agencyHomePage(result.agency.id)">
-                                <img class="ml-2 mr-3 img-thumbnail border border-info" width="100px"
+                                <img class="ml-2 mr-3 img-thumbnail border border-info" width="50px"
                                      :src="'/storage/' + result.agency.logo" alt="所属机构Logo">
                             </a>
                             <div class="media-body border-bottom border-grey">
-                                <h5 class="mt-0">{{ result.surname }} |
+                                <h6 class="mt-0">{{ result.surname }} |
                                     <a :href="agencyHomePage(result.agency.id)">{{ result.agency.name }}</a>
-                                </h5>
+                                </h6>
                                 <p v-if="result.type === 'standard'">
                                     <strong>录取学校：</strong>
                                     <span v-for="offer in result.offers">
@@ -62,14 +62,14 @@
                     <template slot-scope="{ result }">
                         <div class="media">
                             <a :href="teacherHomePage(result.id)">
-                                <img class="ml-2 mr-3 img-thumbnail border border-info" width="100px"
+                                <img class="ml-2 mr-3 img-thumbnail border border-info" width="50px"
                                      :src="'/storage/' + result.picture" alt="教师头像">
                             </a>
                             <div class="media-body border-bottom border-grey">
-                                <h5 class="mt-0">
+                                <h6 class="mt-0">
                                     <a class="info" :href="teacherHomePage(result.id)">{{ result.name }}</a> |
                                     <a class="successAg" :href="agencyHomePage(result.agency.id)">{{ result.agency.name }}</a>
-                                </h5>
+                                </h6>
                                 {{ result.introduction }}
                             </div>
                         </div>
@@ -88,13 +88,13 @@
                     <template slot-scope="{ result }">
                         <div class="media">
                             <a :href="agencyHomePage(result.id)">
-                                <img class="ml-2 mr-3 img-thumbnail border border-info" width="100px"
+                                <img class="ml-2 mr-3 img-thumbnail border border-info" width="50px"
                                      :src="'/storage/' + result.logo" alt="机构Logo">
                             </a>
                             <div class="media-body border-bottom border-grey">
-                                <h5 class="mt-0">
+                                <h6 class="mt-0">
                                     <a :href="agencyHomePage(result.id)">{{ result.name }}</a>
-                                </h5>
+                                </h6>
                                 {{ result.introduction }}
                             </div>
                         </div>
