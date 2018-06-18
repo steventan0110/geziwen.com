@@ -111,19 +111,20 @@ class AgencyController extends Controller
         } catch (AuthorizationException $exception) {
             return redirect()->back();
         }
+        $agency->update($data['agency']);
         if ($request->hasFile('logo')) {
             if ($agency->logo !== 'logos/default.gif') {
                 Storage::disk('local')->delete($agency->logo);
             }
-            $data['agency']['logo'] = $request->file('logo')->storePublicly('logos', 'local');
+            $agency->logo = $request->file('logo')->storePublicly('logos', 'local');
         }
         if ($request->hasFile('thumbnail')) {
             if ($agency->thumbnail !== 'thumbnails/default.svg') {
                 Storage::disk('local')->delete($agency->thumbnail);
             }
-            $data['agency']['thumbnail'] = $request->file('thumbnail')->storePublicly('thumbnails', 'local');
+            $agency->thumbnail = $request->file('thumbnail')->storePublicly('thumbnails', 'local');
         }
-        $agency->update($data['agency']);
+        $agency->update();
         return redirect()->route('home');
     }
 

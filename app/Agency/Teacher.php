@@ -15,16 +15,18 @@ class Teacher extends Model
     protected $fillable = ["name", "introduction", "subject", "years_of_teaching"];
 
     public function searchableAs() {
-        return $this->table."_index";
+        return config('scout.prefix') . 'teachers';
     }
 
     public function toSearchableArray() {
         $teacher = $this->toArray();
         $teacher['agency'] = [
             'name' => $this->agency->name,
-            'introduction' => $this->agency->introduction
+            'introduction' => $this->agency->introduction,
+            'thumbnail' => $this->agency->thumbnail,
+            'logo' => $this->agency->logo
         ];
-        unset($teacher['created_at'], $teacher['updated_at'], $teacher['agency_id'], $teacher['picture']);
+        unset($teacher['created_at'], $teacher['updated_at'], $teacher['agency_id']);
         return $teacher;
     }
 

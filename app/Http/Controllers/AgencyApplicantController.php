@@ -98,6 +98,7 @@ class AgencyApplicantController extends Controller
             $applicant->awards()->createMany(array_key_exists('awards', $data) ? $data['awards'] : []);
             $applicant->offers()->createMany(array_key_exists('offers', $data) ? $data['offers'] : []);
         }
+        $applicant->save();
         return redirect('home');
     }
 
@@ -262,6 +263,7 @@ class AgencyApplicantController extends Controller
                 }
             }
         }
+        $applicant->update();
         return redirect()->route('home');
     }
 

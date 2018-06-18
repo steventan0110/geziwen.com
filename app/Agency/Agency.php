@@ -18,7 +18,7 @@ class Agency extends Model
     protected $guarded = ['verified'];
 
     public function searchableAs() {
-        return $this->table."_index";
+        return config('scout.prefix') . 'agencies';
     }
 
     public function toSearchableArray() {
@@ -46,9 +46,10 @@ class Agency extends Model
     public function user() {
         return $this->hasOne(User::class, 'link');
     }
+
     public function manager() {
         return $this->belongsTo(User::class, 'manager_id');
     }
 
-    protected $hidden = ['created_at', 'updated_at', 'id'];
+    protected $hidden = ['created_at', 'updated_at'];
 }

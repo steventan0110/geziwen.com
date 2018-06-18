@@ -26,25 +26,23 @@ class Applicant extends Model
     protected $fillable = ['surname', 'introduction'];
 
     public function searchableAs() {
-        return $this->table."_index";
+        return config('scout.prefix') . 'applicants';
     }
 
     public function toSearchableArray() {
         $applicant = $this->toArray();
-        $applicant['agency'] = [
-            'name' => $this->plan->agency->name,
-            'introduction' => $this->plan->agency->introduction
-        ];
-        $applicant['activities'] = $this->activity->map(function ($activity) {
+        $applicant['agency'] = $this->plan->agency;
+        $applicant['type'] = $this->plan->agency->type;
+        $applicant['exams'] = $this->exams;
+        $applicant['activities'] = $this->activities->map(function ($activity) {
             return [
                 'name' => $activity->name,
-                'introduction' => $activity->introduction
+                'type' => $activity->type->name
             ];
         });
-        $applicant['awards'] = $this->award->map(function ($award) {
+        $applicant['awards'] = $this->awards->map(function ($award) {
             return [
                 'name' => $award->name,
-                'introduction' => $award->introduction
             ];
         });
         $applicant['offers'] = $this->offers->map(function ($offer) {
