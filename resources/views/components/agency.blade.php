@@ -15,12 +15,12 @@
                 <p class="small">
                     <i class="mr-2 fas fa-map-marker"></i>
                     <a target="_blank"
-                       href="http://api.map.baidu.com/place/search?query={{ $agency->address }}&region=成都&output=html">
+                       href="http://api.map.baidu.com/place/search?query={{ $agency->address }}&region=成都&output=html" class="text-secondary">
                         {{ $agency->address }}
                     </a>
                 </p>
-                <p class="small"><i class="mr-2 fas fa-phone"></i><a href='tel:{{ $agency->telephone }}'>{{ $agency->telephone }}</a></p>
-                <p class="small"><i class="mr-2 fas fa-envelope"></i><a href='mailto:{{ $agency->email }}'>{{ $agency->email }}</a></p>
+                <p class="small"><i class="mr-2 fas fa-phone"></i><a href='tel:{{ $agency->telephone }}' class="text-secondary">{{ $agency->telephone }}</a></p>
+                <p class="small"><i class="mr-2 fas fa-envelope"></i><a href='mailto:{{ $agency->email }}' class="text-secondary">{{ $agency->email }}</a></p>
             </div>
             <div class="col-sm-4">
                 {{ $button }}

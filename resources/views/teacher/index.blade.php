@@ -15,7 +15,7 @@
                 <img class="ml-2 mr-3 img-thumbnail border border-info" src="{{ asset('storage/' . $agency->logo)  }}" alt="Generic placeholder image" width="100px">
                 <div class="media-body">
                     <h5>
-                        <a href="{{ route('agency.show', ['id' => $agency->id]) }}">{{ $agency->name }}</a> | 全部师资</h5>
+                        <a href="{{ route('agency.show', ['id' => $agency->id]) }}" class="text-info">{{ $agency->name }}</a> | 全部师资</h5>
                     <p class="small">{{ $agency->introduction }}</p>
                 </div>
             </div>
