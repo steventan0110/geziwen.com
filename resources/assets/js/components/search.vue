@@ -1,39 +1,106 @@
 <template>
-    <div class="container">
-        <ais-index :app-id="algoliaAppId"
-                   :api-key="algoliaApiKey"
-                   :index-name="algoliaIndex">
-            <ais-input :placeholder="placeholder" class="form-control"></ais-input>
-            <!--<hr class="my-4">-->
-            <ais-results>
-                <template slot-scope="{ result }">
-                    <div class="media my-4 border-top pt-4">
-                        <img v-if="searchType != 1" class="mr-3 rounded-circle border border-info" width="64px" alt="logo"
-                             src="https://ss0.bdstatic.com/-0U0bnSm1A5BphGlnYG/tam-ogel/a03f306fc98a8e119dae9d7c5510b656_121_121.jpg">
-                        <div class="media-body">
-                            <h5 class="mt-0 mb-1">
-                                <span v-if="searchType == 0">
-                                    <a :href="agencyHomePage(result.id)">{{ result.name }}</a>
+    <div class="">
+        <div class="form-inline">
+            <label for="search-box">请输入关键字</label>
+            <input id="search-box" type="text" class="form-control mx-sm-4" aria-describedby="search-help-inline" v-model="query"/>
+            <small id="search-help-inline" class="text-muted">
+                输入关键字，搜索案例、机构和老师。
+            </small>
+        </div>
+        <div class="mt-4">
+            <!--Applicant Index Begins-->
+
+            <ais-index :app-id="algoliaAppId"
+                       :api-key="algoliaApiKey"
+                       :query="query"
+                       :index-name="scoutPrefix + 'applicants'">
+                <ais-results>
+                    <template slot-scope="{ result }">
+                        <div class="media">
+                            <a :href="agencyHomePage(result.agency.id)">
+                                <img class="mr-3" :src="result.agency.logo" alt="所属机构Logo">
+                            </a>
+                            <div class="media-body">
+                                <h5 class="mt-0">{{ result.surname }} |
+                                    <a :href="agencyHomePage(result.agency.id)">{{ result.agency.name }}</a>
+                                </h5>
+                                <p v-if="result.type === 'standard'">
+                                    <strong>录取学校：</strong>
+                                    <span v-for="offer in result.offers">
+                                    <span class="badge badge-pill badge-info">{{ offer.plan_shorthand }}</span>
+                                    {{ offer.university }}
                                 </span>
-                                <span v-else-if="searchType == 2">
-                                    <a :href="teacherHomePage(result.id)">{{ result.name }}</a> from <strong>{{ result.agency.name }}</strong>
+                                </p>
+                                <p v-else>
+                                    <strong>培训结果：</strong>
+                                    <span v-for="exam in result.exams" v-if="exam.remark === 'after'">
+                                    <span class="badge badge-pill badge-info">
+                                        {{ exam.type.toUpperCase() }}
+                                        <span v-if="exam.type === 'ap' || exam.type === 'sat2'">
+                                            {{ exam.score.subject}}
+                                        </span>
+                                    </span>
+                                    {{ exam.score.total }}
                                 </span>
-                                <span v-else>
-                                    {{ result.surname }} from <strong>{{ result.agency.name }}</strong>
-                                </span>
-                            </h5>
-                            <p v-if="searchType != 1">{{ result.introduction }}</p>
-                            <div v-else>
-                                <!-- TODO: Decompose applicant and add detailed view  -->
-                                {{ result.offers[0].university }} -- {{ result.offers[0].plan + " (" + result.offers[0].plan_shorthand + ")" }}
+                                </p>
+                                <p>{{ result.introduction }}</p>
                             </div>
                         </div>
-                    </div>
-                </template>
-            </ais-results>
-            <ais-pagination :padding="5" class="pagination text-center"></ais-pagination>
+                    </template>
+                </ais-results>
+            </ais-index>
 
-        </ais-index>
+            <!--Applicants Index Ends-->
+            <!--Teachers Index Begins-->
+
+            <ais-index :app-id="algoliaAppId"
+                       :api-key="algoliaApiKey"
+                       :query="query"
+                       :index-name="scoutPrefix + 'teachers'">
+                <ais-results>
+                    <template slot-scope="{ result }">
+                        <div class="media">
+                            <a :href="teacherHomePage(result.id)">
+                                <img class="mr-3" :src="result.picture" alt="教师头像">
+                            </a>
+                            <div class="media-body">
+                                <h5 class="mt-0">
+                                    <a class="info" :href="teacherHomePage(result.id)">{{ result.name }}</a> |
+                                    <a class="successAg" :href="agencyHomePage(result.agency.id)">{{ result.agency.name }}</a>
+                                </h5>
+                                {{ result.introduction }}
+                            </div>
+                        </div>
+                    </template>
+                </ais-results>
+            </ais-index>
+
+            <!--Teachers Index Ends-->
+            <!--Agencies Index Begins-->
+
+            <ais-index :app-id="algoliaAppId"
+                       :api-key="algoliaApiKey"
+                       :query="query"
+                       :index-name="scoutPrefix + 'agencies'">
+                <ais-results>
+                    <template slot-scope="{ result }">
+                        <div class="media">
+                            <a :href="agencyHomePage(result.id)">
+                                <img class="mr-3" :src="result.logo" alt="机构Logo">
+                            </a>
+                            <div class="media-body">
+                                <h5 class="mt-0">
+                                    <a :href="agencyHomePage(result.id)">{{ result.name }}</a>
+                                </h5>
+                                {{ result.introduction }}
+                            </div>
+                        </div>
+                    </template>
+                </ais-results>
+            </ais-index>
+
+            <!--Agencies Index Ends-->
+        </div>
     </div>
 </template>
 
@@ -53,35 +120,8 @@
         props: {
             algoliaAppId: '',
             algoliaApiKey: '',
-            algoliaIndex: ''
-        },
-        computed: {
-            placeholder: function () {
-                switch (this.algoliaIndex) {
-                    case 'agencies_index': {
-                        return '搜索中介';
-                    }
-                    case 'applicants_index': {
-                        return '搜索案例';
-                    }
-                    case 'teachers_index': {
-                        return '搜索老师'
-                    }
-                }
-            },
-            searchType: function () {
-                switch (this.algoliaIndex) {
-                    case 'agencies_index': {
-                        return 0;
-                    }
-                    case 'applicants_index': {
-                        return 1;
-                    }
-                    case 'teachers_index': {
-                        return 2;
-                    }
-                }
-            }
+            scoutPrefix: '',
+            query: '',
         }
     }
 </script>
