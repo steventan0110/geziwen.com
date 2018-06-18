@@ -21,6 +21,7 @@ class Teacher extends Model
     public function toSearchableArray() {
         $teacher = $this->toArray();
         $teacher['agency'] = [
+          	'id' => $this->agency->id,
             'name' => $this->agency->name,
             'introduction' => $this->agency->introduction,
             'thumbnail' => $this->agency->thumbnail,
@@ -42,5 +43,5 @@ class Teacher extends Model
         return $this->morphMany(Comment::class, 'commentable');
     }
 
-    protected $hidden = ['created_at', 'updated_at', 'id', 'agency_id', 'pivot'];
+    protected $hidden = ['created_at', 'updated_at', 'agency_id', 'pivot'];
 }
