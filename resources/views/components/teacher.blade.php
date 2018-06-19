@@ -7,7 +7,7 @@
         <h5><a href="{{ route('agency.teacher.show', ['agency'=> $teacher->agency->id,'teacher'=>$teacher->id]) }}" class="text-info">{{ $teacher->name }}</a></h5>
     </div>
 
-    <div  style="overflow : hidden;text-overflow: ellipsis;display: -webkit-box;-webkit-line-clamp: 4;-webkit-box-orient: vertical;height:70px;align-self: center">
+    <div  style="overflow : hidden;text-overflow: ellipsis;display: -webkit-box;-webkit-line-clamp: 4;-webkit-box-orient: vertical;height:77px;align-self: center">
         <p class="small" style="margin-left: 10%;margin-right: 10%; ; text-align:justify; text-justify:inter-ideograph; align-self: center">{{ $teacher->introduction }}</p>
     </div>
     @can('update', $teacher)

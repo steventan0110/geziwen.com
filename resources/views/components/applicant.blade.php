@@ -1,11 +1,12 @@
 <div class="media pt-3">
     <div class="media-body pb-3 mb-0 small lh-125 border-bottom border-gray">
+        <div class="container">
         <div class="row">
-            <div class="col-sm-10">
+            <div class="col col-sm">
                 <strong class="d-block text-gray-dark">{{ $applicant->surname }}</strong>
                 {{ $applicant->introduction }}
             </div>
-            <div class="col-sm-2">
+            <div class="col col-sm-2">
                 @cannot('update', $applicant)
                     <button class="btn btn-info btn-sm float-right" data-toggle="modal" data-target="#applicant-{{ $applicant->id }}">查看详细</button>
                 @endcannot
@@ -24,6 +25,7 @@
                     </div>
                 @endcan
             </div>
+        </div>
         </div>
     </div>
     <div class="modal fade" id="applicant-{{ $applicant->id }}" tabindex="-1" role="dialog" aria-labelledby="applicant-{{ $applicant->id }}-title" aria-hidden="true">

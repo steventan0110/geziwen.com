@@ -29,8 +29,8 @@
                             <p class="card-text">{{ $agency->introduction }}</p>
                             <div class="d-flex justify-content-between align-items-center">
                                 <div class="btn-group">
-                                    <a href="{{ route('agency.show', ['id' => $agency->id]) }}" class="btn btn-sm btn-outline-primary">主页</a>
-                                    <a href="{{ route('agency.applicant.index', ['id' => $agency->id]) }}" class="btn btn-sm btn-outline-primary">案例</a>
+                                    <a href="{{ route('agency.show', ['id' => $agency->id]) }}" class="btn btn-sm btn-outline-info">主页</a>
+                                    <a href="{{ route('agency.applicant.index', ['id' => $agency->id]) }}" class="btn btn-sm btn-outline-info">案例</a>
                                 </div>
                                 <small class="text-muted">始于：{{ $agency->started_on }}</small>
                             </div>
