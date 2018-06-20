@@ -147,11 +147,10 @@ class AgencyTeacherController extends Controller
         $teacher = Teacher::find($teacher_id);
         $teacher->update($data['teacher']);
         if ($request->hasFile('picture')) {
-            if ($teacher->picture !== 'teachers/default_teacher.gif') {
+            if ($teacher->picture !== 'teachers/default.gif') {
                 Storage::disk('local')->delete($teacher->picture);
             }
-            $picture = $request->file('picture')->storePublicly('teachers', 'local');
-            $teacher->picture = $picture;
+            $teacher->picture = $request->file('picture')->storePublicly('teachers', 'local');
         }
         $teacher->update();
         return redirect()->route('home')
