@@ -12,7 +12,7 @@ class Teacher extends Model
 
     protected $table = "teachers";
 
-    protected $fillable = ["name", "introduction", "subject", "years_of_teaching"];
+    protected $fillable = ["name", "introduction", "subject", "years_of_teaching", "picture"];
 
     public function searchableAs() {
         return config('scout.prefix') . 'teachers';
