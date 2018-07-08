@@ -26,9 +26,6 @@ class TeacherStoreRequest extends FormRequest
         return [
             'teacher.name'=>'required',
             'teacher.introduction'=>'required',
-            'teacher.years_of_teaching' => 'required|numeric',
-            'teacher.subject' => 'required',
-            //
         ];
     }
 }

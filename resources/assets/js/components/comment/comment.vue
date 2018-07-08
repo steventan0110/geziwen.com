@@ -46,7 +46,7 @@
                 </h6>
                 <textarea class="form-control align-middle mb-3" placeholder="请填写评论内容" v-model="commentText"></textarea>
                 <div>
-                    <button class="btn btn-primary btn-sm float-right" @click="addComment">发表</button>
+                    <button class="btn btn-info btn-sm float-right" @click="addComment">发表</button>
                 </div>
             </div>
         </div>

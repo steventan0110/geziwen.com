@@ -98,6 +98,7 @@ class AgencyApplicantController extends Controller
             $applicant->awards()->createMany(array_key_exists('awards', $data) ? $data['awards'] : []);
             $applicant->offers()->createMany(array_key_exists('offers', $data) ? $data['offers'] : []);
         }
+        $applicant->save();
         return redirect('home');
     }
 
@@ -182,8 +183,6 @@ class AgencyApplicantController extends Controller
             return redirect()->route('home');
         }
         $data = $request->validated();
-        // Update Applicant Basic Information
-        $applicant->update($data['applicant']);
         // Exams
         // Diff exams that got deleted and destroy them in database.
         $originalExamIds = [];
@@ -262,6 +261,8 @@ class AgencyApplicantController extends Controller
                 }
             }
         }
+      	// Update Applicant Basic Information
+        $applicant->update($data['applicant']);
         return redirect()->route('home');
     }
 

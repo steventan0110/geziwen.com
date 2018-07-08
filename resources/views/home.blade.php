@@ -27,6 +27,20 @@
                             </button>
                         </div>
                     </div>
+  					<div id="logo" class="mb-4">
+                        <div class="p-3 bg-white rounded box-shadow">
+                            <h5 class="border-bottom border-gray pb-2 mb-2">Logo图</h5>
+                            <img style="width: 100%" class="img-fluid mb-4 rounded d-block"
+                                 src="{{ asset('storage/' . $user->agency->logo) }}">
+                        </div>
+                    </div>
+                    <div id="thumbnail" class="mb-4">
+                        <div class="p-3 bg-white rounded box-shadow">
+                            <h5 class="border-bottom border-gray pb-2 mb-2">封面图</h5>
+                            <img style="width: 100%" class="img-fluid mb-4 rounded d-block"
+                                 src="{{ asset('storage/' . $user->agency->thumbnail) }}">
+                        </div>
+                    </div>
                     <div id="agency" class="mb-4">
                         <div class="p-3 bg-white rounded box-shadow">
                             <h5 class="border-bottom border-gray pb-2 mb-2">基本信息</h5>
@@ -46,25 +60,25 @@
                                 <dt class="col-sm-4">开办日期</dt>
                                 <dd class="col-sm-8">{{ $user->agency->started_on }}</dd>
                             </dl>
-                            <a class="btn btn-warning btn-block" href="{{ route('agency.edit', ['id' => $user->agency->id]) }}">编辑</a>
-                            <a class="btn btn-info btn-block" href="{{ route('agency.show', ['id' => $user->agency->id]) }}">查看主页效果</a>
+                            <a class="btn btn-sm btn-warning btn-block" href="{{ route('agency.edit', ['id' => $user->agency->id]) }}">编辑</a>
+                            <a class="btn btn-sm btn-info btn-block" href="{{ route('agency.show', ['id' => $user->agency->id]) }}">查看主页效果</a>
                         </div>
                     </div>
                 </div>
-                <div id="applicants" class="col-lg-8 mb-4">
-                    <div class="p-3 bg-white rounded box-shadow">
-                        <h5 class="border-bottom border-gray pb-2 mb-0">部分案例</h5>
+                <div class="col-lg-8 mb-4">
+                    <div class="p-3 bg-white rounded box-shadow mb-4">
+                        <h5 class="border-bottom border-gray pb-2 mb-0">案例</h5>
                         @foreach ($user->agency->applicants()->limit(5)->get() as $applicant)
                             @component('components.applicant', ['applicant' => $applicant])
 
                             @endcomponent
                         @endforeach
                         <small class="d-block text-right mt-3">
-                            <a class="btn btn-block btn-warning" href="{{ route('agency.applicant.create', ['agency' => $user->agency->id ]) }}">创建新案例</a>
-                            <a class="btn btn-block btn-info" href="{{ route('agency.applicant.index', ['id' => $user->agency->id]) }}">查看所有案例</a>
+                            <a class="btn btn-sm btn-block btn-warning" href="{{ route('agency.applicant.create', ['agency' => $user->agency->id ]) }}">创建新案例</a>
+                            <a class="btn btn-sm btn-block btn-info" href="{{ route('agency.applicant.index', ['id' => $user->agency->id]) }}">查看全部案例</a>
                         </small>
                     </div>
-                    <div class="p-3 mt-3 bg-white rounded box-shadow">
+                    <div class="p-3 bg-white rounded box-shadow mb-4">
                         <h5 class="border-bottom border-gray pb-2 mb-0">师资</h5>
                             <div class="row">
                                 @foreach($user->agency->teachers()->limit(6)->get() as $teacher)
@@ -74,24 +88,25 @@
                                 @endforeach
                                 <hr>
                             </div>
-                        <div class="mt-3">
+                        <small class="d-block text-right mt-3">
                             <a class="btn btn-sm btn-warning btn-block "  href="{{route('agency.teacher.create', ['agency' => $user->agency->id])}}">添加老师</a>
-                            <a class="btn btn-sm btn-info btn-block"  href="{{route('agency.teacher.index', ['agency' => $user->agency->id])}}">查看所有</a>
-                        </div>
+                            <a class="btn btn-sm btn-info btn-block"  href="{{route('agency.teacher.index', ['agency' => $user->agency->id])}}">查看全部老师</a>
+                        </small>
                     </div>
-                </div>
-                <div id="plans" class="col-lg-8 offset-lg-4 mb-4">
-                    <div class="p-3 bg-white rounded box-shadow">
-                        <h5 class="border-bottom border-gray pb-2 mb-0">所有方案</h5>
-                        @foreach ($user->agency->plans()->get() as $plan)
+                    <div class="p-3 bg-white rounded box-shadow mb-4">
+                        <h5 class="border-bottom border-gray pb-2 mb-0">服务项目</h5>
+                        @foreach ($user->agency->plans as $plan)
                             @component('components.plan', ['plan' => $plan])
 
                             @endcomponent
                         @endforeach
                         <small class="d-block text-right mt-3">
-                            <a class="btn btn-block btn-warning" href="{{ route('agency.plan.create', ['agency' => $user->agency->id ]) }}">创建新方案</a>
+                            <a class="btn btn-sm btn-block btn-warning" href="{{ route('agency.plan.create', ['agency' => $user->agency->id ]) }}">创建新项目</a>
                         </small>
                     </div>
+                </div>
+                <div id="plans" class="col-lg-8 offset-lg-4 mb-4">
+
                 </div>
             </div>
         </div>

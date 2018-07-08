@@ -7,20 +7,11 @@
                 <div class="col-md-4 form-group">
                     <select required class="form-control" :name='"activities[" + index + "][type_id]"' v-model="activity.type_id">
                         <option :value="0" disabled>请选择活动种类</option>
-                        <option v-for="(type, index) in JSON.parse(activityTypes)" :value="type.id">{{ type.name }}</option>
+                        <option v-for="(type, index) in activityTypes" :value="type.id">{{ type.name }}</option>
                     </select>
                 </div>
                 <div class="col-md-8 form-group">
                     <input required class="form-control" type="text" v-model="activity.name" :name='"activities[" + index + "][name]"' placeholder="活动名称">
-                </div>
-                <div class="col-md-12 form-group">
-                    <textarea required class="form-control" type="text" v-model="activity.description" :name='"activities[" + index + "][description]"' placeholder="活动简介"></textarea>
-                </div>
-                <div class="col-md-6 form-group">
-                    <input class="form-control" type="date" v-model="activity.start" :name='"activities[" + index + "][start]"' placeholder="开始日期">
-                </div>
-                <div class="col-md-6 form-group">
-                    <input class="form-control" type="date" v-model="activity.end" :name='"activities[" + index + "][end]"' placeholder="结束日期">
                 </div>
             </div>
             <div class="col-md-2">
@@ -39,11 +30,17 @@
     export default {
         name: "applicant-activities",
         mounted: function () {
+            this.$http.get('/api/activity-types').then(
+                response => {
+                    this.activityTypes = response.body.data;
+                }, response => {
+                    alert('服务器错误，请联系管理员！');
+                }
+            );
             if (this.update) {
                 this.$http.get('/api/applicant/' + this.applicant + '/activities').then(
                     response => {
                         this.activities = response.body.data;
-                        console.log(this.activityTypes);
                     }, response => {
                         alert('服务器错误，请联系管理员！');
                     }
@@ -53,9 +50,6 @@
             }
         },
         props: {
-            activityTypes: {
-                required: true
-            },
             update: {
                 required: false,
                 default: false,
@@ -68,6 +62,7 @@
         data: function () {
             return {
                 activities: [],
+                activityTypes: []
             }
         },
         methods: {
@@ -76,11 +71,7 @@
                     id: 0,
                     type_id: null,
                     name: null,
-                    description: null,
-                    start: null,
-                    end: null
                 });
-                console.log(this.activities);
             },
             remove: function(index) {
                 this.activities.splice(index, 1);

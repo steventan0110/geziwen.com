@@ -36,7 +36,7 @@
                                 @endforeach
                             </ul>
                             <a href="{{ route('agency.plan.show', ['agency' => $plan->agency->id, 'id' => $plan->id]) }}"
-                               class="btn btn-lg btn-block btn-info">了解更多</a>
+                               class="btn btn-sm btn-block btn-info">了解更多</a>
                         </div>
                     </div>
                 </div>
@@ -46,39 +46,33 @@
 
     <div id="applicants" class="container mb-4">
         <div class="my-3 p-3 bg-white rounded box-shadow">
-            <h5 class="border-bottom border-gray pb-2 mb-0">部分案例</h5>
+            <h5 class="border-bottom border-gray pb-2 mb-0">案例</h5>
             @foreach ($agency->applicants as $applicant)
                 @component('components.applicant', ['applicant' => $applicant])
 
                 @endcomponent
             @endforeach
             <small class="d-block text-right mt-3">
-                <a href="{{ route('agency.applicant.index', ['id' => $agency->id]) }}">查看所有案例</a>
+                <a href="{{ route('agency.applicant.index', ['id' => $agency->id]) }}" class="text-info">查看所有案例</a>
             </small>
         </div>
     </div>
 
     <div class="container" id="teachers">
         <div class="my-3 p-3 bg-white rounded box-shadow">
-            <h5 class="border-bottom border-gray pb-2 mb-2">部分师资</h5>
+            <h5 class="border-bottom border-gray pb-2 mb-2">师资</h5>
             <div class="row">
                 @foreach($agency->teachers as $teacher)
-                    <div class="col-sm-4 text-center mt-4  pl-2 pr-2">
-                        <img class="rounded-circle mb-2" src="{{ asset($teacher->picture) }}"
-                             alt="Generic placeholder image" width="100px" height="100px">
-                        <h5>{{ $teacher->name }}</h5>
-                        <p class="small m-3">{{ $teacher->introduction }}</p>
-                        <p class="small">
-                            <a class="btn btn-info btn-sm" role="button"
-                               href="{{ route('agency.teacher.show', ['agency' => $teacher->agency->id, 'id' => $teacher->id]) }}">查看详细</a>
-                        </p>
-                    </div>
+                    @component('components.teacher', ['teacher' => $teacher])
+
+                    @endcomponent
                 @endforeach
             </div>
-            <small class="d-block text-right mt-3">
-                <a href="{{route('agency.teacher.index',['id'=>$agency->id]) }}">查看所有老师</a>
-                {{-- TODO: Implement Teacher Pagination --}}
+            @if ($agency->teachers->count()>= 6)
+            <small class="d-block text-right  mt-3">
+                <a href="{{route('agency.teacher.index',['id'=>$agency->id]) }}" class="text-info">查看所有老师</a>
             </small>
+            @endif
         </div>
     </div>
 

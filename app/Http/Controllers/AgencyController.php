@@ -4,12 +4,10 @@ namespace App\Http\Controllers;
 
 use App\Agency\Agency;
 use App\Http\Requests\AgencyCreateRequest;
-use App\Http\Requests\AgencyInviteRequest;
-use App\Http\Requests\AgencyStoreRequest;
 use App\Http\Requests\AgencyUpdateRequest;
 use App\User;
 use Illuminate\Auth\Access\AuthorizationException;
-use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Storage;
 
 class AgencyController extends Controller
 {
@@ -51,7 +49,8 @@ class AgencyController extends Controller
         $agency = new Agency($data['agency']);
         $agency->verified = false;
         $agency->published = false;
-        $agency->logo = 'images/default.gif';
+        $agency->logo = 'logos/default.gif';
+        $agency->thumbnail = 'thumbnails/default.svg';
         $agency->manager_id = \Auth::user()->id;
         $agency->save();
         $user = new User([
@@ -113,6 +112,19 @@ class AgencyController extends Controller
             return redirect()->back();
         }
         $agency->update($data['agency']);
+        if ($request->hasFile('logo')) {
+            if ($agency->logo !== 'logos/default.gif') {
+                Storage::disk('local')->delete($agency->logo);
+            }
+            $agency->logo = $request->file('logo')->storePublicly('logos', 'local');
+        }
+        if ($request->hasFile('thumbnail')) {
+            if ($agency->thumbnail !== 'thumbnails/default.svg') {
+                Storage::disk('local')->delete($agency->thumbnail);
+            }
+            $agency->thumbnail = $request->file('thumbnail')->storePublicly('thumbnails', 'local');
+        }
+        $agency->update();
         return redirect()->route('home');
     }
 

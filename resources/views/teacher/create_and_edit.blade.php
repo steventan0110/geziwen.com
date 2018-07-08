@@ -12,8 +12,8 @@
 @section('content')
     <div id="teacher" class="container">
 
-        <form @edit action= "{{route('agency.teacher.update',['agency_id'=>$teacher->agency->id,'teacher_id'=>$teacher->id])}}" @endedit
-        @create action= "{{route('agency.teacher.store',['agency_id'=>$agency->id])}}" @endcreate
+        <form @edit enctype="multipart/form-data" action= "{{route('agency.teacher.update',['agency_id'=>$teacher->agency->id,'teacher_id'=>$teacher->id])}}" @endedit
+        @create enctype="multipart/form-data" action= "{{route('agency.teacher.store',['agency_id'=>$agency->id])}}" @endcreate
 
                 method="post"
                 class="bg-white box-shadow jumbotron">
@@ -47,12 +47,8 @@
                 <textarea type="text" class="form-control" id="teacher_introduction" name="teacher[introduction]" >@edit{{ $teacher->introduction}}@endedit</textarea>
             </div>
             <div class="form-group mb-3">
-                <label for="years_of_teaching">入职年数</label>
-                <input type="number" class="form-control" id="years_of_teaching" name="teacher[years_of_teaching]" @edit value="{{ $teacher->years_of_teaching }}"@endedit>
-            </div>
-            <div class="form-group mb-3">
-                <label for="subject">教授内容</label>
-                <textarea type="text" class="form-control" id="subject" name="teacher[subject]" >@edit{{ $teacher->subject }} @endedit</textarea>
+                <label for="image">教师头像</label>
+                <input type="file" class="form-control-file" id="image" name="picture">
             </div>
             <div class="form-group mb-3 mt-3">
                 <button type="submit" class="btn btn-info btn-block">

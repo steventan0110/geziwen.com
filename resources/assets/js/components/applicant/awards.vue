@@ -4,14 +4,8 @@
             <input type="hidden" :name='"awards[" + index + "][id]"' :value='award.id'/>
             <input type="hidden" :name='"awards[" + index + "][applicant_id]"' :value="applicant">
             <div class="col-md-10 form-row">
-                <div class="col-md-8 form-group">
-                    <input required class="form-control" type="text" v-model="award.name" :name='"awards[" + index + "][name]"' placeholder="奖项名称">
-                </div>
-                <div class="col-md-4 form-group">
-                    <input required class="form-control" type="date" v-model="award.received_on" :name='"awards[" + index + "][received_on]"' placeholder="获得日期">
-                </div>
                 <div class="col-md-12 form-group">
-                    <textarea required class="form-control" type="text" v-model="award.description" :name='"awards[" + index + "][description]"' placeholder="奖项简介"></textarea>
+                    <input required class="form-control" type="text" v-model="award.name" :name='"awards[" + index + "][name]"' placeholder="奖项介绍">
                 </div>
             </div>
             <div class="col-md-2">
@@ -60,8 +54,6 @@
                 this.awards.push({
                     id: 0,
                     name: null,
-                    description: null,
-                    received_on: null
                 });
                 console.log(this.awards);
             },
