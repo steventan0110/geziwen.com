@@ -21,9 +21,9 @@
                                     <form name="mobileForm" method="POST" action="{{ route('register') }}">
                                         @csrf
                                         <div class="form-group row">
-                                            <label for="name" class="col-md-4 col-form-label text-md-right">姓名</label>
+                                            <label for="mobile-name" class="col-md-4 col-form-label text-md-right">姓名</label>
                                             <div class="col-md-6">
-                                                <input id="name" type="text" class="form-control{{ $errors->has('name') ? ' is-invalid' : '' }}" name="name" value="{{ old('name') }}" required autofocus>
+                                                <input id="mobile-name" type="text" class="form-control{{ $errors->has('name') ? ' is-invalid' : '' }}" name="name" value="{{ old('name') }}" required autofocus>
                                                 @if ($errors->has('name'))
                                                     <span class="invalid-feedback">
                                                     <strong>{{ $errors->first('name') }}</strong>
@@ -32,9 +32,9 @@
                                             </div>
                                         </div>
                                         <div class="form-group row">
-                                            <label for="password" class="col-md-4 col-form-label text-md-right">密码</label>
+                                            <label for="mobile-password" class="col-md-4 col-form-label text-md-right">密码</label>
                                             <div class="col-md-6">
-                                                <input id="password" type="password" class="form-control{{ $errors->has('password') ? ' is-invalid' : '' }}" name="password" required>
+                                                <input id="mobile-password" type="password" class="form-control{{ $errors->has('password') ? ' is-invalid' : '' }}" name="password" required>
                                                 @if ($errors->has('password'))
                                                     <span class="invalid-feedback">
                                                     <strong>{{ $errors->first('password') }}</strong>
@@ -44,10 +44,10 @@
                                         </div>
 
                                         <div class="form-group row">
-                                            <label for="password-confirm" class="col-md-4 col-form-label text-md-right">确认密码</label>
+                                            <label for="mobile-password-confirm" class="col-md-4 col-form-label text-md-right">确认密码</label>
 
                                             <div class="col-md-6">
-                                                <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required>
+                                                <input id="mobile-password-confirm" type="password" class="form-control" name="password_confirmation" required>
                                             </div>
                                         </div>
                                         <hr class="my-5" style="width: 70%">
@@ -59,9 +59,9 @@
                                     <form name="emailForm" method="POST" action="{{ route('register') }}">
                                         @csrf
                                         <div class="form-group row">
-                                            <label for="name" class="col-md-4 col-form-label text-md-right">姓名</label>
+                                            <label for="email-name" class="col-md-4 col-form-label text-md-right">姓名</label>
                                             <div class="col-md-6">
-                                                <input id="name" type="text" class="form-control{{ $errors->has('name') ? ' is-invalid' : '' }}" name="name" value="{{ old('name') }}" required autofocus>
+                                                <input id="email-name" type="text" class="form-control{{ $errors->has('name') ? ' is-invalid' : '' }}" name="name" value="{{ old('name') }}" required autofocus>
                                                 @if ($errors->has('name'))
                                                     <span class="invalid-feedback">
                                                     <strong>{{ $errors->first('name') }}</strong>
@@ -70,9 +70,9 @@
                                             </div>
                                         </div>
                                         <div class="form-group row">
-                                            <label for="password" class="col-md-4 col-form-label text-md-right">密码</label>
+                                            <label for="email-password" class="col-md-4 col-form-label text-md-right">密码</label>
                                             <div class="col-md-6">
-                                                <input id="password" type="password" class="form-control{{ $errors->has('password') ? ' is-invalid' : '' }}" name="password" required>
+                                                <input id="email-password" type="password" class="form-control{{ $errors->has('password') ? ' is-invalid' : '' }}" name="password" required>
                                                 @if ($errors->has('password'))
                                                     <span class="invalid-feedback">
                                                     <strong>{{ $errors->first('password') }}</strong>
@@ -81,10 +81,10 @@
                                             </div>
                                         </div>
                                         <div class="form-group row">
-                                            <label for="password-confirm" class="col-md-4 col-form-label text-md-right">确认密码</label>
+                                            <label for="email-password-confirm" class="col-md-4 col-form-label text-md-right">确认密码</label>
 
                                             <div class="col-md-6">
-                                                <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required>
+                                                <input id="email-password-confirm" type="password" class="form-control" name="password_confirmation" required>
                                             </div>
                                         </div>
                                         <hr class="my-5" style="width: 70%">

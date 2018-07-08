@@ -33,7 +33,7 @@
                 </div>
             </li>
         </ul>
-        <div v-show="this.userName" class="media">
+        <div v-if="this.userRole!='agency'" v-show="this.userName" class="media">
             <img class="mr-3 img-thumbnail" width="50px"  src="http://2e.zol-img.com.cn/product/64/410/ceneo4LyDg8c.jpg" alt="Generic placeholder image">
             <div class="media-body">
                 <h6 class="mt-1 mb-2">
@@ -56,7 +56,7 @@
 <script>
     export default {
         name: "comment-component",
-        props: [ 'commentType', 'commentIndex', 'userName', 'userIndex'],
+        props: [ 'commentType', 'commentIndex', 'userName', 'userIndex', 'userRole'],
         data() {
             return{
                 currentIndex: 0,

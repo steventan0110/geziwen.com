@@ -79,10 +79,13 @@
     <div class="container" id="comments">
         <div class="my-3 p-3 bg-white rounded box-shadow">
             @auth
+                @can('create', Auth::user())
                 <comment      :user-name="'{{ Auth::user()->name }}'"
                               :user-index="'{{ Auth::user()->id }}'"
+                              :user-role="'{{ Auth::user()->role }}'"
                               :comment-type="'agencies'"
                               :comment-index="'{{ $agency->id }}'"></comment>
+                @endcan
             @else
                 <comment      :user-name="''"
                               :user-index="-1"
